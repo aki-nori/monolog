@@ -12,5 +12,7 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  attachment :profile_image
+
   validates :name, presence: true
 end
