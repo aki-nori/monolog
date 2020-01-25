@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <td>
+      <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <%= user.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% user.introduction %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <%= render 'users/follow', user: user %>
+  </td>
+  </tr>
+</table>

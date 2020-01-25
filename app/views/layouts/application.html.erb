@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Monolog</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Monolog</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "#{current_user.name}さん", user_path(current_user), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "MyGadets", items_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Post", new_item_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Home", top_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "LogOut", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to "LogIn", new_user_session_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "SignUp", new_user_registration_path %>
+            </li>
+          <% end %>
+        </ul>
+        <% if user_signed_in?  %>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
     <%= yield %>
-  </body>
+  </div>
+</body>
+
 </html>

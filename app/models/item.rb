@@ -2,7 +2,7 @@ class Item < ApplicationRecord
     has_many :likes
     has_many :logs
     belongs_to :user
-    belogns_to :category
+    belongs_to :category
 
     attachment :image
 
@@ -11,4 +11,5 @@ class Item < ApplicationRecord
     validates :name, presence: true
     validates :infomation, presence: true
     validates :open_range, presence: true
+
 end

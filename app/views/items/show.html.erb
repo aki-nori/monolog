@@ -1,0 +1,141 @@
+<p>item/show</p>
+<div class="row">
+  <table>
+    <tr>
+      <td><label>Name</label></td>
+      <td>
+        <%= @item.name %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Image</label></td>
+      <td>
+        <%= attachment_image_tag @item, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= render 'likes/like_form', item: @item %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Category</label></td>
+      <td>
+        <%= @item.category.name %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Infomation</label></td>
+      <td>
+        <%= @item.infomation %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Price</label></td>
+      <td>
+        <%= @item.price %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Place</label></td>
+      <td>
+        <%= @item.place %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Score</label></td>
+      <td>
+        <%= @item.score %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>OpenRange</label></td>
+      <td>
+        <%= @item.open_range %>
+      </td>
+    </tr>
+    <% if @item.user == current_user %>
+    <tr>
+      <td>
+      	<%= link_to '編集', edit_item_path(@item) %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+<div class="row">
+  <% @logs.each do |log| %>
+  <div class="col-md-12">
+    <table>
+      <tr>
+        <td>
+          <%= "投稿日 #{log.created_at}" %>
+        </td>
+        <td>
+          <%= "更新日 #{log.updated_at}" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= attachment_image_tag log, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= log.title %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= log.body %>
+        </td>
+      </tr>
+      <% if log.item.user == current_user %>
+      <tr>
+      	<td>
+      		<%= link_to '編集', edit_log_path(log) %>
+      	</td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <% end %>
+</div>
+<% if @item.user == current_user %>
+<div class="row">
+  <%= form_with(model: @log, local: true) do |f| %>
+  <table>
+    <tr>
+      <td>
+        <label>タイトル</label>
+      </td>
+      <td>
+        <%= f.text_field :title %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>内容</label>
+      </td>
+      <td>
+        <%= f.text_area :body %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>画像</label>
+      </td>
+      <td>
+        <%= f.attachment_field :image %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.submit %>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+</div>
+<% end %>

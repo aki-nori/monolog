@@ -1,0 +1,36 @@
+<h1>TOPページ</h1>
+<div class="row">
+  <div>
+    <h2>人気のアイテム</h2>
+  </div>
+</div>
+<div class="row">
+  <% @items.each do |item| %>
+  <div class="col-md-3">
+    <table>
+      <tr>
+        <td>
+          <%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <%= link_to item.name, item_path(item) %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= render 'likes/like_form', item: item %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= link_to item.user.name, user_path(item.user) %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <% end %>
+</div>

@@ -68,6 +68,7 @@ gem 'devise'
 
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
+gem "bootswatch", github: "thomaspark/bootswatch"
 gem 'font-awesome-sass'
 gem 'kaminari'
 

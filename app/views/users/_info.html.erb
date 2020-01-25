@@ -1,0 +1,67 @@
+<table>
+  <tr>
+    <td>
+      <%= "ユーザネーム #{user.name}" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% unless user == current_user %>
+      <%= render 'users/follow', user: user %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+  </tr>
+  <tr>
+    <td>
+      <%= "フォロー中：#{user.followers.count}" %>
+      <%= link_to 'フォロー中を見る', followers_user_path(user) %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= "フォロワー：#{user.followings.count}" %>
+      <%= link_to 'フォロワーを見る', followings_user_path(user) %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= "アイテム数：#{user.items.count}" %>
+      <%= link_to "アイテム数：#{user.items.count}", user_item_path(user) %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= "自己紹介：#{user.introduction}" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= "場所：#{user.address}" %>
+    </td>
+  </tr>
+</table>
+<% if user == current_user %>
+<table>
+  <tr>
+  <tr>
+    <td>
+      <%= "いいねしたアイテム数：#{user.likes.count}" %>
+      <%= link_to "いいねしたアイテム数：#{user.likes.count}", like_item_path(user) %>
+    </td>
+  </tr>
+  </tr>
+  <tr>
+    <td>
+      <%= link_to 'プロフィール編集', edit_user_path(current_user) %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= link_to 'パスワード変更', edit_user_registration_path %>
+    </td>
+  </tr>
+</table>
+<% end %>

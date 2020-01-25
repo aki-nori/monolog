@@ -1,0 +1,37 @@
+<div>
+  <table>
+    <tr>
+      <td>
+        <%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td><%= item.name %></td>
+          </tr>
+          <tr>
+            <td><%= item.infomation %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <% unless item.logs == [] %>
+    <tr>
+      <td>
+        <p>直近のログ</p>
+        <!-- ★ログの一部テキストを表示させる  -->
+        <div>
+          <p>
+            <%= "タイトル #{item.logs.first.title}" %>
+          </p>
+        </div>
+        <div>
+          <p>
+            <%= item.logs.first.body %>
+          </p>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

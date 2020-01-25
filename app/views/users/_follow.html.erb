@@ -1,0 +1,7 @@
+<% unless user == current_user %>
+	<% unless Relationship.exists?(following_id: user.id) %>
+		<%= link_to "フォローする", relationships_path(params: {following_id: user.id}), method: :post, class: "btn btn-success" %>
+	<% else %>
+		<%= link_to "フォロー外す", relationship_path(user), method: :delete, class: "btn btn-danger" %>
+	<% end %>
+<% end %>

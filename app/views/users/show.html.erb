@@ -1,0 +1,12 @@
+User/Show
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'users/info', user: @user %>
+  </div>
+  <div class="col-md-9">
+    <!-- 一つのアイテム -->
+    <% @items.each do |item| %>
+    	<%= render 'items/item_card', item: item %>
+    <% end %>
+  </div>
+</div>

@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_01_23_080918) do
     t.string "infomation"
     t.string "place"
     t.integer "price"
+    t.integer "score"
     t.integer "open_range"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,8 +64,8 @@ ActiveRecord::Schema.define(version: 2020_01_23_080918) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "follow_id"
+    t.integer "following_id"
+    t.integer "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_01_23_080918) do
     t.text "introduction"
     t.string "profile_image_id"
     t.string "address"
+    t.string "place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

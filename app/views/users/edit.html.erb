@@ -1,0 +1,46 @@
+user/edit
+<div class="row">
+  <div class="col-md-12">
+    <%= form_with(model: @user, local: true) do |f| %>
+    <table>
+      <tr>
+        <td>
+          <label>アカウント名</label>
+        </td>
+        <td>
+          <%= f.text_field :name %>
+        </td>
+      </tr>
+      <tr>
+      	<td>
+      		<label>アイコン画像</label>
+      	</td>
+      	<td>
+      	<%= f.attachment_field :profile_image, class: "" %>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <label>自己紹介</label>
+        </td>
+        <td>
+          <%= f.text_area :infomation %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>住んでいるところ</label>
+        </td>
+        <td>
+          <%= f.text_field :address %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<p>item/new</p>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_with(model: @item, local: true) do |f| %>
+    <table>
+      <tr>
+        <td>
+          <label>Name</label>
+        </td>
+        <td>
+          <%= f.text_field :name %>
+        </td>
+      </tr>
+      <tr>
+      	<td>
+      		<label>Image</label>
+      	</td>
+      	<td>
+      	<%= f.attachment_field :image, class: "" %>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Category</label>
+        </td>
+        <td>
+          <%= f.select :category_id, Category.all.map { |category| [category.name, category.id] } %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Infomation</label>
+        </td>
+        <td>
+          <%= f.text_area :infomation %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Price</label>
+        </td>
+        <td>
+          <%= f.text_field :price %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Place</label>
+        </td>
+        <td>
+          <%= f.text_field :place %>
+        </td>
+      </tr>
+      <tr>
+      	<td><label>Score</label></td>
+      	<!-- ★ホシを使ったUIにする -->
+      	<td> <%= f.select :score, [['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ], { include_blank: false, selected: 0 } %></td>
+      </tr>
+      <tr>
+        <td>
+          <label>OpenRange</label>
+        </td>
+        <td>
+          <%= f.text_field :open_range %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>
