@@ -27,6 +27,13 @@ User.create!(
 	  name: 'Test User2',
       introduction: 'Im TestItem2!! dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text',
       address: 'my place2'
+    },
+    {
+      email: '333@333',
+    password: '333333',
+    name: 'Test User3',
+      introduction: 'Im TestItem3!! dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text',
+      address: 'my place3'
     }
   ]
 )
@@ -50,6 +57,15 @@ Item.create!(
       place: 'test2place',
       price: '1000',
    	  open_range: 'test'
+    },
+    {
+      user_id: 2,
+      category_id: 3,
+      name: 'TestItem3',
+      infomation: 'Item3s Info Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+      place: 'test3place',
+      price: '100',
+      open_range: 'test'
     }
   ]
 )

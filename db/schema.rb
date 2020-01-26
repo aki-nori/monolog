@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_01_23_080918) do
     t.string "infomation"
     t.string "place"
     t.integer "price"
-    t.integer "score"
+    t.float "score"
     t.integer "open_range"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

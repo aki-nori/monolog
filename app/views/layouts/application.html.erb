@@ -12,13 +12,14 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-          <% if user_signed_in? %>
+      <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to "#{current_user.name}さん", user_path(current_user), class: "nav-link" %>
             </li>
@@ -41,14 +42,15 @@
             <li class="nav-item">
               <%= link_to "SignUp", new_user_registration_path %>
             </li>
-          <% end %>
-        </ul>
-        <% if user_signed_in?  %>
+            <% end %>
+          </ul>
+          <% if user_signed_in?  %>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
           </form>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </nav>
   </header>

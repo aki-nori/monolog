@@ -1,36 +1,26 @@
-<h1>TOPページ</h1>
-<div class="row">
-  <div>
-    <h2>人気のアイテム</h2>
+<br>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#populer">人気</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#current">最近</a>
+  </li>
+</ul>
+<br>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active show" id="populer">
+    <div class="row">
+      <% @popular_items.each do |item| %>
+        <%= render 'items/item_card', item: item %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="row">
-  <% @items.each do |item| %>
-  <div class="col-md-3">
-    <table>
-      <tr>
-        <td>
-          <%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p>
-            <%= link_to item.name, item_path(item) %>
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= render 'likes/like_form', item: item %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= link_to item.user.name, user_path(item.user) %>
-        </td>
-      </tr>
-    </table>
+  <div class="tab-pane fade" id="current">
+    <div class="row">
+      <% @current_items.each do |item| %>
+        <%= render 'items/item_card', item: item %>
+      <% end %>
+    </div>
   </div>
-  <% end %>
 </div>

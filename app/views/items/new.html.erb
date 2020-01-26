@@ -12,12 +12,12 @@
         </td>
       </tr>
       <tr>
-      	<td>
-      		<label>Image</label>
-      	</td>
-      	<td>
-      	<%= f.attachment_field :image, class: "" %>
-      </td>
+        <td>
+          <label>Image</label>
+        </td>
+        <td>
+          <%= f.attachment_field :image, class: "" %>
+        </td>
       </tr>
       <tr>
         <td>
@@ -52,9 +52,12 @@
         </td>
       </tr>
       <tr>
-      	<td><label>Score</label></td>
-      	<!-- ★ホシを使ったUIにする -->
-      	<td> <%= f.select :score, [['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ], { include_blank: false, selected: 0 } %></td>
+        <td><label>Score</label></td>
+        <!-- ★ホシを使ったUIにする -->
+        <td>
+          <div id='star-score'></div>
+          <%= f.hidden_field :score, id: :item_rating %>
+        </td>
       </tr>
       <tr>
         <td>
@@ -74,3 +77,11 @@
     <% end %>
   </div>
 </div>
+<script>
+$('#star-score').raty({
+  path: '/assets/',
+  click: function(score, e) {
+    $("#item_rating").val(score)
+  }
+});
+</script>
