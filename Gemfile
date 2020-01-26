@@ -77,3 +77,7 @@ gem 'refile-mini_magick'
 
 gem 'ransack'
 
+group :production do
+  gem 'mysql2'
+end
+
