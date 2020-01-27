@@ -1,58 +1,91 @@
- <div class="col-md-3">
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              <%= link_to item.name, item_path(item) %>
-            </h5>
-            <h6 class="card-subtitle text-muted text-center">
-              <span class="badge badge-secondary">
-                <%= item.category.name %>
-              </span>
-            </h6>
-          </div>
-          <%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpg", style: "height: 200px; width: 100%; display: block;"%>
-          <div class="card-body">
-            <p class="card-text">
-              <%= item.infomation %>
-            </p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <%= render 'likes/like_form', item: item %>
-            </li>
-            <li class="list-group-item">
-              <table>
-                <tr>
-                  <td>
-                    <%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle", style: "height: 30px; width: 50%; display: block;"%>
-                  </td>
-                  <td>
-                    <%= link_to item.user.name, user_path(item.user) %>
-                  </td>
-                  <td>
-                    <%= render 'users/follow', user: item.user %>
-                  </td>
-                </tr>
-              </table>
-            </li>
-            <li class="list-group-item">
-              <%= item.score %>
-            </li>
-            <li class="list-group-item">
-              <i class="fas fa-pen-alt">ログ<%= item.logs.count.to_s %>件</i><br>
-              <% if item.logs == [] %>
-              <p>まだログがありません。</p>
-              <% else %>
-              <%= item.logs.first.title %>
-              <span class="badge badge-light">
-                <%= item.logs.first.created_at  %>
-              </span>
-              <% end %>
-            </li>
-          </ul>
-          <div class="card-footer text-muted">
-            <span>
-              <%= time_ago_in_words(item.created_at) %></span>
-          </div>
-        </div>
-      </div>
+<div class="col-md-3">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title text-center">
+        <%= link_to item.name, item_path(item) %>
+      </h5>
+      <h6 class="card-subtitle text-muted text-center">
+        <span class="badge badge-secondary">
+          <%= item.category.name %>
+        </span>
+      </h6>
+    </div>
+    <div style="width: 100%; height: 200px; text-align: center;">
+      <%= attachment_image_tag item, :image, fallback: "noimage.jpg", size:'150x150', class: "item-image" %>
+    </div>
+    <div style="text-align: center;">
+      <!--星評価-->
+      <div id="star-rate-<%= item.id %>"></div>
+      <script>
+        $('#star-rate-<%= item.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= item.score %>,
+    });
+    </script>
+      <!--/星評価-->
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <%= item.infomation.truncate(70) %>
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <%= render 'likes/like_form', item: item %>
+      </li>
+      <li class="list-group-item">
+        <table>
+          <tr>
+            <td>
+              <%= attachment_image_tag item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle user-image" %>
+            </td>
+            <td>
+              <%= link_to item.user.name, user_path(item.user) %>
+            </td>
+            <td>
+              <%= render 'users/follow', user: item.user %>
+            </td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-pen-alt">ログ
+          <%= item.logs.count.to_s %>件</i><br>
+        <% if item.logs == [] %>0
+        <p>まだログがありません。</p>
+        <% else %>
+        <%= item.logs.first.title %>
+        <span class="badge badge-light">
+          <%= item.logs.first.created_at  %>
+        </span>
+        <% end %>
+      </li>
+    </ul>
+    <div class="card-footer text-muted">
+      <span>
+        <%= time_ago_in_words(item.created_at) %></span>
+    </div>
+  </div>
+</div>
+<style type='text/css'>
+.item-image {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+
+}
+
+.user-image {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+</style>
