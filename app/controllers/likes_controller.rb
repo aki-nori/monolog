@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+	before_action :authenticate_user!
+
   def create
 		@like = Like.new(user_id: params[:user_id], item_id: params[:item_id])
 		# path_redirect(@favorite.save)

@@ -1,0 +1,56 @@
+<div class="row" my-3>
+  <div class="col-md-4 mb-3">
+    <div class="list-group">
+      <h5 class="list-group-item list-group-item-action active">
+        カテゴリー新規登録
+      </h5>
+      <div href="#" class="list-group-item">
+        <%= form_with(model: @category, local: true) do |f| %>
+        <form>
+          <fieldset>
+            <div class="form-group">
+            	<label for="">カテゴリー名</label>
+              <%= f.text_field :name, class: "form-control" %>
+            	</div>
+              <div class="form-group">
+              <%= f.submit "登録", :class => "btn btn-primary" %>
+              <% end %>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+  	<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <td>No.</td>
+      <td>カテゴリー名</td>
+      <td>アイテム数</td>
+    </tr>
+  </thead>
+  <% @categories.each_with_index do |category, i| %>
+  <tbody>
+    <tr>
+      <td>
+        <p>
+          <%= i.to_s %>
+        </p>
+      </td>
+      <td>
+        <%= link_to category.name, category_path(category) %>
+      </td>
+      <td>
+        <%= category.items.count %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+  </div>
+</div>
+
+
+
+

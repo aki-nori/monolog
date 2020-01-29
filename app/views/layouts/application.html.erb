@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Monolog</title>
+  <title>monolog</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,35 +13,56 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        
+        <%= link_to top_path, class: "navbar-brand" do %>
+                monolog
+                <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "#{current_user.name}さん", user_path(current_user), class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "MyGadets", items_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Post", new_item_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Home", top_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "LogOut", destroy_user_session_path, method: :delete, class: "nav-link" %>
-            </li>
+              <li class="nav-item">
+                <%= link_to user_path(current_user),class: "nav-link" do %>
+                <i class="fas fa-user"> <%= "#{current_user.name}さん" %></i>
+                <% end %>
+              </li>
+              <!-- <li class="nav-item"> -->
+                <!-- <%= link_to "MyGadets", items_path, class: "nav-link" %> -->
+              <!-- </li> -->
+              <li class="nav-item">
+                <%= link_to new_item_path, class: "nav-link" do %>
+                <i class="fas fa-plus-circle"> アイテム登録</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                <i class="fas fa-sign-out-alt"> ログアウト</i>
+                <% end %>
+              </li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to manage_path, class: "nav-link" do %>
+                  <i class="fas fa-tachometer-alt">管理</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
+                  <i class="fas fa-sign-out-alt"> ログアウト</i>
+                <% end %>
+              </li>
             <% else %>
-            <li class="nav-item">
-              <%= link_to "LogIn", new_user_session_path %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "SignUp", new_user_registration_path %>
-            </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class: "nav-link" do %>
+                  <i class="fas fa-sign-in-alt">ログイン</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: "nav-link" do %>
+                  <i class="fas fa-user-plus">新規登録</i>
+                <% end %>
+              </li>
             <% end %>
           </ul>
           <% if user_signed_in?  %>

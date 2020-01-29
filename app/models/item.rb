@@ -10,6 +10,5 @@ class Item < ApplicationRecord
     validates :category_id, presence: true
     validates :name, presence: true
     validates :infomation, presence: true
-    validates :open_range, presence: true
 
 end

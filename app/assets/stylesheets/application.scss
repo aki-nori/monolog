@@ -22,3 +22,95 @@
 @import "*"; // これが無いとstylesheets内に個別のscssを読み込めない
 
 
+.sticky {
+  position: -webkit-sticky; //safari用
+  position: sticky;
+  top: 10px;
+}
+
+
+.follow-info-size {
+  font-size: 5px;
+}
+
+.z-index-100 {
+	z-index: 100;
+}
+
+.z-index-200 {
+	z-index: 200;
+}
+
+.link-font-light a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.link-font-dark a {
+	text-decoration: none;
+	color: #2C3E50;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.user-card-user-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.user-card-user-intro {
+	padding-top: 10px;
+	font-size: 12px;
+}
+
+.user-card-record-title {
+	color: white;
+	font-size: 7px;
+	text-decoration: none;
+}
+
+.user-card-record-count {
+	color: white;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.user-card-intro-text {
+	display: -webkit-box;
+  -webkit-box-orient: vertical;
+  height: 180px;
+  overflow: hidden;
+}
+
+.item-card-item-image {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.item-card-user-image {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.item-card-username {
+  font-size: 13px;
+}
+
+.font-bold {
+	font-weight: bold;
+}
+
+
+* {
+	text-decoration: none;
+}
+
+

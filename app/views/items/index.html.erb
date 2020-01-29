@@ -1,26 +1,18 @@
-<p>Item/index</p>
+<br>
 <div class="row">
   <% @items.each do |item| %>
-  <div class="col-md-3">
-    <table>
-      <tr>
-        <td>
-          <%= attachment_image_tag item, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p>
-            <%= link_to item.name, item_path(item) %>
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= render 'likes/like_form', item: item %>
-        </td>
-      </tr>
-    </table>
-  </div>
+  <div class="col-lg-3 col-md-6">
+    <%= render 'items/item_card', item: item %>
+    </div>
   <% end %>
 </div>
+<style type="text/css">
+.item-image {
+
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+</style>

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   root 'homes#about'
-  
+
   get '/top' => 'homes#top', as: :top
+  get '/manage' => 'homes#manage', as: :manage
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -22,10 +23,9 @@ Rails.application.routes.draw do
     end
   end
   resources :admins
-  resources :categories
+  resources :categories,    only: [:create, :destroy, :update, :show, :index]
   resources :items,         only: [:create, :destroy, :edit, :update, :show, :new, :index] do
     member do
-      get :user
       get :like
     end
   end

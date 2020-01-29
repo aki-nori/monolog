@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :baria_user, only: [:update, :edit]
 
   def show
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-  @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
@@ -20,10 +21,12 @@ class UsersController < ApplicationController
   end
 
   def followings
+    @user = User.find(params[:id])
     @users = User.find(params[:id]).followings
   end
 
   def followers
+    @user = User.find(params[:id])
     @users = User.find(params[:id]).followers
   end
 

@@ -1,4 +1,6 @@
 class LogsController < ApplicationController
+	before_action :authenticate_user!
+	
 	def create
 		log = Log.new(log_params)
 		log.save
@@ -13,6 +15,13 @@ class LogsController < ApplicationController
 		log = Log.find(params[:id])
 		log.update(log_params)
 		redirect_to item_path(log.item)
+	end
+
+	def destroy
+		log = Log.find(params[:id])
+		item = log.item
+		log.destroy
+		redirect_to item_path(item)
 	end
 
 	private

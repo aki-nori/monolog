@@ -1,15 +1,25 @@
 <% unless user == current_user %>
-<% unless Relationship.exists?(following_id: user.id, follower_id: current_user.id) %>
-<%= link_to relationships_path(params: {following_id: user.id}), method: :post do%>
-<h5>
-  <span class="badge badge-pill badge-info">following</span>
-</h5>
-<% end %>
+	<% unless Relationship.exists?(following_id: user.id, follower_id: current_user.id) %>
+		<%= link_to relationships_path(params: {following_id: user.id}), method: :post do%>
+		<h5>
+		  <span class="badge badge-pill badge-info">
+		  	<span class="follow-info-size">フォロー</span>
+		  </span>
+		</h5>
+		<% end %>
+	<% else %>
+		<%= link_to relationship_path(user), method: :delete do %>
+		<h5>
+		  <span class="badge badge-pill badge-danger">
+		  	<span class="follow-info-size">フォロー解除</span>
+		  </span>
+		</h5>
+		<% end %>
+	<% end %>
 <% else %>
-<%= link_to relationship_path(user), method: :delete do %>
-<h5>
-  <span class="badge badge-pill badge-danger">unfollow</span>
-</h5>
-<% end %>
-<% end %>
+	<h5>
+    <span class="badge badge-pill badge-success">
+    <span class="follow-info-size">ログインユーザー</span>
+    </span>
+  </h5>
 <% end %>

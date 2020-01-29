@@ -1,4 +1,24 @@
-user/followers
-<% @users.each do |user| %>
-<%= render 'users/user_card', user: user %>
-<% end %>
+<div class="row my-3">
+  <div class="col-md-12 col-lg-3">
+    <!-- md以上 -->
+    <div class="d-md-block sticky">
+      <%= render 'users/info', user: @user %>
+    </div>
+    <!-- sm以下 -->
+    <div class="d-none ">
+      <%= render 'users/info', user: @user %>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-9">
+  	<div class="alert alert-dismissible alert-success sticky" style="z-index: 200;">
+  	<strong><%= "#{@user.name}さんは#{@user.followers.count}人をフォロー中です" %></strong>
+	</div>
+      <div class="row" style="z-index: 100;">
+        <% @user.followers.each do |user| %>
+        <div class="col-lg-4 col-md-6">
+        <%= render 'users/user_card', user: user %>
+        </div>
+        <% end %>
+      </div>
+  </div>
+</div>

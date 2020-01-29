@@ -1,8 +1,10 @@
 class RelationshipsController < ApplicationController
+	before_action :authenticate_user!
+
   def create
   	@relationship = Relationship.new(following_id: params[:following_id], follower_id: current_user.id)
- 	@relationship.save
- 	redirect_back(fallback_location: top_path)
+ 		@relationship.save
+ 		redirect_back(fallback_location: top_path)
   end
 
   def destroy

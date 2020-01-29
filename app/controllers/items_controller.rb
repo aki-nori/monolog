@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+	before_action :authenticate_user!
+
 	def index
 		@items = current_user.items
 	end
@@ -32,11 +34,14 @@ class ItemsController < ApplicationController
 		redirect_to item_path(item)
 	end
 
-	def user
-		@items = User.find(params[:id]).items
+	def destroy
+		item = Item.find(params[:id])
+		item.destroy
+		redirect_to items_path
 	end
 
 	def like
+		@user = User.find(params[:id])
 		@items = User.find(params[:id]).liked_items
 	end
 

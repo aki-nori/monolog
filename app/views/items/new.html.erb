@@ -1,54 +1,57 @@
-<br>
-
+<div class="row my-3">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
 <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active">
+  <a class="list-group-item list-group-item-action active">
     ガジェット新規登録
   </a>
   <div href="#" class="list-group-item">
- 
-
-
-<form>
-  <fieldset>
     <%= form_with(model: @item, local: true) do |f| %>
-    <div class="form-group">
-      <label for="">名称</label>
-      <%= f.text_field :name, class: "form-control", placeholder: "例）iPhone11 Pro" %>
-       <small class="form-text text-muted">入力条件</small>
-    </div>
-    <div class="form-group">
-      <label for="">画像</label>
-      <%= f.attachment_field :image, class: "form-control-file" %>
-    </div>
-    <div class="form-group">
-      <label for="">カテゴリー</label>
-      <%= f.select :category_id, Category.all.map { |category| [category.name, category.id] }, {}, {class: 'form-control', multiple: ''} %>
-    </div>
-    <div class="form-group">
-      <label for="">購入価格</label>
-      <%= f.text_field :price, class: "form-control" %>
-      <small class="form-text text-muted">入力条件</small>
-    </div>
-    <div class="form-group">
-      <label for="">購入場所</label>
-      <%= f.text_field :place, class: "form-control" %>
-      <small class="form-text text-muted">入力条件</small>
-    </div>
-    <div class="form-group">
-      <label for="">評価</label>
-      <div id='star-score'></div>
-      <small class="form-text text-muted">入力条件</small>
-      <%= f.hidden_field :score, id: :item_rating %>
-    </div>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit :class=>"btn btn-primary" %>
+    <form>
+      <fieldset>
+        <div class="form-group">
+          <label for="">名称</label>
+          <%= f.text_field :name, class: "form-control", placeholder: "例）iPhone11 Pro" %>
+          <small class="form-text text-muted">入力条件</small>
+        </div>
+        <div class="form-group">
+          <label for="">画像</label>
+          <%= f.attachment_field :image, class: "form-control-file" %>
+        </div>
+        <div class="form-group">
+          <label for="">カテゴリー</label>
+          <%= f.select :category_id, Category.all.map { |category| [category.name, category.id] }, {}, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="">情報</label>
+          <%= f.text_area :infomation, rows: 10, class: "form-control" %>
+          <small class="form-text text-muted">入力条件</small>
+        </div>
+        <div class="form-group">
+          <label for="">購入価格</label>
+          <%= f.text_field :price, class: "form-control" %>
+          <small class="form-text text-muted">入力条件</small>
+        </div>
+        <div class="form-group">
+          <label for="">購入場所</label>
+          <%= f.text_field :place, class: "form-control" %>
+          <small class="form-text text-muted">入力条件</small>
+        </div>
+        <div class="form-group">
+          <label for="">評価</label>
+          <div id='star-score'></div>
+          <small class="form-text text-muted">入力条件</small>
+          <%= f.hidden_field :score, id: :item_rating %>
+        </div>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.submit "登録", :class => "btn btn-primary" %>
+      </fieldset>
+    </form>
     <% end %>
-  </fieldset>
-</form>
-
- </div>
+  </div>
 </div>
-
+</div>
+</div>
 <script>
 $('#star-score').raty({
   path: '/assets/',

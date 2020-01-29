@@ -1,12 +1,21 @@
-User/Show
-<div class="row">
-  <div class="col-md-3">
-    <%= render 'users/info', user: @user %>
+<div class="row my-3">
+  <div class="col-md-12 col-lg-3">
+    <!-- md以上 -->
+    <div class="d-md-block sticky">
+      <%= render 'users/info', user: @user %>
+    </div>
+    <!-- sm以下 -->
+    <div class="d-none ">
+      <%= render 'users/info', user: @user %>
+    </div>
   </div>
-  <div class="col-md-9">
-    <!-- 一つのアイテム -->
-    <% @items.each do |item| %>
-    	<%= render 'items/item_card', item: item %>
-    <% end %>
+  <div class="col-md-12 col-lg-9">
+      <div class="row">
+        <% @items.each_with_index do |item, i| %>
+        <div class="col-lg-4 col-md-6">
+        <%= render 'items/item_card', item: item %>
+        </div>
+        <% end %>
+      </div>
   </div>
 </div>

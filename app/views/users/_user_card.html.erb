@@ -1,26 +1,57 @@
-<table>
-  <tr>
-    <td>
-      <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
-    </td>
-    <td>
-      <table>
-        <tr>
-          <td>
-            <%= user.name %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <% user.introduction %>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td>
+<div class="card text-white bg-primary mb-3">
+  <!-- <div class="card-header"> -->
+  <!-- <i class="fas fa-user"> ユーザー情報</i> -->
+  <!-- </div> -->
+  <div class="card-body">
+    <table style="text-align: center;">
+      <tr>
+        <td>
+          <%= attachment_image_tag user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle user-card-user-image" %>
+        </td>
+        <td>
+          <h6 class="card-title" style="margin: auto; padding-left: 4px;">
+            <%= link_to user.name, user_path(user) %>
+          </h6>
+          <% if user == current_user %>
+  <span class="badge badge-success" style="display: inline-block; text-align: right;">ログインユーザー</span>
+  <% end %>
+        </td>
+      </tr>
+    </table>
+
+      <div class="text-container user-card-user-intro" >
+        <p class="user-card-intro-text"><%= user.introduction %></p>
+      </div>
+  </div>
+  <div class="card-body" style="text-align: center; padding: 0 auto;">
+    <table style="width: 100%;">
+      <tr class="user-card-count-record">
+        <td>
+          <%= link_to followings_user_path(user) do %>
+          <p class="user-card-record-count"><%= "#{user.followings.count}" %></p>
+          <p class="user-card-record-title">フォロワー</p>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to followers_user_path(user) do %>
+          <p class="user-card-record-count"><%= "#{user.followers.count}" %></p>
+          <p class="user-card-record-title">フォロー中</p>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to user_path(user) do %>
+          <p class="user-card-record-count"><%= "#{user.items.count}" %></p>
+          <p class="user-card-record-title">アイテム</p>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <div style="font-size: 6px; text-align: center; color: #AAA;">
+      <i class="fas fa-map-marker-alt"></i><%= " #{user.address}" %><br>
+    </div>
+  </div>
+  <div style="text-align: center;">
     <%= render 'users/follow', user: user %>
-  </td>
-  </tr>
-</table>
+  </div>
+</div>
+

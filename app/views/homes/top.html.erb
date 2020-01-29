@@ -1,5 +1,4 @@
-<br>
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs mt-3">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#populer">人気</a>
   </li>
@@ -12,14 +11,18 @@
   <div class="tab-pane fade active show" id="populer">
     <div class="row">
       <% @popular_items.each do |item| %>
+      <div class="col-lg-3 col-md-6">
         <%= render 'items/item_card', item: item %>
+      </div>
       <% end %>
     </div>
   </div>
   <div class="tab-pane fade" id="current">
     <div class="row">
       <% @current_items.each do |item| %>
+      <div class="col-lg-3 col-md-6">
         <%= render 'items/item_card', item: item %>
+      </div>
       <% end %>
     </div>
   </div>
