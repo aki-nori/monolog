@@ -22,14 +22,12 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <% if user_signed_in? %>
+              <!-- Userサインイン時のヘッダ表示項目 -->
               <li class="nav-item">
                 <%= link_to user_path(current_user),class: "nav-link" do %>
                 <i class="fas fa-user"> <%= "#{current_user.name}さん" %></i>
                 <% end %>
               </li>
-              <!-- <li class="nav-item"> -->
-                <!-- <%= link_to "MyGadets", items_path, class: "nav-link" %> -->
-              <!-- </li> -->
               <li class="nav-item">
                 <%= link_to new_item_path, class: "nav-link" do %>
                 <i class="fas fa-plus-circle"> アイテム登録</i>
@@ -41,6 +39,7 @@
                 <% end %>
               </li>
             <% elsif admin_signed_in? %>
+              <!-- Adminログイン時のヘッダ表示項目 -->
               <li class="nav-item">
                 <%= link_to manage_path, class: "nav-link" do %>
                   <i class="fas fa-tachometer-alt">管理</i>
@@ -52,6 +51,7 @@
                 <% end %>
               </li>
             <% else %>
+              <!-- UserもAdmin もログインしていない時のヘッダ表示項目 -->
               <li class="nav-item">
                 <%= link_to new_user_session_path, class: "nav-link" do %>
                   <i class="fas fa-sign-in-alt">ログイン</i>
@@ -65,7 +65,6 @@
             <% end %>
           </ul>
           <% if user_signed_in?  %>
-
           <%= search_form_for @search, url: items_path, class: "form-inline my-2 my-lg-0" do |f| %>
             <%= f.search_field :name_cont, class: "form-control mr-sm-2 mr-2 search-form", placeholder: "ガジェット検索" %>
             <div class="actions">
@@ -79,9 +78,19 @@
       </div>
     </nav>
   </header>
+  <!-- Aboutページのみ背景色を変更<開始タグ> -->
+  <% if request.path == '/' %>
+    <div style="background-color: #559FC5">
+  <% end %>
+  <!-- /Aboutページのみ背景色を変更<開始タグ> -->
   <div class="container">
     <%= yield %>
   </div>
+  <!-- Aboutページのみ背景色を変更<閉じタグ> -->
+  <% if request.path == '/' %>
+    </div>
+  <% end %>
+  <!-- /Aboutページのみ背景色を変更<閉じタグ> -->
   <div class="mb-3 mr-3" id="page_top"><a href="#"></a></div>
 </body>
 
@@ -89,10 +98,10 @@
 
 <script>
 jQuery(function() {
-    var pagetop = $('#page_top');   
+    var pagetop = $('#page_top');
     pagetop.hide();
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {  //100pxスクロールしたら表示
+        if ($(this).scrollTop() > 100) {
             pagetop.fadeIn();
         } else {
             pagetop.fadeOut();
@@ -101,7 +110,7 @@ jQuery(function() {
     pagetop.click(function () {
         $('body,html').animate({
             scrollTop: 0
-        }, 500); //0.5秒かけてトップへ移動
+        }, 500);
         return false;
     });
 });

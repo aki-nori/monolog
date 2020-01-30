@@ -22,6 +22,55 @@
 @import "*"; // これが無いとstylesheets内に個別のscssを読み込めない
 
 
+//親要素
+.parent-f{
+  position: relative;
+  height: 400px;
+}
+//子要素
+.children-f{
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.children-f-text {
+  position: absolute;
+  bottom: 100px;
+  left: 20px;
+}
+
+.children-f-button {
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+}
+
+//親要素
+.parent-s{
+  position: relative;
+  height: 400px;
+}
+//子要素
+.children-s{
+  position: absolute;
+  bottom: 0;
+}
+
+
+.parent-t{
+  position: relative;
+  height: 400px;
+  z-index: 100;
+  text-align: center;
+}
+
+.children-t{
+  position: absolute;
+  bottom: 0;
+  z-index: 200;
+}
+
 .search-form {
   width: 200px;
 }
