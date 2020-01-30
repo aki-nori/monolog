@@ -7,9 +7,6 @@ class UsersController < ApplicationController
    @items = @user.items
   end
 
-  def index
-  end
-
   def edit
     @user = User.find(params[:id])
   end

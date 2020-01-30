@@ -2,11 +2,13 @@ class ItemsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@items = current_user.items
-	end
+		@items = @search.result 
+		@user = current_user
+  end
 
 	def show
 		@item = Item.find(params[:id])
+		@user = @item.user
 		@log = Log.new
 		@logs = Log.where(item_id: @item.id)
 	end

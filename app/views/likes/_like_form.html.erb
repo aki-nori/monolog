@@ -1,9 +1,10 @@
-<% unless current_user.already_liked?(item) %>
-<%= link_to likes_path(params: {user_id: current_user.id, item_id: item.id}), method: :post, remote: true do %>
-<i class="far fa-thumbs-up"><%= " #{Like.where(item_id: item.id).count}" %></i>
-<% end %>
-<% else %>
-<%= link_to like_path(item, params: {user_id: current_user.id, item_id: item.id}), method: :delete, remote: true do %>
-<i class="fas fa-thumbs-up"><%= " #{Like.where(item_id: item.id).count}" %></i>
-<% end %>
-<% end %>
+
+	<% unless current_user.already_liked?(item) %>
+		<%= link_to likes_path(params: {user_id: current_user.id, item_id: item.id}), method: :post, remote: true do %>
+			<i class="far fa-thumbs-up"><%= " #{Like.where(item_id: item.id).count}" %></i>
+		<% end %>
+	<% else %>
+		<%= link_to like_path(item, params: {user_id: current_user.id, item_id: item.id}), method: :delete, remote: true do %>
+			<i class="fas fa-thumbs-up"><%= " #{Like.where(item_id: item.id).count}" %></i>
+		<% end %>
+	<% end %>

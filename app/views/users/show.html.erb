@@ -2,14 +2,19 @@
   <div class="col-md-12 col-lg-3">
     <!-- md以上 -->
     <div class="d-md-block sticky">
-      <%= render 'users/info', user: @user %>
+      <%= render 'users/info', user: @user, info_user: @user %>
     </div>
     <!-- sm以下 -->
     <div class="d-none ">
-      <%= render 'users/info', user: @user %>
+      <%= render 'users/info', user: @user, info_user: @user %>
     </div>
   </div>
   <div class="col-md-12 col-lg-9">
+    <div class="card text-white bg-primary mb-3 sticky z-index-200">
+      <div class="card-header">
+        <span class="font-bold"><%= @user.name %></span> さんのガジェット一覧
+      </div>
+    </div>
       <div class="row">
         <% @items.each_with_index do |item, i| %>
         <div class="col-lg-4 col-md-6">

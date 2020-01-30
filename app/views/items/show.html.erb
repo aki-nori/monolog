@@ -1,10 +1,9 @@
-<br>
-<div class="row">
-  <div class="col-md-12">
+<div class="row my-3">
+  <div class="col-md-12 link-font-dark">
     <div class="card mb-3">
       <div class="card-body">
-        <h3 class="card-title text-center">
-          <%= link_to @item.name, item_path(@item) %>
+        <h3 class="card-title text-center font-bold">
+          <%= @item.name %>
         </h3>
         <h6 class="card-subtitle text-muted text-center">
           <span class="badge badge-secondary">
@@ -12,10 +11,10 @@
           </span>
         </h6>
       </div>
-      <div style="width: 100%; height: 400px; text-align: center;">
+      <div class="text-center w-100" style="height: 400px;">
         <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", size:'150x150', class: "item-card-item-image" %>
       </div>
-      <div style="text-align: center;">
+      <div class="text-center">
         <!--星評価-->
       <div id="star-rate-<%= @item.id %>"></div>
       <script>
@@ -54,7 +53,7 @@
           </tr>
         </table>
       </strong>
-        <div class="card-subtitle mb-2 text-muted" style="text-align: center; margin-top: 10px;">
+        <div class="card-subtitle mb-2 text-muted text-center" style="margin-top: 10px;">
            <span class="badge badge-light">
           <%= "投稿日：#{@item.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.created_at)}前）" %>
             </span>
@@ -68,7 +67,9 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <%= render 'likes/like_form', item: @item %>
+          <div id="like-<%= @item.id %>">
+            <%= render 'likes/like_form', item: @item %>
+          </div>
         </li>
         <% if @item.user == current_user %>
         <li class="list-group-item">
@@ -79,18 +80,15 @@
           <table>
             <tr>
               <td>
-                <%= attachment_image_tag @item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image" %>
+                <%= attachment_image_tag @item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image mr-3" %>
               </td>
               <td>
-                <strong>
-                <%= link_to @item.user.name, user_path(@item.user) %>
-              </strong>
-                <% if @item.user == current_user %>
-                <span class="badge badge-info" style="display: inline-block; text-align: right;">ログインユーザー</span>
-              <% end %>
-              </td>
-              <td>
-                <%= render 'users/follow', user: @item.user %>
+                <h4 class="font-bold">
+                  <%= link_to @item.user.name, user_path(@item.user) %>
+                </h4>
+                <div id="follow-<%= @user.id %>">
+                  <%= render 'relationships/follow', user: @user, info_user: @user %>
+                </div>
               </td>
             </tr>
           </table>
@@ -125,11 +123,11 @@
           <%= log.body %>
         </p>
         <% if log.image %>
-          <div style="height: 300px; text-align: center;">
+          <div class="text-center" style="height: 300px;">
             <%= attachment_image_tag log, :image, class: "item-card-item-image" %>
           </div>
         <% end %>
-        <div class="card-subtitle mb-2 text-muted" style="text-align: right; margin-top: 10px;">
+        <div class="card-subtitle text-muted text-right mt-3">
            <span class="badge badge-light">
           <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
             </span>
@@ -143,7 +141,7 @@
         <% if @item.user == current_user %>
         <div>
           <br>
-          <div style="text-align: right;">
+          <div class="text-right">
             <%= link_to "編集", edit_log_path(log), :class => "btn btn-outline-primary" %>
             <%= link_to "削除",log, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, :class => "btn btn-outline-primary" %>
           </div>

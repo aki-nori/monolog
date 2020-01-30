@@ -10,11 +10,15 @@
           <%= attachment_image_tag user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle user-card-user-image" %>
         </td>
         <td>
-          <h6 class="card-title ml-2" style="">
-            <%= user.name %>
+          <h6 class="card-title ml-2 link-font-light" >
+            <%= link_to user_path(user) do %>
+              <%= user.name %>
+            <% end %>
           </h6>
           <div class="ml-2">
-          <%= render 'users/follow', user: user %>
+            <div id="follow-<%= user.id %>">
+              <%= render 'relationships/follow', user: user, info_user: info_user %>
+            </div>
           </div>
         </td>
       </tr>
@@ -24,33 +28,10 @@
     </p>
   </div>
   <div class="card-body text-center">
-    <table style="width: 100%;">
-      <tr class="user-card-count-record link-font-light">
-        <td>
-          <%= link_to followings_user_path(user) do %>
-          <p class="user-card-record-count">
-            <%= "#{user.followings.count}" %>
-          </p>
-          <p class="user-card-record-title">フォロワー</p>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to followers_user_path(user) do %>
-          <p class="user-card-record-count">
-            <%= "#{user.followers.count}" %>
-          </p>
-          <p class="user-card-record-title">フォロー中</p>
-          <% end %>
-        </td>
-        <td>
-          <p class="user-card-record-count">
-            <%= "#{user.items.count}" %>
-          </p>
-          <p class="user-card-record-title">アイテム</p>
-        </td>
-      </tr>
-    </table>
-    <div style="font-size: 6px; text-align: right; color: #AAA;">
+    <div id="counter-<%= user.id %>">
+      <%= render 'users/counter', user: info_user %>
+    </div>
+    <div class="text-right text-muted" style="font-size: 6px;">
       <i class="fas fa-map-marker-alt"></i>
       <%= " #{user.address}" %><br>
       <%= "#{user.created_at.strftime("%Y年%m月%d日")}に登録" %>

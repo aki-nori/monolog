@@ -1,0 +1,6 @@
+// フォローボタンの更新
+$("#follow-<%= @user.id %>").html("<%= j(render partial: 'relationships/follow', locals: { user: @user, info_user: @info_user }) %>");
+
+// ユーザーステータス（フォロー人数）の更新
+$("#counter-<%= @user.id %>").html("<%= j(render partial: 'users/counter', locals: { user: @user }) %>");
+$("#counter-<%= @info_user.id %>").html("<%= j(render partial: 'users/counter', locals: { user: @info_user }) %>");

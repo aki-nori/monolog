@@ -13,9 +13,8 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        
-        <%= link_to top_path, class: "navbar-brand" do %>
-                monolog
+        <%= link_to top_path, class: "navbar-brand p-0" do %>
+                <img src="<%= asset_path "monolog-logo.png" %>", style="width: 130px; padding: 0;" %>
                 <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -66,10 +65,15 @@
             <% end %>
           </ul>
           <% if user_signed_in?  %>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-          </form>
+
+          <%= search_form_for @search, url: items_path, class: "form-inline my-2 my-lg-0" do |f| %>
+            <%= f.search_field :name_cont, class: "form-control mr-sm-2 mr-2 search-form", placeholder: "ガジェット検索" %>
+            <div class="actions">
+              <%= button_tag :type => "submit", :class =>"btn btn-secondary my-2 my-sm-0" do %>
+                <i class="fa fa-search"></i>
+                <% end %>
+            </div>
+          <% end %>
           <% end %>
         </div>
       </div>
@@ -78,6 +82,28 @@
   <div class="container">
     <%= yield %>
   </div>
+  <div class="mb-3 mr-3" id="page_top"><a href="#"></a></div>
 </body>
 
 </html>
+
+<script>
+jQuery(function() {
+    var pagetop = $('#page_top');   
+    pagetop.hide();
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {  //100pxスクロールしたら表示
+            pagetop.fadeIn();
+        } else {
+            pagetop.fadeOut();
+        }
+    });
+    pagetop.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 500); //0.5秒かけてトップへ移動
+        return false;
+    });
+});
+
+</script>

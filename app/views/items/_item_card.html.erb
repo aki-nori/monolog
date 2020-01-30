@@ -9,10 +9,10 @@
         </span>
       </div>
     </div>
-    <div style="width: 100%; height: 200px; text-align: center;">
+    <div class="text-center w-100" style="height: 200px;">
       <%= attachment_image_tag item, :image, fallback: "noimage.jpg", size:'150x150', class: "item-card-item-image" %>
     </div>
-    <div style="text-align: center;">
+    <div class="mx-auto">
       <!--星評価-->
       <div id="star-rate-<%= item.id %>"></div>
       <script>
@@ -35,7 +35,9 @@
     </div>
     <ul class="list-group list-group-flush link-font-dark">
       <li class="list-group-item">
-        <%= render 'likes/like_form', item: item %>
+        <div class="float-right" id="like-<%= item.id %>">
+          <%= render 'likes/like_form', item: item %>
+        </div>
       </li>
       <li class="list-group-item">
         <table>
@@ -50,7 +52,11 @@
               <% end %>
             </strong>
               </span>
-              <%= render 'users/follow', user: item.user %>
+              <% if false #コメントアウトここから %>
+              <div id="follow-<%=  item.user.id %>">
+                <%=  render 'relationships/follow', user: item.user %>
+              </div>
+              <% end #コメントアウトここまで %>
             </td>
           </tr>
         </table>
