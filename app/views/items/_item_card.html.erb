@@ -33,12 +33,20 @@
         <%= item.infomation.truncate(70) %>
       </p>
     </div>
-    <ul class="list-group list-group-flush link-font-dark">
-      <li class="list-group-item">
-        <div class="float-right" id="like-<%= item.id %>">
+
+      <div class="mx-auto link-font-dark">
+        <div class="p-2" style="float: left;">
+          <i class="fas fa-pencil-alt">
+            <%= item.logs.count.to_s %>件</i>
+        </div>
+        <div class="p-2" style="float: left;">
+          <i class="far fa-comment">0件</i>
+        </div>
+        <div class="p-2" id="like-<%= item.id %>" style="float: left;">
           <%= render 'likes/like_form', item: item %>
         </div>
-      </li>
+      </div>
+      </table>
       <li class="list-group-item">
         <table>
           <tr>
@@ -61,18 +69,5 @@
           </tr>
         </table>
       </li>
-      <li class="list-group-item">
-        <i class="fas fa-pen-alt">
-          <%= item.logs.count.to_s %>件</i><br>
-      <% if item.logs == [] %>
-        <p>まだログがありません。</p>
-      <% else %>
-        <span class="badge badge-danger">直近のログ</span><br>
-        <%= item.logs.first.title %>
-        <span class="badge badge-light">
-          <%= "#{item.logs.first.created_at.strftime("%Y年%m月%d日 %H時%M分")}"  %>
-        </span>
-      <% end %>
-    </li>
   </ul>
 </div>

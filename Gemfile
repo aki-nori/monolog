@@ -78,6 +78,8 @@ gem 'refile-mini_magick'
 
 gem 'ransack'
 
+gem 'dotenv-rails'
+
 group :production do
   gem 'mysql2'
 end
