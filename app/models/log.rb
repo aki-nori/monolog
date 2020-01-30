@@ -1,5 +1,6 @@
 class Log < ApplicationRecord
     belongs_to :item
+    has_many :comments , dependent: :destroy
 
     attachment :image
 

@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
-    has_many :likes
-    has_many :logs
+    has_many :likes, dependent: :destroy
+    has_many :logs, dependent: :destroy
     belongs_to :user
     belongs_to :category
 

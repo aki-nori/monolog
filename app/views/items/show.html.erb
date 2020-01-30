@@ -148,7 +148,10 @@
         </div>
         <% end %>
       </div>
+    <div id=comment-<%= log.id %> class="card-body"><!-- コメント -->
+      <%= render 'comments/form', comment: @comment, log: log %>
     </div>
+  </div>
     <% end %>
   </div>
 </div>

@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
 		@user = @item.user
 		@log = Log.new
 		@logs = Log.where(item_id: @item.id)
+		@comment = Comment.new
 	end
 
 	def new

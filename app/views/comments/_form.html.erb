@@ -1,0 +1,33 @@
+<% log.comments.each do |comment| %>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+    	<div class="">
+  		<div class="">
+    		<h6 class=""><%= comment.user.name %></h6>
+    		<p class=""><%= comment.body %></p>
+  		</div>
+  		<span class="badge badge-light">
+            <%= "投稿日：#{comment.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(comment.created_at)}前）" %>
+          </span>
+  		<% if comment.user == current_user %>
+				<div class="text-right">
+				<%= link_to "削除", comment_path(comment), method: :delete, :class => "btn btn-outline-primary", remote: true %><br
+				</div>
+			<% end %>
+			</div>
+    </li>
+  </ul>
+<% end %>
+
+<!-- コメント投稿フォーム -->
+<%= form_with(model: comment) do |f| %>
+	<fieldset>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :log_id, :value => log.id %>
+		<div class="form-group">
+			<label>コメント投稿</label>
+			<%= f.text_area :body, class: "form-control" %>
+		</div>
+		<%= f.submit "投稿", :class => "btn btn-primary" %>
+	</fieldset>
+<% end %>

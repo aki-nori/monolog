@@ -1,0 +1,1 @@
+$("#comment-<%= @log.id %>").html("<%= j(render partial: 'comments/form', locals: { comment: @comment, log: @log }) %>");
