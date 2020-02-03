@@ -17,9 +17,9 @@
     </div>
       <div class="row">
         <% @items.each_with_index do |item, i| %>
-        <div class="col-lg-4 col-md-6">
-        <%= render 'items/item_card', item: item %>
-        </div>
+          <div class="col-lg-4 col-md-6">
+            <%= render 'items/item_card', item: item %>
+          </div>
         <% end %>
       </div>
       <%= paginate @items %>

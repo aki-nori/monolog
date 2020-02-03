@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
   resources :admins
-  resources :categories,    only: [:create, :destroy, :update, :show, :index]
+  resources :categories,    only: [:create, :destroy, :update, :edit, :index]
   resources :items,         only: [:create, :destroy, :update, :show, :index, :edit, :new] do
     member do
       get :like

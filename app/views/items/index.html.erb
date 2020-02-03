@@ -11,7 +11,6 @@
   </div>
   <div class="col-md-12 col-lg-9">
     <div class="card text-white bg-info mb-3 sticky z-index-200">
-
       <div class="card-header p-1">
         <div class="m-2" style="display: inline-block;">検索結果：<%= @items.count %>件</div>
         <div class="float-right" style="display: inline-block;">
@@ -25,15 +24,14 @@
           <% end %>
         </div>
       </div>
-
     </div>
-      <div class="row">
-        <% @items.each_with_index do |item, i| %>
+    <div class="row">
+      <% @items.each_with_index do |item, i| %>
         <div class="col-lg-4 col-md-6">
         <%= render 'items/item_card', item: item %>
         </div>
-        <% end %>
-      </div>
-      <%= paginate @items %>
+      <% end %>
+    </div>
+    <%= paginate @items %>
   </div>
 </div>

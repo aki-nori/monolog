@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
 
   # ログイン後の遷移
   def after_sign_in_path_for(resource)
-  if user_signed_in?
-    top_path
-  elsif admin_signed_in?
-    manage_path
-  end
+    if user_signed_in?
+      top_path
+    elsif admin_signed_in?
+      manage_path
+    end
   end
 
   # ログアウト後の遷移

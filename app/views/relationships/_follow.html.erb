@@ -1,6 +1,5 @@
 <% unless user == current_user %>
 	<% unless Relationship.exists?(following_id: user.id, follower_id: current_user.id) %>
-
 		<%= link_to relationships_path(params: {following_id: user.id, info_user: info_user}), method: :post, remote: true do%>
 		<h5>
 		  <span class="badge badge-pill badge-info">
@@ -9,7 +8,6 @@
 		</h5>
 		<% end %>
 	<% else %>
-
 		<%= link_to relationship_path(user, params:{info_user: info_user}), method: :delete, remote: true do %>
 		<h5>
 		  <span class="badge badge-pill badge-danger">

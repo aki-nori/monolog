@@ -1,68 +1,67 @@
 <div class="row my-3">
   <div class="col-lg-3"></div>
   <div class="col-lg-6">
-<div class="list-group">
-  <a class="list-group-item list-group-item-action active">
-    ガジェット新規登録
-  </a>
-  <div href="#" class="list-group-item">
-    <%= form_with(model: @item, local: true) do |f| %>
-    <%= render 'homes/error_messages', model: @item %>
-    <form>
-      <fieldset>
-        <div class="form-group">
-          <label for="">名称</label>
-          <%= f.text_field :name, class: "form-control", placeholder: "" %>
-          <small class="form-text text-muted">入力必須</small>
-        </div>
-        <div class="form-group">
-          <label for="">画像</label>
-          <%= f.attachment_field :image, class: "form-control-file" %>
-        </div>
-        <div class="form-group">
-          <label for="">カテゴリー</label>
-          <%= f.select :category_id, Category.all.map { |category| [category.name, category.id] }, {}, :class => 'form-control' %>
-        </div>
-        <div class="form-group">
-          <label for="">説明</label>
-          <%= f.text_area :infomation, rows: 10, class: "form-control" %>
-          <small class="form-text text-muted">入力必須 500字以内</small>
-        </div>
-         <div class="form-group">
-          <label for="">サイト</label>
-          <%= f.text_field :external_page, class: "form-control" %>
-          <!-- <small class="form-text text-muted">入力条件</small> -->
-        </div>
-        <div class="form-group">
-          <label for="">購入価格</label>
-          <%= f.text_field :price, class: "form-control" %>
-          <!-- <small class="form-text text-muted">入力条件</small> -->
-        </div>
-        <div class="form-group">
-          <label for="">購入場所</label>
-          <%= f.text_field :place, class: "form-control" %>
-          <!-- <small class="form-text text-muted">入力条件</small> -->
-        </div>
-        <div class="form-group">
-          <label for="">評価</label>
-          <div id='star-score'></div>
-          <small class="form-text text-muted">入力必須</small>
-          <%= f.hidden_field :score, id: :item_rating %>
-        </div>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.submit "登録", :class => "btn btn-primary" %>
-      </fieldset>
-    </form>
-    <% end %>
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action active">ガジェット新規登録</a>
+      <div href="#" class="list-group-item">
+        <%= form_with(model: @item, local: true) do |f| %>
+          <%= render 'homes/error_messages', model: @item %>
+          <form>
+            <fieldset>
+              <div class="form-group">
+                <label for="">名称</label>
+                <%= f.text_field :name, class: "form-control", placeholder: "" %>
+                <small class="form-text text-muted">入力必須</small>
+              </div>
+              <div class="form-group">
+                <label for="">画像</label>
+                <%= f.attachment_field :image, class: "form-control-file" %>
+              </div>
+              <div class="form-group">
+                <label for="">カテゴリー</label>
+                <%= f.select :category_id, Category.all.map { |category| [category.name, category.id] }, {}, :class => 'form-control' %>
+              </div>
+              <div class="form-group">
+                <label for="">説明</label>
+                <%= f.text_area :infomation, rows: 10, class: "form-control" %>
+                <small class="form-text text-muted">入力必須 500字以内</small>
+              </div>
+               <div class="form-group">
+                <label for="">サイト</label>
+                <%= f.text_field :external_page, class: "form-control" %>
+                <!-- <small class="form-text text-muted">入力条件</small> -->
+              </div>
+              <div class="form-group">
+                <label for="">購入価格</label>
+                <%= f.text_field :price, class: "form-control" %>
+                <!-- <small class="form-text text-muted">入力条件</small> -->
+              </div>
+              <div class="form-group">
+                <label for="">購入場所</label>
+                <%= f.text_field :place, class: "form-control" %>
+                <!-- <small class="form-text text-muted">入力条件</small> -->
+              </div>
+              <div class="form-group">
+                <label for="">評価</label>
+                <div id='star-score'></div>
+                <small class="form-text text-muted">入力必須</small>
+                <%= f.hidden_field :score, id: :item_rating %>
+              </div>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.submit "登録", :class => "btn btn-primary" %>
+            </fieldset>
+          </form>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
+
 <script>
-$('#star-score').raty({
-  path: '/assets/',
-  click: function(score, e) {
-    $("#item_rating").val(score)
-  }
-});
+  $('#star-score').raty({
+    path: '/assets/',
+    click: function(score, e) {
+      $("#item_rating").val(score)
+    }
+  });
 </script>

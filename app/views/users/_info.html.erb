@@ -10,7 +10,7 @@
           <%= attachment_image_tag user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle user-card-user-image" %>
         </td>
         <td>
-          <h6 class="card-title ml-2 link-font-light" >
+          <h6 class="card-title ml-2 link-font-light">
             <%= link_to user_path(user) do %>
               <%= user.name %>
             <% end %>
@@ -23,9 +23,7 @@
         </td>
       </tr>
     </table>
-    <p class="card-text user-card-user-intro">
-      <%= user.introduction %>
-    </p>
+    <p class="card-text user-card-user-intro"><%= user.introduction %></p>
   </div>
   <div class="card-body text-center">
     <div id="counter-<%= user.id %>">
@@ -71,42 +69,40 @@
 
 <script>
   function initMap(){
-
     let map
     let geocoder
 
-    // geocoderを初期化
+    // geocoder初期化
     geocoder = new google.maps.Geocoder()
 
     map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
     zoom: 7,
     mapTypeId: 'terrain',
-     mapTypeControl: false,
-     zoomControl: false,
-     fullscreenControl: false, //全画面表示コントロール
-      streetViewControl: false
-    });
+    mapTypeControl: false,
+    zoomControl: false,
+    fullscreenControl: false,
+    streetViewControl: false
+  });
 
-    // 入力を取得
-      let inputAddress = '<%= user.address %>';
+  // 入力取得
+  let inputAddress = '<%= user.address %>';
 
-      // geocodingしたあとmapを移動
-      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-        if (status == 'OK') {
-    　　　　　// map.setCenterで地図が移動
-          map.setCenter(results[0].geometry.location);
-
-  　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-          });
-        } else {
-          // alert('Geocode was not successful for the following reason: ' + status);
-          document.getElementById("map").style.display ="none";
-        }
+  // geocoding後mapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      // map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+  　　 // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
       });
+    } else {
+        // alert('Geocode was not successful for the following reason: ' + status);
+        document.getElementById("map").style.display ="none";
+      }
+    });
   }
   </script>
 

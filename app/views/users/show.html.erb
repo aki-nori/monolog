@@ -15,12 +15,12 @@
         <span class="font-bold"><%= @user.name %></span> さんのガジェット一覧
       </div>
     </div>
-      <div class="row">
-        <% @items.each_with_index do |item, i| %>
+    <div class="row">
+      <% @items.each_with_index do |item, i| %>
         <div class="col-lg-4 col-md-6">
-        <%= render 'items/item_card', item: item %>
+          <%= render 'items/item_card', item: item %>
         </div>
-        <% end %>
-      </div>
+      <% end %>
+    </div>
   </div>
 </div>

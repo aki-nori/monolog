@@ -5,7 +5,7 @@
   <title>monolog</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= favicon_link_tag('favicon.ico') %>
 </head>
@@ -73,7 +73,6 @@
                   <i class="fas fa-user-plus">新規登録</i>
                 <% end %>
               </li>
-              
             <% end %>
           </ul>
         </div>
@@ -94,7 +93,7 @@
   <!-- Aboutページのみ -->
   <% if request.path == '/' %>
     <footer class="text-center" style="height: 40px; background-color: #2C3E50">
-        <i class="far fa-copyright text-white font-bold" style="line-height: 40px;"> akinori</i>
+      <i class="far fa-copyright text-white font-bold" style="line-height: 40px;"> akinori</i>
     </footer>
     </div>
   <% end %>
@@ -102,7 +101,6 @@
   <div class="mb-5 mr-3 z-index-1000" id="page_top"><a href="#"></a></div>
 
 </body>
-
 
 </html>
 

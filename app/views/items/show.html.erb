@@ -18,35 +18,22 @@
       <div class="text-center">
         <!--星評価-->
       <div id="star-rate-<%= @item.id %>"></div>
-      <script>
-        $('#star-rate-<%= @item.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half: true,
-      readOnly: true,
-      score: <%= @item.score %>,
-    });
-    </script>
       <!--/星評価-->
       </div>
       <div class="card-body">
-        <p class="card-text">
-          <%= @item.infomation %>
-        </p>
+        <p class="card-text"><%= @item.infomation %></p>
         <p>購入価格：<%= "　¥#{@item.price}" %></p>
         <p>購入場所：<%= "　#{@item.place}" %></p>
         <p>URL：<%= link_to @item.external_page.to_s,  @item.external_page, target: :_blank %></p>
         <div class="card-subtitle mb-2 text-muted text-center" style="margin-top: 10px;">
-           <span class="badge badge-light">
-          <%= "投稿日：#{@item.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.created_at)}前）" %>
-            </span>
+          <span class="badge badge-light">
+            <%= "投稿日：#{@item.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.created_at)}前）" %>
+          </span>
           <% unless @item.created_at == @item.updated_at %>
             <br>
-             <span class="badge badge-light">
-            <%= "更新日：#{@item.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.updated_at)}前）" %>
-          </span>
+            <span class="badge badge-light">
+              <%= "更新日：#{@item.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.updated_at)}前）" %>
+            </span>
           <% end %>
         </div>
       </div>
@@ -57,9 +44,9 @@
           </div>
         </li>
         <% if @item.user == current_user %>
-        <li class="list-group-item">
-          <%= link_to "編集する", edit_item_path(@item) %>
-        </li>
+          <li class="list-group-item">
+            <%= link_to "編集する", edit_item_path(@item) %>
+          </li>
         <% end %>
         <li class="list-group-item">
           <table>
@@ -82,14 +69,13 @@
           <i class="fas fa-pen-alt">ログ
             <%= @item.logs.count.to_s %>件</i><br>
           <% if @item.logs == [] %>0
-          <p>まだログがありません。</p>
+            <p>まだログがありません。</p>
           <% else %>
           <span class="badge badge-danger">直近のログ</span><br>
-          <strong>
-            <%= @item.logs.first.title %></strong>
+            <strong><%= @item.logs.first.title %></strong>
             <span class="badge badge-light">
             <%= "#{@item.logs.first.created_at.strftime("%Y年%m月%d日 %H時%M分")}"  %>
-        </span>
+          </span>
           <% end %>
         </li>
       </ul>
@@ -101,85 +87,92 @@
   <div class="col-md-1"></div>
   <div class="col-md-10" id="log-top">
     <% @logs.each do |log| %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <h4 class="card-title">
-          <strong><%= log.title %></strong>
-        </h4>
-        <p class="card-text">
-          <%= log.body %>
-        </p>
-        <% if log.image %>
-          <div class="text-center" style="height: 300px;">
-            <%= attachment_image_tag log, :image, class: "item-card-item-image" %>
-          </div>
-        <% end %>
-        <div class="card-subtitle text-muted text-right mt-3">
-           <span class="badge badge-light">
-          <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
-            </span>
-          <% unless log.created_at == log.updated_at %>
-            <br>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h4 class="card-title"><strong><%= log.title %></strong></h4>
+          <p class="card-text">
+            <%= log.body %>
+          </p>
+          <% if log.image %>
+            <div class="text-center" style="height: 300px;">
+              <%= attachment_image_tag log, :image, class: "item-card-item-image" %>
+            </div>
+          <% end %>
+          <div class="card-subtitle text-muted text-right mt-3">
              <span class="badge badge-light">
-            <%= "更新日：#{log.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.updated_at)}前）" %>
-          </span>
+            <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
+              </span>
+            <% unless log.created_at == log.updated_at %>
+              <br>
+              <span class="badge badge-light">
+              <%= "更新日：#{log.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.updated_at)}前）" %>
+              </span>
+            <% end %>
+          </div>
+          <% if @item.user == current_user %>
+            <div>
+              <br>
+              <div class="text-right">
+                <%= link_to "編集", edit_log_path(log), :class => "btn btn-outline-primary" %>
+                <%= link_to "削除",log, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, :class => "btn btn-outline-primary" %>
+              </div>
+            </div>
           <% end %>
         </div>
-        <% if @item.user == current_user %>
-        <div>
-          <br>
-          <div class="text-right">
-            <%= link_to "編集", edit_log_path(log), :class => "btn btn-outline-primary" %>
-            <%= link_to "削除",log, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, :class => "btn btn-outline-primary" %>
-          </div>
+        <div id=comment-<%= log.id %> class="card-body"><!-- コメント -->
+          <%= render 'comments/form', comment: @comment, log: log %>
         </div>
-        <% end %>
-      </div>
-    <div id=comment-<%= log.id %> class="card-body"><!-- コメント -->
-      <%= render 'comments/form', comment: @comment, log: log %>
+      <% end %>
     </div>
-  </div>
-    <% end %>
   </div>
 </div>
 
 <% if @item.user == current_user %>
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <div class="list-group mb-3">
-      <div class="list-group-item list-group-item-action active">
-        ログ新規投稿
-      </div>
-      <div class="list-group-item">
-        <%= form_with(model: @log, local: true) do |f| %>
-        <form>
-          <fieldset>
-            <div class="form-group">
-              <label for="">タイトル</label>
-              <%= f.text_field :title, class: "form-control" %>
-              <small class="form-text text-muted">入力条件</small>
-            </div>
-            <div class="form-group">
-              <label for="">本文</label>
-              <%= f.text_area :body, rows: 7, class: "form-control" %>
-              <small class="form-text text-muted">入力条件</small>
-            </div>
-            <div class="form-group">
-              <label for="">画像</label>
-              <%= f.attachment_field :image, class: "form-control-file" %>
-            </div>
-            <div class="form-group">
-              <%= f.hidden_field :item_id, :value => @item.id %>
-              <%= f.submit "投稿", :class => "btn btn-primary" %>
-            </div>
-          </fieldset>
-        </form>
-        <% end %>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="list-group mb-3">
+        <div class="list-group-item list-group-item-action active">ログ新規投稿</div>
+        <div class="list-group-item">
+          <%= form_with(model: @log, local: true) do |f| %>
+            <form>
+              <fieldset>
+                <div class="form-group">
+                  <label for="">タイトル</label>
+                  <%= f.text_field :title, class: "form-control" %>
+                  <small class="form-text text-muted">入力条件</small>
+                </div>
+                <div class="form-group">
+                  <label for="">本文</label>
+                  <%= f.text_area :body, rows: 7, class: "form-control" %>
+                  <small class="form-text text-muted">入力条件</small>
+                </div>
+                <div class="form-group">
+                  <label for="">画像</label>
+                  <%= f.attachment_field :image, class: "form-control-file" %>
+                </div>
+                <div class="form-group">
+                  <%= f.hidden_field :item_id, :value => @item.id %>
+                  <%= f.submit "投稿", :class => "btn btn-primary" %>
+                </div>
+              </fieldset>
+            </form>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 <% end %>
-</style>
+
+
+<script>
+  $('#star-rate-<%= @item.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @item.score %>,
+  });
+</script>

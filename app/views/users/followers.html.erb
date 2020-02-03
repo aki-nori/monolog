@@ -17,9 +17,9 @@
     </div>
       <div class="row" style="z-index: 100;">
         <% @user.followers.each do |user| %>
-        <div class="col-lg-4 col-md-6 col-">
-        <%= render 'users/user_card', user: user, info_user: @user %>
-        </div>
+          <div class="col-lg-4 col-md-6 col-">
+            <%= render 'users/user_card', user: user, info_user: @user %>
+          </div>
         <% end %>
       </div>
       <%= paginate @items %>

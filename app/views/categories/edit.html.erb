@@ -1,0 +1,25 @@
+<div class="row my-3">
+  <div class="col-md-4">
+    <div class="list-group">
+      <h5 class="list-group-item list-group-item-action active">
+        カテゴリー編集
+      </h5>
+      <div class="list-group-item">
+        <%= form_with(model: @category, local: true) do |f| %>
+          <form>
+            <fieldset>
+              <div class="form-group">
+                <label for="">カテゴリー名</label>
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.submit "更新", :class => "btn btn-primary" %>
+              </div>
+            </fieldset>
+          </form>
+        <% end %>
+      </div>
+      <%= link_to "削除", category_path(@category), method: :delete, class: "btn btn-danger mt-3" %>
+    </div>
+  </div>
+</div>

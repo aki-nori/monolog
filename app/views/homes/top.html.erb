@@ -1,11 +1,3 @@
-<!-- <ul class="nav nav-tabs my-3">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#populer">人気</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#current">最近</a>
-  </li>
-</ul> -->
 <div class="row">
   <div class="col-md-12">
     <div class="card mt-3">
@@ -25,6 +17,5 @@
       <%= render 'items/item_card', item: item %>
     </div>
   <% end %>
-
 </div>
 <%= paginate @items %>
