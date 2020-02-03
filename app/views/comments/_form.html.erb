@@ -21,6 +21,7 @@
 
 <!-- コメント投稿フォーム -->
 <%= form_with(model: comment) do |f| %>
+<%= render 'homes/error_messages', model: @user %>
 	<fieldset>
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<%= f.hidden_field :log_id, :value => log.id %>

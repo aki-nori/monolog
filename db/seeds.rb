@@ -27,23 +27,30 @@ User.create!(
     {
       email: '111@111',
       password: '111111',
-      name: 'Test User1',
-      introduction: 'Im TestItem1!! dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text',
-      address: 'my place1'
+      name: 'テストユーザー１',
+      introduction: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ',
+      address: '神奈川県藤沢市'
     },
     {
       email: '222@222',
   	  password: '222222',
-  	  name: 'Test User2',
-      introduction: 'Im TestItem2!! dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text',
-      address: 'my place2'
+  	  name: 'てすとゆーざー２',
+      introduction: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ',
+      address: '新潟県'
     },
     {
       email: '333@333',
       password: '333333',
-      name: 'Test User3',
-      introduction: 'Im TestItem3!! dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text',
-      address: 'my place3'
+      name: '試験人３',
+      introduction: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ',
+      address: '東京都新宿区'
+    },
+    {
+      email: '444@444',
+      password: '444444',
+      name: 'test4',
+      introduction: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ',
+      address: '神奈川県川崎市'
     }
   ]
 )
@@ -54,7 +61,7 @@ Item.create!(
       user_id: 1,
       category_id: 1,
       name: 'TestItem1',
-      infomation: 'Item1s Info Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+      infomation: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ',
       place: 'test1place',
       price: '300',
       score: '2.0',
@@ -76,6 +83,42 @@ Item.create!(
       place: 'test3place',
       price: '100',
       score: '3.0'
+    },
+    {
+      user_id: 2,
+      category_id: 2,
+      name: 'TestItem4',
+      infomation: 'Item4s Info Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+      place: 'test3place',
+      price: '1000',
+      score: '5.0'
+    },
+    {
+      user_id: 2,
+      category_id: 2,
+      name: 'TestItem5',
+      infomation: 'Item5s Info Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+      place: 'test3place',
+      price: '1000',
+      score: '5.0'
+    },
+    {
+      user_id: 2,
+      category_id: 2,
+      name: 'TestItem6',
+      infomation: 'Item6s Info Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+      place: 'test3place',
+      price: '1000',
+      score: '5.0'
+    },
+    {
+      user_id: 3,
+      category_id: 5,
+      name: 'TestItem7',
+      infomation: 'Item7s Info Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+      place: 'test3place',
+      price: '1000',
+      score: '5.0'
     }
   ]
 )

@@ -1,29 +1,30 @@
-<ul class="nav nav-tabs my-3">
+<!-- <ul class="nav nav-tabs my-3">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#populer">人気</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#current">最近</a>
   </li>
-</ul>
-<br>
-<div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active show" id="populer">
-    <div class="row">
-      <% @popular_items.each do |item| %>
-      <div class="col-lg-3 col-md-6">
-        <%= render 'items/item_card', item: item %>
+</ul> -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mt-3">
+      <div class="card-body">
+        <span class="font-bold mr-2">並び替え:</span>
+        <%= link_to "いいね数順", top_path(params: {search_type: :like}), class: "btn btn-primary btn-sm mr-1" %>
+        <%= link_to "最近のガジェット順", top_path(params: {search_type: :recent}), class: "btn btn-primary btn-sm mr-1" %>
+        <%= link_to "ログ数順", top_path(params: {search_type: :log}), class: "btn btn-primary btn-sm mr-1" %>
       </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="tab-pane fade" id="current">
-    <div class="row">
-      <% @current_items.each do |item| %>
-      <div class="col-lg-3 col-md-6">
-        <%= render 'items/item_card', item: item %>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>
+
+<div class="row mt-3">
+  <% @items.each do |item| %>
+    <div class="col-lg-3 col-md-6">
+      <%= render 'items/item_card', item: item %>
+    </div>
+  <% end %>
+
+</div>
+<%= paginate @items %>

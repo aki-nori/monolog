@@ -1,67 +1,57 @@
 <div class="card mb-3">
-    <div class="card-body link-font-dark">
-      <h5 class="card-title text-center font-bold">
-        <%= link_to item.name, item_path(item) %>
-      </h5>
-      <div class="card-subtitle text-muted text-center">
-        <span class="badge badge-secondary">
-          <%= item.category.name %>
-        </span>
-      </div>
+  <div class="card-body link-font-dark py-3">
+    <h5 class="card-title text-center font-bold">
+      <%= link_to item.name, item_path(item) %>
+    </h5>
+    <div class="card-subtitle text-muted text-center">
+      <span class="badge badge-secondary">
+        <%= item.category.name %>
+      </span>
     </div>
-    <div class="text-center w-100" style="height: 200px;">
-      <%= attachment_image_tag item, :image, fallback: "noimage.jpg", size:'150x150', class: "item-card-item-image" %>
+  </div>
+  <div class="card-body px-0 py-0">
+    <%= attachment_image_tag item, :image, fallback: "noimage.jpg", class: "item-card-item-image" %>
+  </div>
+  <div class="mx-auto">
+    <!--星評価-->
+    <div id="star-rate-<%= item.id %>"></div>
+    <!--/星評価-->
+  </div>
+  <div class="mx-auto link-font-dark">
+    <div class="p-2" style="float: left;">
+      <%= link_to item_path(item, anchor: 'log-top') do%>
+      <i class="fas fa-pencil-alt"><span class="font-bold"> <%= item.logs.count.to_s %></span></i>
+      <% end %>
     </div>
-    <div class="mx-auto">
-      <!--星評価-->
-      <div id="star-rate-<%= item.id %>"></div>
-      <script>
-        $('#star-rate-<%= item.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half: true,
-      readOnly: true,
-      score: <%= item.score %>,
-    });
-    </script>
-      <!--/星評価-->
+    <div class="p-2" style="float: left;">
+        <i class="far fa-comment"><span class="font-bold"> <%= item.comments.count %></span></i>
     </div>
-      <div class="mx-auto link-font-dark">
-        <div class="p-2" style="float: left;">
-          <i class="fas fa-pencil-alt">
-            <%= item.logs.count.to_s %>件</i>
-        </div>
-        <div class="p-2" style="float: left;">
-          <i class="far fa-comment">0件</i>
-        </div>
-        <div class="p-2" id="like-<%= item.id %>" style="float: left;">
-          <%= render 'likes/like_form', item: item %>
-        </div>
-      </div>
-      </table>
-      <li class="list-group-item">
-        <table>
-          <tr>
-            <td>
-              <%= attachment_image_tag item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image mr-2" %>
-            </td>
-            <td>
-              <span class="item-card-username"><strong>
-              <%= link_to user_path(item.user) do %>
-                 <i class="fas fa-user"><%= item.user.name %></i>
-              <% end %>
-            </strong>
-              </span>
-              <% if false #コメントアウトここから %>
-              <div id="follow-<%=  item.user.id %>">
-                <%=  render 'relationships/follow', user: item.user %>
-              </div>
-              <% end #コメントアウトここまで %>
-            </td>
-          </tr>
-        </table>
-      </li>
-  </ul>
+    <div class="p-2" id="like-<%= item.id %>" style="float: left;">
+      <%= render 'likes/like_form', item: item %>
+    </div>
+  </div>
+  <div class="card-footer p-2 mb-0">
+  <div class="text-center">
+    <%= attachment_image_tag item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image mr-2" %>
+    <span class="item-card-username link-font-dark"><strong>
+        <%= link_to user_path(item.user) do %>
+        <%= item.user.name %>
+        <% end %>
+      </strong>
+    </span>
+  </div>
 </div>
+</div>
+
+
+<script>
+  $('#star-rate-<%= item.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= item.score %>,
+  });
+</script>

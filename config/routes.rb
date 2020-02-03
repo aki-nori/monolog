@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'homes#about'
-
   get '/top' => 'homes#top', as: :top
   get '/manage' => 'homes#manage', as: :manage
 
@@ -16,7 +15,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users,         only: [:edit, :update, :show] do
+  resources :users,         only: [:edit, :update, :show, :index] do
     member do
       get :followings
       get :followers
@@ -24,12 +23,12 @@ Rails.application.routes.draw do
   end
   resources :admins
   resources :categories,    only: [:create, :destroy, :update, :show, :index]
-  resources :items,         only: [:create, :destroy, :edit, :update, :show, :new, :index] do
+  resources :items,         only: [:create, :destroy, :update, :show, :index, :edit, :new] do
     member do
       get :like
     end
   end
-  resources :logs,          only: [:create, :destroy, :edit, :update]
+  resources :logs,          only: [:create, :destroy, :update, :edit]
   resources :likes,         only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :comments,      only: [:create, :destroy]

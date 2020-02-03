@@ -7,6 +7,7 @@
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= favicon_link_tag('favicon.ico') %>
 </head>
 
 <body>
@@ -20,22 +21,27 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <!-- Userサインイン時のヘッダ表示項目 -->
-              <li class="nav-item">
-                <%= link_to user_path(current_user),class: "nav-link" do %>
-                <i class="fas fa-user"> <%= "#{current_user.name}さん" %></i>
-                <% end %>
-              </li>
               <li class="nav-item">
                 <%= link_to new_item_path, class: "nav-link" do %>
                 <i class="fas fa-plus-circle"> アイテム登録</i>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-                <i class="fas fa-sign-out-alt"> ログアウト</i>
+                <%= link_to items_path, class: "nav-link" do %>
+                  <i class="fas fa-search">ガジェット検索</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to users_path, class: "nav-link" do %>
+                  <i class="fas fa-search">ユーザー検索</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to user_path(current_user),class: "nav-link" do %>
+                <i class="fas fa-user"> <%= "#{current_user.name}さん" %></i>
                 <% end %>
               </li>
             <% elsif admin_signed_in? %>
@@ -53,6 +59,11 @@
             <% else %>
               <!-- UserもAdmin もログインしていない時のヘッダ表示項目 -->
               <li class="nav-item">
+                <%= link_to root_path, class: "nav-link" do %>
+                  <i class="fas fa-info-circle">アバウト</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
                 <%= link_to new_user_session_path, class: "nav-link" do %>
                   <i class="fas fa-sign-in-alt">ログイン</i>
                 <% end %>
@@ -62,37 +73,36 @@
                   <i class="fas fa-user-plus">新規登録</i>
                 <% end %>
               </li>
+              
             <% end %>
           </ul>
-          <% if user_signed_in?  %>
-          <%= search_form_for @search, url: items_path, class: "form-inline my-2 my-lg-0" do |f| %>
-            <%= f.search_field :name_cont, class: "form-control mr-sm-2 mr-2 search-form", placeholder: "ガジェット検索" %>
-            <div class="actions">
-              <%= button_tag :type => "submit", :class =>"btn btn-secondary my-2 my-sm-0" do %>
-                <i class="fa fa-search"></i>
-                <% end %>
-            </div>
-          <% end %>
-          <% end %>
         </div>
       </div>
     </nav>
   </header>
-  <!-- Aboutページのみ背景色を変更<開始タグ> -->
+
+  <!-- Aboutページのみ -->
   <% if request.path == '/' %>
     <div style="background-color: #559FC5">
   <% end %>
-  <!-- /Aboutページのみ背景色を変更<開始タグ> -->
+
+  <!-- 共通 -->
   <div class="container">
     <%= yield %>
   </div>
-  <!-- Aboutページのみ背景色を変更<閉じタグ> -->
+
+  <!-- Aboutページのみ -->
   <% if request.path == '/' %>
+    <footer class="text-center" style="height: 40px; background-color: #2C3E50">
+        <i class="far fa-copyright text-white font-bold" style="line-height: 40px;"> akinori</i>
+    </footer>
     </div>
   <% end %>
-  <!-- /Aboutページのみ背景色を変更<閉じタグ> -->
-  <div class="mb-3 mr-3" id="page_top"><a href="#"></a></div>
+
+  <div class="mb-5 mr-3 z-index-1000" id="page_top"><a href="#"></a></div>
+
 </body>
+
 
 </html>
 

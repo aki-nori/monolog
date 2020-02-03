@@ -1,6 +1,6 @@
 class LogsController < ApplicationController
 	before_action :authenticate_user!
-	
+
 	def create
 		log = Log.new(log_params)
 		log.save

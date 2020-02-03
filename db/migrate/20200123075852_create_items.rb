@@ -8,8 +8,9 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string    :infomation
       t.string    :place
       t.integer   :price
-      t.float   :score
+      t.float     :score
       t.integer   :open_range
+      t.text      :external_page
 
       t.timestamps
     end

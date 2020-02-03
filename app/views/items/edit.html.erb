@@ -7,6 +7,7 @@
     </div>
     <div href="#" class="list-group-item">
       <%= form_with(model: @item, local: true) do |f| %>
+      <%= render 'homes/error_messages', model: @item %>
       <form>
         <fieldset>
           <div class="form-group">
@@ -23,10 +24,15 @@
             <%= f.select :category_id, Category.all.map { |category| [category.name, category.id] }, {}, :class => 'form-control' %>
           </div>
           <div class="form-group">
-            <label for="">情報</label>
+            <label for="">説明</label>
             <%= f.text_area :infomation, rows: 10, class: "form-control" %>
             <small class="form-text text-muted">入力条件</small>
           </div>
+          <div class="form-group">
+          <label for="">サイト</label>
+          <%= f.text_field :external_page, class: "form-control" %>
+          <small class="form-text text-muted">入力条件</small>
+        </div>
           <div class="form-group">
             <label for="">購入価格</label>
             <%= f.text_field :price, class: "form-control" %>

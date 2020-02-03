@@ -2,9 +2,11 @@ class ItemsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@items = @search.result 
 		@user = current_user
-  end
+
+		@q = Item.search(params[:q])
+    	@items = @q.result(distinct: true).page(params[:page]).per(12)
+  	end
 
 	def show
 		@item = Item.find(params[:id])
@@ -19,11 +21,11 @@ class ItemsController < ApplicationController
 	end
 
 	def create
-		item = Item.new(item_params)
-		if item.save!
-			redirect_to item_path(item)
+		@item = Item.new(item_params)
+		if @item.save
+			redirect_to item_path(@item)
 		else
-			redirect_to top_path
+			render action: :new
 		end
 	end
 
@@ -45,12 +47,12 @@ class ItemsController < ApplicationController
 
 	def like
 		@user = User.find(params[:id])
-		@items = User.find(params[:id]).liked_items
+		@items = User.find(params[:id]).liked_items.page(params[:page]).per(12)
 	end
 
 	private
 
 	def item_params
-	  params.require(:item).permit(:name, :user_id, :image, :category_id, :infomation, :price, :place, :score, :open_range)
+	  params.require(:item).permit(:name, :user_id, :image, :category_id, :infomation, :price, :place, :score, :open_range, :external_page)
 	end
 end

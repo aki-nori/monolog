@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_063310) do
     t.integer "price"
     t.float "score"
     t.integer "open_range"
+    t.text "external_page"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
