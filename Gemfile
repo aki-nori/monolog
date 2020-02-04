@@ -79,7 +79,7 @@ gem 'refile-mini_magick'
 gem 'ransack'
 
 gem 'dotenv-rails'
-gem 'acts-as-taggable-on'
+# gem 'acts-as-taggable-on'
 
 group :production do
   gem 'mysql2'

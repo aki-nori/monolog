@@ -8,16 +8,16 @@ class ItemsController < ApplicationController
     	@items = @q.result(distinct: true).page(params[:page]).per(12)
   	end
 
-	def tag
-		@user = current_user
-		@items = Item.all
-		@tag = params[:tag_name].to_s
-		if params[:tag_name]
-    	@items = @items.tagged_with("#{params[:tag_name]}").page(params[:page]).per(12)
-    else
-    	@items = @items.page(params[:page]).per(12)
-    end
-  end
+	# def tag
+	# 	@user = current_user
+	# 	@items = Item.all
+	# 	@tag = params[:tag_name].to_s
+	# 	if params[:tag_name]
+ #    	@items = @items.tagged_with("#{params[:tag_name]}").page(params[:page]).per(12)
+ #    else
+ #    	@items = @items.page(params[:page]).per(12)
+ #    end
+ #  end
 
 
 	def show
