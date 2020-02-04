@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     member do
       get :like
     end
+    collection do
+      get :tag
+    end
   end
   resources :logs,          only: [:create, :destroy, :update, :edit]
   resources :likes,         only: [:create, :destroy]

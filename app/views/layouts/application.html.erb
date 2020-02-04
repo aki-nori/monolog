@@ -37,6 +37,11 @@
                 <% end %>
               </li>
               <li class="nav-item">
+                <%= link_to tag_items_path, class: "nav-link" do %>
+                  <i class="fas fa-search">タグ検索</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
                 <%= link_to users_path, class: "nav-link" do %>
                   <i class="fas fa-search">ユーザー検索</i>
                 <% end %>

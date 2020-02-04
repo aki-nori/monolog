@@ -25,6 +25,7 @@
         <p>購入価格：<%= "　¥#{@item.price}" %></p>
         <p>購入場所：<%= "　#{@item.place}" %></p>
         <p>URL：<%= link_to @item.external_page.to_s,  @item.external_page, target: :_blank %></p>
+        <%= render 'items/tag_list', item: @item %>
         <div class="card-subtitle mb-2 text-muted text-center" style="margin-top: 10px;">
           <span class="badge badge-light">
             <%= "投稿日：#{@item.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.created_at)}前）" %>
