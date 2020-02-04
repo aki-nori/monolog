@@ -13,6 +13,6 @@ class Item < ApplicationRecord
     validates :infomation, presence: true, length: { maximum: 500 }
     validates :score, presence: true
 
-    acts_as_taggable
+    # acts_as_taggable
 
 end
