@@ -1,12 +1,10 @@
 <div class="row my-3">
-  <div class="col-lg-3"></div>
-  <div class="col-lg-6">
+  <div class="col-lg-6 mx-auto">
     <div class="list-group">
       <a class="list-group-item list-group-item-action active">ガジェット新規登録</a>
       <div href="#" class="list-group-item">
         <%= form_with(model: @item, local: true) do |f| %>
           <%= render 'homes/error_messages', model: @item %>
-          <form>
             <fieldset>
               <div class="form-group">
                 <label for="">名称</label>
@@ -50,7 +48,6 @@
               <%= f.hidden_field :user_id, :value => current_user.id %>
               <%= f.submit "登録", :class => "btn btn-primary" %>
             </fieldset>
-          </form>
         <% end %>
       </div>
     </div>
