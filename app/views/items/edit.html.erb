@@ -52,13 +52,6 @@
                 <small class="form-text text-muted">入力条件</small>
                 <%= f.hidden_field :score, id: :item_rating %>
               </div>
-              <% if false %>
-              <div class="form-group">
-                <label for="">タグ</label>
-                <small class="form-text text-muted">,区切り（スペースなし）</small>
-                  <%= f.text_field :tag_list, value: @item.tag_list.join(',')  %>
-              </div>
-              <% end %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
               <%= f.submit "登録", :class => "btn btn-primary" %>
             </fieldset>
