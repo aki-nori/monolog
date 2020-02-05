@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :baria_user, only: [:update, :edit]
 
-  def index
+  def search
     @user = current_user
     @q = User.search(params[:q])
     @users = @q.result(distinct: true).page(params[:page]).per(12)
