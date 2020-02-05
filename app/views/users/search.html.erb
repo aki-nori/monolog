@@ -1,0 +1,37 @@
+<div class="row my-3">
+  <div class="col-md-12 col-lg-3">
+    <!-- md以上 -->
+    <div class="d-md-block sticky">
+      <%= render 'users/info', user: @user, info_user: @user %>
+    </div>
+    <!-- sm以下 -->
+    <div class="d-none ">
+      <%= render 'users/info', user: @user, info_user: @user %>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-9">
+  	<div class="card text-white bg-info mb-3 sticky z-index-200">
+      <div class="card-header p-1">
+        <div class="m-2" style="display: inline-block;">検索結果：<%= @users.count %>件</div>
+        <div class="float-right" style="display: inline-block;">
+          <%= search_form_for @q, url: search_users_path, class: "form-inline my-2 my-lg-0" do |f| %>
+            <%= f.search_field :name_cont, class: "form-control mr-sm-2 mr-2 search-form", placeholder: "ユーザー検索" %>
+            <div class="actions">
+              <%= button_tag :type => "submit", :class =>"btn btn-secondary my-2 my-sm-0" do %>
+                <i class="fa fa-search"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row z-index-100">
+      <% @users.each do |user| %>
+        <div class="col-lg-4 col-md-6">
+          <%= render 'users/user_card', user: user, info_user: @user %>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @users %>
+  </div>
+</div>

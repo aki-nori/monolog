@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       get :followings
       get :followers
     end
+    collection do
+      get :search
+    end
   end
   resources :admins
   resources :categories,    only: [:create, :destroy, :update, :edit, :index]
@@ -30,9 +33,6 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
-    # collection do
-    #   get :tag
-    # end
   end
   resources :logs,          only: [:create, :destroy, :update, :edit]
   resources :likes,         only: [:create, :destroy]

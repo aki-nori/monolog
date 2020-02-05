@@ -32,25 +32,26 @@
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to items_path, class: "nav-link" do %>
+                <%= link_to search_items_path, class: "nav-link" do %>
                   <i class="fas fa-search">ガジェット検索</i>
                 <% end %>
               </li>
-              <% if false %>
               <li class="nav-item">
-                <%= link_to tag_items_path, class: "nav-link" do %>
-                  <i class="fas fa-search">タグ検索</i>
-                <% end %>
-              </li>
-              <% end %>
-              <li class="nav-item">
-                <%= link_to users_path, class: "nav-link" do %>
+                <%= link_to search_users_path, class: "nav-link" do %>
                   <i class="fas fa-search">ユーザー検索</i>
                 <% end %>
               </li>
+              <% if false %>
+                <li class="nav-item">
+                  <%= link_to user_path(current_user),class: "nav-link" do %>
+                  <i class="fas fa-user"> <%= "#{current_user.name}さん" %></i>
+                  <% end %>
+                </li>
+              <% end %>
               <li class="nav-item">
-                <%= link_to user_path(current_user),class: "nav-link" do %>
-                <i class="fas fa-user"> <%= "#{current_user.name}さん" %></i>
+                <%= link_to user_path(current_user),class: "nav-link p-0" do %>
+                  <%= attachment_image_tag current_user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle mr-2 nav-user-icon" %>
+                  <spna class="d-lg-none font-bold"> <%= "#{current_user.name}さん" %></span>
                 <% end %>
               </li>
             <% elsif admin_signed_in? %>
