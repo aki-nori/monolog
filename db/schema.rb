@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 2020_01_30_063310) do
     t.integer "item_id"
     t.string "title"
     t.text "body"
-    t.integer "status"
     t.string "image_id"
+    t.integer "from"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
