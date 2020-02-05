@@ -30,9 +30,9 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
-    # collection do
-    #   get :tag
-    # end
+    collection do
+      get :search
+    end
   end
   resources :logs,          only: [:create, :destroy, :update, :edit]
   resources :likes,         only: [:create, :destroy]
