@@ -65,14 +65,14 @@
           </table>
         </li>
         <li class="list-group-item">
-          <i class="fas fa-pen-alt">ログ
-            <%= @item.logs.count.to_s %>件</i><br>
-          <% if @item.logs == [] %>0
+          <i class="fas fa-pen-alt">ログ<%= @item.logs.count.to_s %>件</i>
+          <br>
+          <% if @item.logs == [] %>
             <p>まだログがありません。</p>
           <% else %>
-          <span class="badge badge-danger">直近のログ</span><br>
+          <span class="badge badge-primary">直近のログ</span>
             <strong><%= @item.logs.first.title %></strong>
-            <span class="badge badge-light">
+            <span class="badge badge-light float-right">
             <%= "#{@item.logs.first.created_at.strftime("%Y年%m月%d日 %H時%M分")}"  %>
           </span>
           <% end %>
@@ -95,9 +95,12 @@
             </div>
           <% end %>
           <div class="card-subtitle text-muted text-right mt-3">
-             <span class="badge badge-light">
-            <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
-              </span>
+            <% if log.from == "system" %>
+              <span class="badge badge-danger">システムによる投稿</span>
+            <% end %>
+            <span class="badge badge-light">
+              <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
+            </span>
             <% unless log.created_at == log.updated_at %>
               <br>
               <span class="badge badge-light">
@@ -105,7 +108,7 @@
               </span>
             <% end %>
           </div>
-          <% if @item.user == current_user %>
+          <% if @item.user == current_user && log.from == "user" %>
             <div>
               <br>
               <div class="text-right">

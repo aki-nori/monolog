@@ -10,7 +10,10 @@
   <%= attachment_image_tag comment.user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle comment-form-user-image" %>
   <strong>
   <%= link_to comment.user.name, user_path(comment.user) %></strong>
-  <span class="badge badge-dark">
+  <% if log.item.user.id == comment.user_id %>
+    <span class="badge badge-info">ガジェット投稿者</span>
+  <% end %>
+  <span class="badge badge-dark float-right">
   	<%= "投稿日：#{comment.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(comment.created_at)}前）" %>
   </span>
 </div>

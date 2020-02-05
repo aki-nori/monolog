@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
 	def create
 		@item = Item.new(item_params)
 		if @item.save
+			log = Log.create(item_id: @item.id, title: "#{@item.name} を登録しました", body: "これからこのガジェットのログを残していきましょう。", from: :system)
 			redirect_to item_path(@item)
 		else
 			render action: :new
