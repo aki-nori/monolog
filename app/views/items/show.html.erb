@@ -1,6 +1,5 @@
 <div class="row my-3">
-  <div class="col-md-1"></div>
-  <div class="col-md-10 link-font-dark">
+  <div class="col-md-10 link-font-dark mx-auto">
     <div class="card mb-3">
       <div class="card-body">
         <h3 class="card-title text-center font-bold">
@@ -81,15 +80,12 @@
       </ul>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10" id="log-top">
+  <div class="col-md-10 mx-auto" id="log-top">
     <% @logs.each do |log| %>
       <div class="card mb-3">
         <div class="card-body">
-          <h4 class="card-title"><strong><%= log.title %></strong></h4>
+          <h4 class="card-title"><strong><i class="fas fa-pen-alt"> <%= log.title %></i></strong></h4>
           <p class="card-text">
             <%= log.body %>
           </p>
@@ -125,13 +121,11 @@
       <% end %>
     </div>
   </div>
-</div>
+
 
 <% if @item.user == current_user %>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <div class="list-group mb-3">
+    <div class="col-md-10 mx-auto">
+      <div class="list-group">
         <div class="list-group-item list-group-item-action active">ログ新規投稿</div>
         <div class="list-group-item">
           <%= form_with(model: @log, local: true) do |f| %>
@@ -161,8 +155,9 @@
         </div>
       </div>
     </div>
+    <% end %>
   </div>
-<% end %>
+
 
 
 <script>

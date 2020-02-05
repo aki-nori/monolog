@@ -1,34 +1,31 @@
 <% log.comments.each do |comment| %>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-    	<div>
-  		  <div class="">
-    		  <h6 class=""><%= comment.user.name %></h6>
-    		  <p class=""><%= comment.body %></p>
-  		  </div>
-  		  <span class="badge badge-light">
-        	<%= "投稿日：#{comment.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(comment.created_at)}前）" %>
-        </span>
-  		  <% if comment.user == current_user %>
-				  <div class="text-right">
-						<%= link_to "削除", comment_path(comment), method: :delete, :class => "btn btn-outline-primary", remote: true %><br>
-					</div>
-				<% end %>
-			</div>
-    </li>
-  </ul>
+<div class="alert alert-dismissible alert-light link-font-dark">
+  <% if comment.user == current_user %>
+	  <%= link_to comment_path(comment), method: :delete, :class => "close",  remote: true do %>
+	  	<i class="fas fa-times"></i>
+	  <% end %>
+  <% end %>
+  <%= comment.body %>
+  <br>
+  <%= attachment_image_tag comment.user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle comment-form-user-image" %>
+  <strong>
+  <%= link_to comment.user.name, user_path(comment.user) %></strong>
+  <span class="badge badge-dark">
+  	<%= "投稿日：#{comment.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(comment.created_at)}前）" %>
+  </span>
+</div>
 <% end %>
 
 <!-- コメント投稿フォーム -->
 <%= form_with(model: comment) do |f| %>
-	<%= render 'homes/error_messages', model: @user %>
+	<%= render 'homes/error_messages', model: comment %>
 	<fieldset>
-		<%= f.hidden_field :user_id, :value => current_user.id %>
-		<%= f.hidden_field :log_id, :value => log.id %>
-		<div class="form-group">
-			<label>コメント投稿</label>
-			<%= f.text_area :body, class: "form-control" %>
-		</div>
-		<%= f.submit "投稿", :class => "btn btn-primary" %>
+	  <%= f.hidden_field :user_id, :value => current_user.id %>
+	  <%= f.hidden_field :log_id, :value => log.id %>
+	  <div class="form-group">
+	    <label>コメント投稿</label>
+	    <%= f.text_area :body, class: "form-control" %>
+	  </div>
+	  <%= f.submit "投稿", :class => "btn btn-primary" %>
 	</fieldset>
 <% end %>
