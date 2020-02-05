@@ -7,5 +7,8 @@ class Log < ApplicationRecord
     validates :item_id, presence: true
     validates :title, presence: true
     validates :body, presence: true
+    validates :from, presence:true
     # validates :status, presence: true
+
+    enum from: { user: 1, system: 2 }
 end

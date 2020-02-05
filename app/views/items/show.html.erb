@@ -1,6 +1,5 @@
 <div class="row my-3">
-  <div class="col-md-1"></div>
-  <div class="col-md-10 link-font-dark">
+  <div class="col-md-10 link-font-dark mx-auto">
     <div class="card mb-3">
       <div class="card-body">
         <h3 class="card-title text-center font-bold">
@@ -66,14 +65,14 @@
           </table>
         </li>
         <li class="list-group-item">
-          <i class="fas fa-pen-alt">ログ
-            <%= @item.logs.count.to_s %>件</i><br>
-          <% if @item.logs == [] %>0
+          <i class="fas fa-pen-alt">ログ<%= @item.logs.count.to_s %>件</i>
+          <br>
+          <% if @item.logs == [] %>
             <p>まだログがありません。</p>
           <% else %>
-          <span class="badge badge-danger">直近のログ</span><br>
+          <span class="badge badge-primary">直近のログ</span>
             <strong><%= @item.logs.first.title %></strong>
-            <span class="badge badge-light">
+            <span class="badge badge-light float-right">
             <%= "#{@item.logs.first.created_at.strftime("%Y年%m月%d日 %H時%M分")}"  %>
           </span>
           <% end %>
@@ -81,15 +80,12 @@
       </ul>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10" id="log-top">
+  <div class="col-md-10 mx-auto" id="log-top">
     <% @logs.each do |log| %>
       <div class="card mb-3">
         <div class="card-body">
-          <h4 class="card-title"><strong><%= log.title %></strong></h4>
+          <h4 class="card-title"><strong><i class="fas fa-pen-alt"> <%= log.title %></i></strong></h4>
           <p class="card-text">
             <%= log.body %>
           </p>
@@ -99,9 +95,12 @@
             </div>
           <% end %>
           <div class="card-subtitle text-muted text-right mt-3">
-             <span class="badge badge-light">
-            <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
-              </span>
+            <% if log.from == "system" %>
+              <span class="badge badge-danger">システムによる投稿</span>
+            <% end %>
+            <span class="badge badge-light">
+              <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
+            </span>
             <% unless log.created_at == log.updated_at %>
               <br>
               <span class="badge badge-light">
@@ -109,7 +108,7 @@
               </span>
             <% end %>
           </div>
-          <% if @item.user == current_user %>
+          <% if @item.user == current_user && log.from == "user" %>
             <div>
               <br>
               <div class="text-right">
@@ -125,13 +124,11 @@
       <% end %>
     </div>
   </div>
-</div>
+
 
 <% if @item.user == current_user %>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <div class="list-group mb-3">
+    <div class="col-md-10 mx-auto">
+      <div class="list-group">
         <div class="list-group-item list-group-item-action active">ログ新規投稿</div>
         <div class="list-group-item">
           <%= form_with(model: @log, local: true) do |f| %>
@@ -161,8 +158,9 @@
         </div>
       </div>
     </div>
+    <% end %>
   </div>
-<% end %>
+
 
 
 <script>
@@ -170,7 +168,6 @@
     size: 36,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
     half: true,
     readOnly: true,
     score: <%= @item.score %>,
