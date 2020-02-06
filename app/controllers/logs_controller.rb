@@ -2,9 +2,13 @@ class LogsController < ApplicationController
 	before_action :authenticate_user!
 
 	def create
-		log = Log.new(log_params)
-		log.save
-		redirect_back(fallback_location: top_path)
+		@log = Log.new(log_params)
+		@log.from = :user
+		if @log.save
+			redirect_back(fallback_location: top_path)
+		else
+			render item_path(@log.item)
+		end
 	end
 
 	def edit
