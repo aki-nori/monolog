@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# カテゴリのテストデータ
-cats = ['充電器', 'ケーブル', 'スマホ', 'PC', 'タブレット', 'オーディオ', '車']
+# カテゴリの作成
+cats = ['スマホ', 'PC', 'タブレット', 'チャージャー', 'カメラ', 'イヤホン', 'スピーカー', '日用品', '車', 'トラベル']
 cats.each do |category|
     Category.create!(name: category)
 end
@@ -45,7 +45,7 @@ Item.create!(
       infomation: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ',
       place: 'test1place',
       price: '300',
-      score: '2.0', 
+      score: '2.0',
     },
     {
       user_id: 1,
