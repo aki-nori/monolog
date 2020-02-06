@@ -9,10 +9,10 @@ class Item < ApplicationRecord
 
     validates :user_id, presence: true
     validates :category_id, presence: true
-    validates :name, presence: true
+    validates :name, presence: true, length: { maximum: 30 }
     validates :infomation, presence: true, length: { maximum: 500 }
     validates :score, presence: true
-
-    # acts_as_taggable
+    validates :price, numericality: { only_integer: true }
+    validates :maker, length: { maximum: 10 }
 
 end

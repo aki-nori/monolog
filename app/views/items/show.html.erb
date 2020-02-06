@@ -21,7 +21,8 @@
       </div>
       <div class="card-body">
         <p class="card-text"><%= @item.infomation %></p>
-        <p>購入価格：<%= "　¥#{@item.price}" %></p>
+        <p>メーカー：<%= "　#{@item.maker}" %></p>
+        <p>購入価格：<%= "　¥#{@item.price.to_s(:delimited)}" %></p>
         <p>購入場所：<%= "　#{@item.place}" %></p>
         <p>URL：<%= link_to @item.external_page.to_s,  @item.external_page, target: :_blank %></p>
         <div class="card-subtitle mb-2 text-muted text-center" style="margin-top: 10px;">
@@ -80,10 +81,12 @@
       </ul>
     </div>
   </div>
+</div>
 
+<div class="row">
   <div class="col-md-10 mx-auto" id="log-top">
     <% @logs.each do |log| %>
-      <div class="card mb-3">
+      <div class="card my-3">
         <div class="card-body">
           <h4 class="card-title"><strong><i class="fas fa-pen-alt"> <%= log.title %></i></strong></h4>
           <p class="card-text">
@@ -118,15 +121,17 @@
             </div>
           <% end %>
         </div>
-        <div id=comment-<%= log.id %> class="card-body"><!-- コメント -->
+        <div id=comment-<%= log.id %> class="card-body">
           <%= render 'comments/form', comment: @comment, log: log %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
+</div>
 
 
 <% if @item.user == current_user %>
+  <div class="row">
     <div class="col-md-10 mx-auto">
       <div class="list-group">
         <div class="list-group-item list-group-item-action active">ログ新規投稿</div>
@@ -158,8 +163,8 @@
         </div>
       </div>
     </div>
-    <% end %>
   </div>
+<% end %>
 
 
 

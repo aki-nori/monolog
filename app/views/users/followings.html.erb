@@ -15,13 +15,13 @@
         <span class="font-bold"><%= @user.name %></span> さんのフォロワー
       </div>
     </div>
-    <div class="row z-index-100">
-      <% @user.followings.each do |user| %>
+    <div class="row" style="z-index-100">
+      <% @users.each do |user| %>
         <div class="col-lg-4 col-md-6">
           <%= render 'users/user_card', user: user, info_user: @user %>
         </div>
       <% end %>
     </div>
-    <%= paginate @items %>
+    <%= paginate @users %>
   </div>
 </div>
