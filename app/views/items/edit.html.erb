@@ -13,7 +13,7 @@
               <div class="form-group">
                 <label for="">名称</label>
                 <%= f.text_field :name, class: "form-control" %>
-                <small class="form-text text-muted">入力条件</small>
+                <small class="form-text text-muted">入力必須 30字以内<</small>
               </div>
               <div class="form-group">
                 <label for="">画像</label>
@@ -31,22 +31,19 @@
               <div class="form-group">
                 <label for="">説明</label>
                 <%= f.text_area :infomation, rows: 10, class: "form-control" %>
-                <small class="form-text text-muted">入力条件</small>
+                <small class="form-text text-muted">入力必須 500字以内</small>
               </div>
               <div class="form-group">
               <label for="">サイト</label>
               <%= f.text_field :external_page, class: "form-control" %>
-              <small class="form-text text-muted">入力条件</small>
             </div>
               <div class="form-group">
                 <label for="">購入価格</label>
                 <%= f.text_field :price, class: "form-control" %>
-                <small class="form-text text-muted">入力条件</small>
               </div>
               <div class="form-group">
                 <label for="">購入場所</label>
                 <%= f.text_field :place, class: "form-control" %>
-                <small class="form-text text-muted">入力条件</small>
               </div>
               <div class="form-group">
                 <label>評価</label>
@@ -54,7 +51,6 @@
                 <div id="star-rate-<%= @item.id %>">編集前　</div>
                 <div id='star-score'>編集後　</div>
                 <!--/星評価-->
-                <small class="form-text text-muted">入力条件</small>
                 <%= f.hidden_field :score, id: :item_rating %>
               </div>
               <%= f.hidden_field :user_id, :value => current_user.id %>

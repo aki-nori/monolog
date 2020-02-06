@@ -9,10 +9,10 @@ class Item < ApplicationRecord
 
     validates :user_id, presence: true
     validates :category_id, presence: true
-    validates :name, presence: true, length: { maximum: 30, message: "30字以内で入力してください。" }
-    validates :infomation, presence: true, length: { maximum: 500, message: "500字以内で入力してください。" }
+    validates :name, presence: true, length: { maximum: 30 }
+    validates :infomation, presence: true, length: { maximum: 500 }
     validates :score, presence: true
-    validates :price, numericality: { only_integer: true,  message: "正しい金額を入力してください。" }
-    validates :maker, length: { maximum: 10, message: "10字以内で入力してください。" }
+    validates :price, numericality: { only_integer: true }
+    validates :maker, length: { maximum: 10 }
 
 end
