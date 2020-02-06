@@ -60,7 +60,6 @@
   bottom: 0;
 }
 
-
 .parent-t{
   position: relative;
   height: 400px;
@@ -78,13 +77,11 @@
   width: 200px;
 }
 
-
 .sticky {
   position: -webkit-sticky; //safari用
   position: sticky;
   top: 10px;
 }
-
 
 .follow-info-size {
   font-size: 5px;
@@ -187,7 +184,6 @@
 	font-weight: bold;
 }
 
-
 #page_top{
   width: 60px;
   height: 60px;
@@ -212,5 +208,3 @@
 .pagination {
   justify-content: center;
 }
-
-
