@@ -1,30 +1,33 @@
-<div class="row">
-  <div class="col-lg pl-0">
+<div class="row text-white">
+  <div class="col-lg-6 pl-0">
     <div class="parent-f">
     	<img src="<%= asset_path "monolog-logo-l.png" %>" class="children-f m-0 p-0 mw-100">
-    	<h2 class="children-f-text m-0 p-0" style="color: white; font-weight: bold;">ガジェットを<br>ログしよう。</h2>
+    	<h2 class="children-f-text m-0 p-0 font-bold">ガジェットを<br>ログしよう。</h2>
     	<div class="children-f-button">
-	    	<%= link_to new_user_registration_path, class: "btn btn-success rounded-pill mr-1" do %>
-   					<h5 class="m-1 px-2"><strong>新規登録</strong></h5>
-   		  <% end %>
-   		  <%= link_to new_user_session_path, class: "btn btn-info rounded-pill" do %>
-   					<h5 class="m-1 px-2"><strong>ログイン</strong></h5>
-   		  <% end %>
+        <% unless user_signed_in? %>
+  	    	<%= link_to new_user_registration_path, class: "btn btn-success rounded-pill mr-1" do %>
+     					<h5 class="m-1 px-2"><strong>新規登録</strong></h5>
+     		  <% end %>
+     		  <%= link_to new_user_session_path, class: "btn btn-info rounded-pill" do %>
+     					<h5 class="m-1 px-2"><strong>ログイン</strong></h5>
+     		  <% end %>
+        <% else %>
+          <%= link_to top_path, class: "btn btn-success rounded-pill" do %>
+              <h5 class="m-1 px-2"><strong>ログイン中</strong></h5>
+          <% end %>
+        <% end %>
  			</div>
     </div>
-
   </div>
-  <div class="col-lg" style="background-color: #559FC5">
+  <div class="col-lg-6" style="background-color: #559FC5">
     <div class="parent-s">
-    	<img src="<%= asset_path "town-image.png" %>" class="children-s m-0 p-0" style="width: 100%;">
+    	<img src="<%= asset_path "town-image.png" %>" class="children-s m-0 p-0 w-100">
     </div>
   </div>
-</div>
 
-<div cl ass="row">
-  <div class="col p-0" style="background-color: #3D5477; height: 600px;">
-  	<div class="ml-4 my-4" style="color: white;"><h4><strong>- About -</strong></h4></div>
-    <table class="mt-5 text-center" style="width: 100%; color: white;">
+  <div class="col-lg12 p-0" style="background-color: #3D5477; height: 600px;">
+  	<div class="ml-4 my-4"><h4><strong>- About -</strong></h4></div>
+    <table class="mt-5 text-center w-100">
     	<tr>
     		<td>
     			<h3>Buy</h3>
@@ -40,40 +43,37 @@
     	</tr>
     	<tr>
     		<td>
-    			<img src="<%= asset_path "gadget-buy.png" %>" class="" style="width: 100%; max-width: 130px;">
+    			<img src="<%= asset_path "gadget-buy.png" %>" class="w-100" style="max-width: 130px;">
     		</td>
     		<td><h1><i class="fas fa-angle-right"></i></h1></td>
     		<td>
-    			<img src="<%= asset_path "gadget-log.png" %>" class="" style="width: 100%; max-width: 130px;">
+    			<img src="<%= asset_path "gadget-log.png" %>" class="w-100" style="max-width: 130px;">
     		</td>
     		<td><h1><i class="fas fa-angle-right"></i></h1></td>
     		<td>
-    			<img src="<%= asset_path "gadget-find.png" %>" class="" style="width: 100%; max-width: 130px;">
+    			<img src="<%= asset_path "gadget-find.png" %>" class="w-100" style=" max-width: 130px;">
     		</td>
     	</tr>
     </table>
     <br>
-    <div class="mt-4 mx-5" style="color: white;">
-    	<p>
+    <div class="mt-4 mx-5">
+    	<p class="font-bold">
     		新しいガジェットを買ったらmonologへ登録。使っていて気づいたことはログに書き残しておきましょう。 いつどんなガジェットを使っていたのかのログを残すことで、 これからのあなたの買い物と誰かの買い物の手助けになります。 更に、使い勝手のレビューや工夫のある使い方を書き残すことで、購入を検討している人の役に立ちます。 困りごとを書けは誰かが解決策を教えてくれるかもしれませんね。  
     		<br><br>
-    		<h5><strong>－ さぁ、モノコミュニティをはじめましょう。</strong></h5>
+    		<h5><strong>－ さぁ、モノ・コミュニティをはじめましょう。</strong></h5>
     	</p>
     </div>
   </div>
-</div>
 
+	<div class="col-lg-6 p-0 parent-t" style="background-color: #559FC5; height: 650px; padding: 30px;">
+	  <div class="ml-4 my-4 float-left mx-auto"><h4><strong>- System -</strong></h4></div>
 
-<div class="row">
-	<div class="col-lg p-0 parent-t" style="background-color: #559FC5; height: 650px; padding: 30px;">
-	  <div class="ml-4 my-4" style="color: white;"><h4><strong>- System -</strong></h4></div>
-	  	<div class="text-center">
-	   		<img src="<%= asset_path "system-img.png" %>" class="" style="max-height: 80%; max-width: 80%; object-fit: contain;">
-	   	</div>
+	   		<img src="<%= asset_path "system-img.png" %>" class="m-5" style="width: auto; height: auto; max-height: 70%; max-width: 70%;">
+
 	  </div>
-	 	<div class="col-lg  p-0 parent-t mx-auto" style="background-color: #3D5477; height: 650px;">
-	 		<img src="<%= asset_path "monolog-logo-l.png" %>" class="m-0 p-0" style="width: 100%;">
-	 	<div class="mx-auto my-3" style="color: white; font-weight: bold;">
+	 	<div class="col-lg-6  p-0 parent-t mx-auto" style="background-color: #3D5477; height: 650px;">
+	 		<img src="<%= asset_path "monolog-logo-l.png" %>" class="m-0 p-0 w-100">
+	 	<div class="mx-auto my-3 font-bold">
 	 		<h1><strong>を</strong></h1>
 	 	</div><br>
 	 	<div class="children-t-button mt-3">
