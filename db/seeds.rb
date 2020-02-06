@@ -26,26 +26,27 @@ Admin.create!(
 # ユーザデータの作成
 addreses = ['東京都新宿区', '神奈川県藤沢市', '神奈川県横浜市', '大阪府大阪市', '東京都世田谷区', '台湾台北市', '東京都渋谷区']
 addreses.each_with_index do |add, i|
+  i += 1
   User.create(
-      email: "#{i}#{i}#{i}@#{i}#{i}#{i}",
-      password: "#{i}#{i}#{i}#{i}#{i}#{i}",
-      name: "テストユーザ#{i}",
-      introduction: "わたしはテストユーザ#{i}です。システムのテスト用に作られたアカウントです。よろしくおねがいします。",
-      address: add
-
-    )
+    email: "#{i}#{i}#{i}@#{i}#{i}#{i}",
+    password: "#{i}#{i}#{i}#{i}#{i}#{i}",
+    name: "テストユーザ#{i}",
+    introduction: "わたしはテストユーザ#{i}です。システムのテスト用に作られたアカウントです。よろしくおねがいします。",
+    address: add
+  )
 end
 
 Item.create!(
   [
     {
       user_id: 1,
-      category_id: 1,
-      name: 'TestItem1',
-      infomation: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れ',
-      place: 'test1place',
-      price: '300',
-      score: '2.0',
+      category_id: 6,
+      name: 'Air Pods Pro',
+      maker: 'Apple',
+      infomation: 'Appleがつくった完全ワイヤレスイヤホン！ノイズキャンセルがものすごく良く効く！',
+      place: 'アップルストア表参道',
+      price: '30000',
+      score: '5.0',
     },
     {
       user_id: 1,
