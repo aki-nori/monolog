@@ -21,6 +21,7 @@ class User < ApplicationRecord
   attachment :profile_image
 
   validates :name, presence: true, length: { maximum: 15 }
+  validates :email, presence: true
   validates :introduction, length: { maximum: 150 }
 
   def already_liked?(item)
