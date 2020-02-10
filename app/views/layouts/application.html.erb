@@ -36,7 +36,7 @@
                   <i class="fas fa-search">ガジェット検索</i>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item mr-2">
                 <%= link_to search_users_path, class: "nav-link" do %>
                   <i class="fas fa-search">ユーザー検索</i>
                 <% end %>
@@ -115,22 +115,22 @@
 </html>
 
 <script>
-jQuery(function() {
+  jQuery(function() {
     var pagetop = $('#page_top');
     pagetop.hide();
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            pagetop.fadeIn();
-        } else {
-            pagetop.fadeOut();
-        }
+      if ($(this).scrollTop() > 100) {
+          pagetop.fadeIn();
+      } else {
+          pagetop.fadeOut();
+      }
     });
     pagetop.click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
+      $('body,html').animate({
+          scrollTop: 0
+      }, 500);
+      return false;
     });
-});
+  });
 
 </script>

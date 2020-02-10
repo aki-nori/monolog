@@ -2,24 +2,34 @@
 	<% unless Relationship.exists?(following_id: user.id, follower_id: current_user.id) %>
 		<%= link_to relationships_path(params: {following_id: user.id, info_user: info_user}), method: :post, remote: true do%>
 		<h5>
-		  <span class="badge badge-pill badge-info">
-		  	<span class="follow-info-size">フォロー</span>
-		  </span>
+		  <span class="badge badge-pill badge-info follow-text">フォロー</span>
 		</h5>
 		<% end %>
 	<% else %>
 		<%= link_to relationship_path(user, params:{info_user: info_user}), method: :delete, remote: true do %>
 		<h5>
-		  <span class="badge badge-pill badge-danger">
-		  	<span class="follow-info-size">フォロー解除</span>
-		  </span>
+		  <span id="following-btn-<%= user.id %>" class="badge badge-pill badge-danger follow-text">フォロー中</span>
 		</h5>
 		<% end %>
 	<% end %>
 <% else %>
 	<h5>
-    <span class="badge badge-pill badge-success">
-    <span class="follow-info-size">ログインユーザー</span>
-    </span>
+    <span class="badge badge-pill badge-success follow-text">ログインユーザー</span>
   </h5>
 <% end %>
+
+
+<script>
+	jQuery(function() {
+  $('#following-btn-<%= user.id %>').hover( () => {
+　 	$('#following-btn-<%= user.id %>').addClass('badge-warning');
+    $('#following-btn-<%= user.id %>').removeClass('badge-danger');
+    $('#following-btn-<%= user.id %>').text('フォロー解除');
+  }, function() {
+    $('#following-btn-<%= user.id %>').addClass('badge-danger');
+    $('#following-btn-<%= user.id %>').removeClass('badge-warning');
+    $('#following-btn-<%= user.id %>').text('フォロー中');
+  });
+});
+
+</script>

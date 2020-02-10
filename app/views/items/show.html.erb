@@ -1,171 +1,162 @@
-<div class="row my-3">
-  <div class="col-md-10 link-font-dark mx-auto">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h3 class="card-title text-center font-bold">
-          <%= @item.name %>
-        </h3>
-        <h6 class="card-subtitle text-muted text-center">
-          <span class="badge badge-secondary">
-            <%= @item.category.name %>
-          </span>
-        </h6>
-      </div>
-      <div class="text-center w-100">
-        <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", class: "item-show-item-image" %>
-      </div>
-      <div class="text-center">
-        <!--星評価-->
-      <div id="star-rate-<%= @item.id %>"></div>
-      <!--/星評価-->
-      </div>
-      <div class="card-body">
-        <p class="card-text"><%= @item.infomation %></p>
-        <p>メーカー：<%= "　#{@item.maker}" %></p>
-        <p>購入価格：<%= "　¥#{@item.price.to_s(:delimited)}" %></p>
-        <p>購入場所：<%= "　#{@item.place}" %></p>
-        <p>URL：<%= link_to @item.external_page.to_s,  @item.external_page, target: :_blank %></p>
-        <div class="card-subtitle mb-2 text-muted text-center" style="margin-top: 10px;">
-          <span class="badge badge-light">
-            <%= "投稿日：#{@item.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.created_at)}前）" %>
-          </span>
-          <% unless @item.created_at == @item.updated_at %>
-            <br>
-            <span class="badge badge-light">
-              <%= "更新日：#{@item.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.updated_at)}前）" %>
-            </span>
-          <% end %>
-        </div>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div id="like-<%= @item.id %>">
-            <%= render 'likes/like_form', item: @item %>
-          </div>
-        </li>
-        <% if @item.user == current_user %>
-          <li class="list-group-item">
-            <%= link_to "編集する", edit_item_path(@item) %>
-          </li>
-        <% end %>
-        <li class="list-group-item">
-          <table>
-            <tr>
-              <td>
-                <%= attachment_image_tag @item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image mr-3" %>
-              </td>
-              <td>
-                <h4 class="font-bold">
-                  <%= link_to @item.user.name, user_path(@item.user) %>
-                </h4>
-                <div id="follow-<%= @user.id %>">
-                  <%= render 'relationships/follow', user: @user, info_user: @user %>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </li>
-        <li class="list-group-item">
-          <i class="fas fa-pen-alt">ログ<%= @item.logs.count.to_s %>件</i>
-          <br>
-          <% if @item.logs == [] %>
-            <p>まだログがありません。</p>
-          <% else %>
-          <span class="badge badge-primary">直近のログ</span>
-            <strong><%= @item.logs.first.title %></strong>
-            <span class="badge badge-light float-right">
-            <%= "#{@item.logs.first.created_at.strftime("%Y年%m月%d日 %H時%M分")}"  %>
-          </span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-10 mx-auto" id="log-top">
-    <% @logs.each do |log| %>
-      <div class="card my-3">
+<div class="my-3">
+  <div class="row">
+    <div class="col-md-12 link-font-dark mx-auto">
+      <div class="card mb-3">
         <div class="card-body">
-          <h4 class="card-title"><strong><i class="fas fa-pen-alt"> <%= log.title %></i></strong></h4>
-          <p class="card-text">
-            <%= log.body %>
-          </p>
-          <% if log.image %>
-            <div class="text-center" style="height: 300px;">
-              <%= attachment_image_tag log, :image, class: "item-card-item-image" %>
-            </div>
-          <% end %>
-          <div class="card-subtitle text-muted text-right mt-3">
-            <% if log.from == "system" %>
-              <span class="badge badge-danger">システムによる投稿</span>
-            <% end %>
-            <span class="badge badge-light">
-              <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
+          <h3 class="card-title text-center font-bold">
+            <%= @item.name %>
+          </h3>
+          <h6 class="card-subtitle text-muted text-center">
+            <span class="badge badge-secondary">
+              <%= @item.category.name %>
             </span>
-            <% unless log.created_at == log.updated_at %>
-              <br>
-              <span class="badge badge-light">
-              <%= "更新日：#{log.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.updated_at)}前）" %>
-              </span>
-            <% end %>
-          </div>
-          <% if @item.user == current_user && log.from == "user" %>
-            <div>
-              <br>
-              <div class="text-right">
-                <%= link_to "編集", edit_log_path(log), :class => "btn btn-outline-primary" %>
-                <%= link_to "削除",log, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, :class => "btn btn-outline-primary" %>
+          </h6>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card-body">
+              <div class="text-center w-100">
+                <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", class: "item-show-item-image" %>
+              </div>
+              <div class="text-center mt-2">
+                <!--星評価-->
+              <div id="star-rate-<%= @item.id %>"></div>
+              <!--/星評価-->
+              </div>
+              <div class="text-center mt-2">
+                <div class="" style="display: inline-block;" id="like-<%= @item.id %>">
+                  <%= render 'likes/like_form', item: @item %>
+                </div>
+                <div class="ml-2" style="display: inline-block;">
+                  <i class="fas fa-pencil-alt"><span class="font-bold"> <%= @item.logs.count.to_s %></span></i>
+                </div>
               </div>
             </div>
-          <% end %>
-        </div>
-        <div id=comment-<%= log.id %> class="card-body">
-          <%= render 'comments/form', comment: @comment, log: log %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-
-<% if @item.user == current_user %>
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <div class="list-group">
-        <div class="list-group-item list-group-item-action active">ログ新規投稿</div>
-        <div class="list-group-item">
-          <%= form_with(model: @log, local: true) do |f| %>
-            <form>
-              <fieldset>
-                <div class="form-group">
-                  <label for="">タイトル</label>
-                  <%= f.text_field :title, class: "form-control" %>
-                  <small class="form-text text-muted">入力条件</small>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="card-text"><%= @item.infomation %></p>
+              </li>
+              <li class="list-group-item">
+                <p><strong>メーカー</strong><%= "　#{@item.maker}" %></p>
+                <p><strong>購入価格</strong><%= "　¥#{@item.price.to_s(:delimited)}" %></p>
+                <p><strong>購入場所</strong><%= "　#{@item.place}" %></p>
+                <p><strong>URL　</strong><%= link_to @item.external_page.to_s,  @item.external_page, target: :_blank %></p>
+              </li>
+              <li class="list-group-item">
+                <%= attachment_image_tag @item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image mr-3", style: "display: inline-block;" %>
+                <h5 class="font-bold" style="display: inline-block;">
+                  <%= link_to @item.user.name, user_path(@item.user) %>
+                </h5>
+                <div id="follow-<%= @user.id %>" class="ml-2" style="display: inline-block;">
+                  <%= render 'relationships/follow', user: @user, info_user: @user %>
                 </div>
-                <div class="form-group">
-                  <label for="">本文</label>
-                  <%= f.text_area :body, rows: 7, class: "form-control" %>
-                  <small class="form-text text-muted">入力条件</small>
-                </div>
-                <div class="form-group">
-                  <label for="">画像</label>
-                  <%= f.attachment_field :image, class: "form-control-file" %>
-                </div>
-                <div class="form-group">
-                  <%= f.hidden_field :item_id, :value => @item.id %>
-                  <%= f.submit "投稿", :class => "btn btn-primary" %>
-                </div>
-              </fieldset>
-            </form>
-          <% end %>
+              </li>
+              <li class="list-group-item text-right">
+                <span class="badge badge-light">
+                  <%= "投稿日：#{@item.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.created_at)}前）" %>
+                </span>
+                <% unless @item.created_at == @item.updated_at %>
+                  <br>
+                  <span class="badge badge-light">
+                    <%= "更新日：#{@item.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(@item.updated_at)}前）" %>
+                  </span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-12 text-right">
+            <% if @item.user == current_user %>
+              <div class="card-body">
+                <%= link_to "編集", edit_item_path(@item), class: "btn btn-primary text-white" %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-<% end %>
 
+  <div class="row">
+    <div class="col-md-12 mx-auto" id="log-top">
+      <% @logs.each do |log| %>
+        <div class="card my-3">
+          <div class="card-body">
+            <h4 class="card-title"><strong><i class="fas fa-pencil-alt"> <%= log.title %></i></strong></h4>
+            <p class="card-text">
+              <%= log.body %>
+            </p>
+            <% if log.image %>
+              <div class="text-center" style="height: 300px;">
+                <%= attachment_image_tag log, :image, class: "item-card-item-image" %>
+              </div>
+            <% end %>
+            <div class="card-subtitle text-muted text-right mt-3">
+              <% if log.from == "system" %>
+                <span class="badge badge-danger">システムによる投稿</span>
+              <% end %>
+              <span class="badge badge-light">
+                <%= "投稿日：#{log.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.created_at)}前）" %>
+              </span>
+              <% unless log.created_at == log.updated_at %>
+                <br>
+                <span class="badge badge-light">
+                <%= "更新日：#{log.updated_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(log.updated_at)}前）" %>
+                </span>
+              <% end %>
+            </div>
+            <% if @item.user == current_user && log.from == "user" %>
+              <div>
+                <br>
+                <div class="text-right">
+                  <%= link_to "編集", edit_log_path(log), :class => "btn btn-primary" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div id=comment-<%= log.id %> class="card-body">
+            <%= render 'comments/form', comment: @comment, log: log %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @item.user == current_user %>
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="list-group">
+          <div class="list-group-item list-group-item-action active">ログ新規投稿</div>
+          <div class="list-group-item">
+            <%= form_with(model: @log, local: true) do |f| %>
+              <form>
+                <fieldset>
+                  <div class="form-group">
+                    <label for="">タイトル</label>
+                    <%= f.text_field :title, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <label for="">本文</label>
+                    <%= f.text_area :body, rows: 7, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <label for="">画像</label>
+                    <%= f.attachment_field :image, class: "form-control-file" %>
+                  </div>
+                  <div class="form-group text-right">
+                    <%= f.hidden_field :item_id, :value => @item.id %>
+                    <%= f.submit "投稿", :class => "btn btn-primary" %>
+                  </div>
+                </fieldset>
+              </form>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 
 <script>

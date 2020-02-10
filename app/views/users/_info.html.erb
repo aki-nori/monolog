@@ -1,7 +1,7 @@
 <!-- ユーザ情報を表示するサイドバー -->
-<div class="card text-white bg-primary my-3">
-  <div class="card-header">
-    <i class="fas fa-user"> ユーザー情報</i>
+<div class="card text-white bg-primary">
+  <div class="card-header font-bold">
+    <i class="fas fa-user m-0"> ユーザー情報</i>
   </div>
   <div class="card-body">
     <table>
@@ -11,9 +11,7 @@
         </td>
         <td>
           <h6 class="card-title ml-2 link-font-light">
-            <%= link_to user_path(user) do %>
-              <%= user.name %>
-            <% end %>
+            <%= link_to user.name, user_path(user) %>
           </h6>
           <div class="ml-2">
             <div id="follow-<%= user.id %>">
@@ -37,7 +35,7 @@
     <% end %>
     <% unless user.facebook_account.blank? %>
       <%= link_to user.facebook_account.to_s ,target: :_blank do %>
-        <i class="fab fa-facebook mr-1"></i>
+        <i class="fab fa-facebook-square"></i>
       <% end %>
     <% end %>
   </div>
@@ -70,9 +68,11 @@
       <% end %>
     </li>
     <li class="list-group-item bg-primary">
+      <h6>
       <%= link_to edit_user_registration_path do %>
         <i class="fas fa-key"> パスワード変更</i>
       <% end %>
+    </h6>
     </li>
     <li class="list-group-item bg-primary">
       <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
