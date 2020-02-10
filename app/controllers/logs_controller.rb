@@ -16,16 +16,22 @@ class LogsController < ApplicationController
 	end
 
 	def update
-		log = Log.find(params[:id])
-		log.update(log_params)
-		redirect_to item_path(log.item)
+		@log = Log.find(params[:id])
+		if @log.update(log_params)
+			redirect_to item_path(@log.item)
+		else
+			render item_path(log.item)
+		end
 	end
 
 	def destroy
-		log = Log.find(params[:id])
-		item = log.item
-		log.destroy
-		redirect_to item_path(item)
+		@log = Log.find(params[:id])
+		item = @log.item
+		if @log.destroy
+			redirect_to item_path(item)
+		else
+			render item_path(item)
+		end
 	end
 
 	private
