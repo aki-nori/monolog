@@ -157,9 +157,9 @@
 
 .item-card-item-image {
   max-width: 100%;
-  max-height: 300px;
-  width: auto;
-  height: auto;
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .item-card-user-image {

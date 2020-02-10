@@ -41,9 +41,13 @@ class ItemsController < ApplicationController
 	end
 
 	def destroy
-		item = Item.find(params[:id])
-		item.destroy
-		redirect_to items_path
+		@item = Item.find(params[:id])
+		user = @item.user
+		if item.destroy
+			redirect_to user_path(user)
+		else
+			render action: :edit
+		end
 	end
 
 	def like

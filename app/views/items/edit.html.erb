@@ -36,10 +36,16 @@
               <div class="form-group">
               <label for="">サイト</label>
               <%= f.text_field :external_page, class: "form-control" %>
-            </div>
+              </div>
               <div class="form-group">
                 <label for="">購入価格</label>
-                <%= f.text_field :price, class: "form-control" %>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">¥</span>
+                  </div>
+                  <%= f.text_field :price, class: "form-control" %>
+                </div>
+                <small class="form-text text-muted">入力必須</small>
               </div>
               <div class="form-group">
                 <label for="">購入場所</label>
@@ -54,10 +60,14 @@
                 <%= f.hidden_field :score, id: :item_rating %>
               </div>
               <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= f.submit "登録", :class => "btn btn-primary" %>
+              <div class="mx-auto">
+                <%= f.submit "更新", :class => "btn btn-primary" %>
+                <%= link_to "削除",@item, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, :class => "btn btn-outline-primary"%>
+              </div>
             </fieldset>
           </form>
         <% end %>
+
       </div>
     </div>
 </div>

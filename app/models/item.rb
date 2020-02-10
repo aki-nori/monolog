@@ -12,7 +12,7 @@ class Item < ApplicationRecord
     validates :name, presence: true, length: { maximum: 30 }
     validates :infomation, presence: true, length: { maximum: 500 }
     validates :score, presence: true
-    validates :price, numericality: { only_integer: true }
+    validates :price, presence: true, numericality: { only_integer: true }
     validates :maker, length: { maximum: 10 }
 
 end
