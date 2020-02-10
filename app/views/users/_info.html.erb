@@ -1,5 +1,5 @@
 <!-- ユーザ情報を表示するサイドバー -->
-<div class="card text-white bg-primary mb-3">
+<div class="card text-white bg-primary my-3">
   <div class="card-header">
     <i class="fas fa-user"> ユーザー情報</i>
   </div>
@@ -24,6 +24,23 @@
       </tr>
     </table>
     <p class="card-text user-card-user-intro"><%= user.introduction %></p>
+    <div class="float-right link-font-light">
+    <% unless user.twitter_account.blank? %>
+      <%= link_to user.twitter_account.to_s ,target: :_blank do %>
+        <i class="fab fa-twitter mr-1"></i>
+      <% end %>
+    <% end %>
+    <% unless user.instagram_account.blank? %>
+      <%= link_to user.instagram_account.to_s ,target: :_blank do %>
+        <i class="fab fa-instagram mr-1"></i>
+      <% end %>
+    <% end %>
+    <% unless user.facebook_account.blank? %>
+      <%= link_to user.facebook_account.to_s ,target: :_blank do %>
+        <i class="fab fa-facebook mr-1"></i>
+      <% end %>
+    <% end %>
+  </div>
   </div>
   <div class="card-body text-center">
     <div id="counter-<%= user.id %>">

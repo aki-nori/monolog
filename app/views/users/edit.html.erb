@@ -1,14 +1,14 @@
-<div class="row my-3">
-  <div class="col-md-12 mx-auto">
-    <div class="list-group">
-      <div class="list-group-item list-group-item-action active">
-        プロフィール編集
-      </div>
-      <div href="#" class="list-group-item">
-        <%= form_with(model: @user, local: true) do |f| %>
-          <%= render 'homes/error_messages', model: @user %>
-          <form>
-            <fieldset>
+<div class="list-group my-3">
+  <div class="list-group-item list-group-item-action active">
+    プロフィール編集
+  </div>
+  <div href="#" class="list-group-item">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'homes/error_messages', model: @user %>
+      <form>
+        <fieldset>
+          <div class="row">
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="">アカウント名</label>
                 <%= f.text_field :name, class: "form-control" %>
@@ -23,20 +23,31 @@
                 <%= f.text_area :introduction, rows: 10, class: "form-control" %>
                 <small class="form-text text-muted">150字以内</small>
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="">居住地</label>
                 <%= f.text_field :address, class: "form-control" %>
               </div>
               <div class="form-group">
                 <label for="">Twitter</label>
-                <%= f.text_field :twitter_account, class: "form-control" %>
+                <%= f.text_field :twitter_account, class: "form-control", :placeholder => "https://twitter.com/アカウント名" %>
+              </div>
+              <div class="form-group">
+                <label for="">Instagram</label>
+                <%= f.text_field :instagram_account, class: "form-control", :placeholder => "https://instagram.com/アカウント名" %>
+              </div>
+              <div class="form-group">
+                <label for="">Facebook</label>
+                <%= f.text_field :facebook_account, class: "form-control", :placeholder => "https://facebook.com/アカウント名" %>
               </div>
               <%= f.submit "更新", :class => "btn btn-primary" %>
-            </fieldset>
-            <%= link_to "退会",  user_registration_path, method: :delete, data: {confirm: "本当に退会してもよろしいですか？"}, :class => "btn btn-danger float-right" %>
-          </form>
-        <% end %>
-      </div>
-    </div>
+              <%= link_to "退会",  user_registration_path, method: :delete, data: {confirm: "本当に退会してもよろしいですか？"}, :class => "btn btn-danger float-right" %>
+            </div>
+        </div>
+
+        </fieldset>
+      </form>
+    <% end %>
   </div>
 </div>
