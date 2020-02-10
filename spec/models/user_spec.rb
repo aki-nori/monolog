@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
       it '登録できる' do
         expect(FactoryBot.create(:user)).to be_valid
       end
+    end
 
       context '名前がないとき' do
         it '登録できない' do
@@ -19,7 +20,6 @@ RSpec.describe User, type: :model do
           expect(FactoryBot.build(:user, name: Faker::Lorem.characters(number: 16))).to_not be_valid
         end
       end
-    end
 
     context '名前が15文字のとき' do
       it '登録できる' do
