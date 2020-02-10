@@ -90,6 +90,9 @@ ActiveRecord::Schema.define(version: 2020_01_30_063310) do
     t.string "profile_image_id"
     t.string "address"
     t.string "place"
+    t.string "twitter_account"
+    t.string "instagram_account"
+    t.string "facebook_account"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

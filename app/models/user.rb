@@ -24,6 +24,10 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :introduction, length: { maximum: 150 }
 
+  validates :twitter_account, format: { with: %r(https://(www.)?twitter.com/[^ ]*) }, allow_blank: true
+  validates :instagram_account, format: { with: %r(https://(www.)?instagram.com/[^ ]*) }, allow_blank: true
+  validates :facebook_account, format: { with: %r(https://(www.)?facebook.com/[^ ]*) }, allow_blank: true
+
   def already_liked?(item)
     self.likes.exists?(item_id: item.id)
   end

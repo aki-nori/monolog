@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-   params.require(:user).permit(:name, :introduction, :profile_image, :address)
+   params.require(:user).permit(:name, :introduction, :profile_image, :address, :twitter_account, :instagram_account, :facebook_account)
   end
 
   def baria_user
