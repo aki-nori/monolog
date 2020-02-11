@@ -69,11 +69,10 @@
   </div>
 </div>
 
-
-
 <script>
   $('#star-score').raty({
-    path: '/assets/',
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
     click: function(score, e) {
       $("#item_rating").val(score)
     }
