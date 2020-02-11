@@ -1,22 +1,22 @@
 <% log.comments.each do |comment| %>
-<div class="alert alert-dismissible alert-light link-font-dark">
-  <% if comment.user == current_user %>
-	  <%= link_to comment_path(comment), method: :delete, :class => "close",  remote: true do %>
-	  	<i class="fas fa-times"></i>
-	  <% end %>
-  <% end %>
-  <%= comment.body %>
-  <br>
-  <%= attachment_image_tag comment.user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle comment-form-user-image" %>
-  <strong>
-  <%= link_to comment.user.name, user_path(comment.user) %></strong>
-  <% if log.item.user.id == comment.user_id %>
-    <span class="badge badge-info">ガジェット投稿者</span>
-  <% end %>
-  <span class="badge badge-dark float-right">
-  	<%= "投稿日：#{comment.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(comment.created_at)}前）" %>
-  </span>
-</div>
+  <div class="alert alert-dismissible alert-light link-font-dark">
+    <% if comment.user == current_user %>
+  	  <%= link_to comment_path(comment), method: :delete, :class => "close",  remote: true do %>
+  	  	<i class="fas fa-times"></i>
+  	  <% end %>
+    <% end %>
+    <%= comment.body %>
+    <br>
+    <%= attachment_image_tag comment.user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle comment-form-user-image" %>
+    <strong>
+    <%= link_to comment.user.name, user_path(comment.user) %></strong>
+    <% if log.item.user.id == comment.user_id %>
+      <span class="badge badge-info">ガジェット投稿者</span>
+    <% end %>
+    <span class="badge badge-dark float-right">
+    	<%= "投稿日：#{comment.created_at.strftime("%Y年%m月%d日 %H時%M分")} （#{time_ago_in_words(comment.created_at)}前）" %>
+    </span>
+  </div>
 <% end %>
 
 <!-- コメント投稿フォーム -->
@@ -29,6 +29,8 @@
 	    <label>コメント投稿</label>
 	    <%= f.text_area :body, class: "form-control" %>
 	  </div>
-	  <%= f.submit "投稿", :class => "btn btn-primary" %>
+    <div class="text-right">
+	   <%= f.submit "投稿", :class => "btn btn-primary" %>
+   </div>
 	</fieldset>
 <% end %>

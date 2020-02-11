@@ -2,7 +2,7 @@
   <tr class="user-card-count-record link-font-light">
     <td>
       <%= link_to followings_user_path(user) do %>
-        <p class="user-card-record-count">
+        <p class="user-card-record-count mb-1">
           <%= "#{user.followings.count}" %>
         </p>
         <p class="user-card-record-title">フォロワー</p>
@@ -10,7 +10,7 @@
     </td>
     <td>
       <%= link_to followers_user_path(user) do %>
-        <p class="user-card-record-count">
+        <p class="user-card-record-count mb-1">
           <%= "#{user.followers.count}" %>
         </p>
         <p class="user-card-record-title">フォロー中</p>
@@ -18,7 +18,7 @@
     </td>
     <td>
       <%= link_to user_path(user) do %>
-        <p class="user-card-record-count">
+        <p class="user-card-record-count mb-1">
           <%= "#{user.items.count}" %>
         </p>
         <p class="user-card-record-title">アイテム</p>
