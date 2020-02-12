@@ -7,18 +7,16 @@
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <% if false %>
-    <link rel="icon" href="<%= asset_path "favicon.ico" %>">
-  <% end %>
+  <link rel="icon" href="<%= asset_path "favicon.ico" %>">
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <%= link_to top_path, class: "navbar-brand p-0" do %>
-                <img src="<%= asset_path "monolog-logo.png" %>", style="width: 130px; padding: 0;" %>
-                <% end %>
+        <%= link_to top_path, class: "navbar-brand" do %>
+          <img src="<%= asset_path "monolog-logo.png" %>" class="w-35" >
+        <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

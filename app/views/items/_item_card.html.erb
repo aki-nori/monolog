@@ -18,15 +18,15 @@
     <!--/星評価-->
   </div>
   <div class="mx-auto link-font-dark">
-    <div class="p-2" style="float: left;">
+    <div class="p-2 float-left">
       <%= link_to item_path(item, anchor: 'log-top') do%>
       <i class="fas fa-pencil-alt"><span class="font-bold"> <%= item.logs.count.to_s %></span></i>
       <% end %>
     </div>
-    <div class="p-2" style="float: left;">
+    <div class="p-2 float-left">
         <i class="far fa-comment"><span class="font-bold"> <%= item.comments.count %></span></i>
     </div>
-    <div class="p-2" id="like-<%= item.id %>" style="float: left;">
+    <div class="p-2 float-left" id="like-<%= item.id %>">
       <%= render 'likes/like_form', item: item %>
     </div>
   </div>
