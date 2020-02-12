@@ -12,14 +12,14 @@
   <div class="col-md-12 col-lg-9">
     <div class="card text-white bg-primary mb-3 sticky z-index-200">
       <div class="card-header p-1">
-        <div class="m-2" style="display: inline-block;">検索結果：<%= @items.count %>件</div>
-        <div class="float-right" style="display: inline-block;">
-        <%= search_form_for @search, url: items_path, class: "form-inline my-2 my-lg-0" do |f| %>
+        <div class="m-2">検索結果：<%= @items.count %>件</div>
+        <div class="float-right">
+          <%= search_form_for @search, url: items_path, class: "form-inline my-2 my-lg-0" do |f| %>
             <%= f.search_field :name_cont, class: "form-control mr-sm-2 mr-2 search-form", placeholder: "ガジェット検索" %>
             <div class="actions">
               <%= button_tag :type => "submit", :class =>"btn btn-secondary my-2 my-sm-0" do %>
                 <i class="fa fa-search"></i>
-                <% end %>
+              <% end %>
             </div>
           <% end %>
         </div>
