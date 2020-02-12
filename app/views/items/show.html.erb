@@ -45,7 +45,9 @@
                 <p><strong>メーカー</strong><%= "　#{@item.maker}" %></p>
                 <p><strong>購入価格</strong><%= "　¥#{@item.price.to_s(:delimited)}" %></p>
                 <p><strong>購入場所</strong><%= "　#{@item.place}" %></p>
-                <p><strong>URL　</strong><%= link_to @item.external_page.to_s,  @item.external_page, target: :_blank %></p>
+                <% unless @item.external_page.blank? %>
+                  <p><%= link_to "製品ページリンク",  @item.external_page, class: "btn btn-primary btn-sm text-white float-right", target: :_blank %></p>
+                <% end %>
               </li>
               <li class="list-group-item">
                 <%= attachment_image_tag @item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image mr-3", style: "display: inline-block;" %>
