@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Faker::Config.locale = :ja
+random = Random.new
 
 # カテゴリの作成
 cats = ['スマートフォン', 'PC', 'タブレット', 'チャージャー', 'カメラ', 'イヤホン', 'スピーカー', 'ドローン', '日用品', '車', 'トラベル', 'スマートウォッチ', 'ストレージ']
@@ -41,11 +42,13 @@ addreses.each_with_index do |add, i|
     address: add,
     twitter_account: 'https://twitter.com/',
     instagram_account: 'https://instagram.com/',
-    facebook_account: 'https://www.facebook.com/'
+    facebook_account: 'https://www.facebook.com/',
+    profile_image: File.open("./public/img-user-#{"%#002d" % i }.jpg")
   )
 end
 
 2.times do |i|
+  img_num = random.rand(20..30)
   User.create!(
     email: Faker::Internet.email,
     password: 'password',
@@ -54,14 +57,15 @@ end
     address: Faker::Address.state,
     twitter_account: 'https://twitter.com/',
     instagram_account: 'https://instagram.com/',
-    facebook_account: 'https://www.facebook.com/'
+    facebook_account: 'https://www.facebook.com/',
+    profile_image: File.open("./public/img-user-#{"%#002d" % img_num }.jpg")
   )
 end
 
 puts "Created Users data. #{User.count}"
 
 user_count = User.count
-random = Random.new
+
 Item.create!(
   [
     {
@@ -193,7 +197,8 @@ Item.create!(
       place: 'amazon',
       price: '12000',
       score: '5.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-11.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -203,18 +208,6 @@ Item.create!(
       infomation: '海外旅行のおとも',
       place: 'amazon',
       price: '2000',
-      score: '4.0',
-      external_page: '',
-      image: File.open("./public/img-item-11.jpg")
-    },
-    {
-      user_id: random.rand(1..user_count),
-      category_id: cats.index('スマートフォン') + 1,
-      name: 'ワイコン',
-      maker: '',
-      infomation: '普通のスマートフォンでも超広角で撮れる',
-      place: 'amazon',
-      price: '1000',
       score: '4.0',
       external_page: '',
       image: File.open("./public/img-item-12.jpg")
@@ -261,7 +254,7 @@ Item.create!(
 # ダミーアイテム
 cat_count = cats.count
 20.times do |i|
-  image_number = random.rand(20..25)
+  img_num = random.rand(20..25)
   Item.create!(
     {
       user_id: random.rand(1..user_count),
@@ -273,7 +266,7 @@ cat_count = cats.count
       price: random.rand(300..10000),
       score: random.rand(1..5),
       external_page: '',
-      image: File.open("./public/img-item-#{image_number}.jpg")
+      image: File.open("./public/img-item-#{img_num}.jpg")
     }
   )
 end
@@ -283,13 +276,40 @@ puts "Created Items data. #{Item.count}"
 # アイテム登録と同時にシステムが最初のログの投稿を行う
 items = Item.all
 items.each do |item|
+  img_num = random.rand(1..20)
   Log.create!(
     item_id: item.id,
     title: "#{item.name} を登録しました",
-    body: "これからこのガジェットのログを残していきましょう。",
+    body: 'これからこのガジェットのログを残していきましょう。',
     from: :system
   )
 end
+
+item_count = Item.count
+40.times do |i|
+  img_num = random.rand(1..20)
+  case random.rand(1..5)
+  when 1 then
+    title = 'すごく使い勝手がいいですよ！'
+  when 2 then
+    title = 'みなさんにお勧めします！'
+  when 3 then
+    title = 'コストパフォーマンスが素晴らしい！'
+  when 4 then
+    title = 'とても便利です！'
+  when 5 then
+    title = '毎日使っています！'
+  end
+
+  Log.create!(
+    item_id: random.rand(1..item_count),
+    title: title,
+    body: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。',
+    from: :user,
+    image: File.open("./public/img-log-#{"%#002d" % img_num }.jpg")
+  )
+end
+
 
 puts "Created Logs data. #{Log.count}"
 
