@@ -60,6 +60,8 @@ end
 
 puts "Created Users data. #{User.count}"
 
+# backend = Refile::Backend::FileSystem.new
+# image_file = File.open(asset_path "img-item-01.jpg")
 
 user_count = User.count
 random = Random.new
@@ -74,7 +76,8 @@ Item.create!(
       place: 'アップルストア表参道',
       price: '80000',
       score: '4.0',
-      external_page: 'https://www.apple.com/jp/shop/product/FQDT2J/A/105%E3%82%A4%E3%83%B3%E3%83%81iPad-Pro-Wi-Fi-64GB-%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AC%E3%82%A4-%E6%95%B4%E5%82%99%E6%B8%88%E8%A3%BD%E5%93%81'
+      external_page: 'https://www.apple.com/jp/shop/product/FQDT2J/A/105%E3%82%A4%E3%83%B3%E3%83%81iPad-Pro-Wi-Fi-64GB-%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AC%E3%82%A4-%E6%95%B4%E5%82%99%E6%B8%88%E8%A3%BD%E5%93%81',
+      image: File.open(asset_path "img-item-01.jpg", "rb")
     },
     {
       user_id: random.rand(1..user_count),
