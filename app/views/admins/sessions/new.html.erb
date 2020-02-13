@@ -11,7 +11,7 @@
           <fieldset>
             <div class="form-group">
               <div class="field">
-                <span>メールアドレス</span><br />
+                <%= f.label :email %><br />
                 <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
               </div>
             </div>
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
               <div class="field">
-                <span>パスワード</span><br />
+                <%= f.label :password %><br />
                 <%= f.password_field :password, autocomplete: "current-password" %>
               </div>
             </div>
