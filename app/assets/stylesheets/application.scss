@@ -21,6 +21,7 @@
 @import 'font-awesome';
 @import "*"; // これが無いとstylesheets内に個別のscssを読み込めない
 
+
 .w-35 {
   width: 35%;
 }
@@ -138,6 +139,8 @@
 .user-card-user-intro {
 	padding-top: 10px;
 	font-size: 0.8rem;
+  height: 70px;
+  overflow: scroll;
 }
 
 .user-card-record-title {
