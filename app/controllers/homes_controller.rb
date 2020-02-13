@@ -7,7 +7,7 @@ class HomesController < ApplicationController
     elsif params[:search_type] == "recent"
       @items = Item.all.order(created_at: "DESC").page(params[:page]).per(12)
     elsif params[:search_type] == "log"
-      @items = Item.select('items.*', 'count(logs.id) AS logs').left_joins(:logs).group('logs.id').order('logs desc').page(params[:page]).per(12)
+      @items = Item.select('items.*', 'count(logs.id) AS logs').left_joins(:logs).group('items.id').order('logs desc').page(params[:page]).per(12)
     else
       @items = Item.all.page(params[:page]).per(12)
     end
