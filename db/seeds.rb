@@ -74,7 +74,7 @@ Item.create!(
       price: '80000',
       score: '4.0',
       external_page: 'https://www.apple.com/jp/shop/product/FQDT2J/A/105%E3%82%A4%E3%83%B3%E3%83%81iPad-Pro-Wi-Fi-64GB-%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%B0%E3%83%AC%E3%82%A4-%E6%95%B4%E5%82%99%E6%B8%88%E8%A3%BD%E5%93%81',
-       image: File.open("./public/img-item-01.jpg")
+      image: File.open("./public/img-item-01.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -85,7 +85,8 @@ Item.create!(
       place: 'Apple表参道',
       price: '30000',
       score: '5.0',
-      external_page: 'https://www.apple.com/jp/airpods-pro/'
+      external_page: 'https://www.apple.com/jp/airpods-pro/',
+      image: File.open("./public/img-item-02.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -96,7 +97,8 @@ Item.create!(
       place: 'Apple store',
       price: '130000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-03.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -107,7 +109,8 @@ Item.create!(
       place: 'amazon',
       price: '6000',
       score: '3.0',
-      external_page: 'https://ja.wikipedia.org/wiki/Raspberry_Pi'
+      external_page: 'https://ja.wikipedia.org/wiki/Raspberry_Pi',
+      image: File.open("./public/img-item-04.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -118,7 +121,8 @@ Item.create!(
       place: 'test3place',
       price: '2500',
       score: '4.0',
-      external_page: 'https://www.amazon.co.jp/Anker-PowerCore-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%83%90%E3%83%83%E3%83%86%E3%83%AA%E3%83%BC%E6%90%AD%E8%BC%89-%E3%80%90PowerIQ%E6%90%AD%E8%BC%89-iPhone%E3%80%81iPad%E3%80%81Android%E5%90%84%E7%A8%AE%E5%AF%BE%E5%BF%9C/dp/B01LATWL5G/ref=asc_df_B01LATWL5G/?tag=jpgo-22&linkCode=df0&hvadid=218104193722&hvpos=&hvnetw=g&hvrand=5448566743754137039&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1009333&hvtargid=pla-438962133496&psc=1'
+      external_page: 'https://www.amazon.co.jp/Anker-PowerCore-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%83%90%E3%83%83%E3%83%86%E3%83%AA%E3%83%BC%E6%90%AD%E8%BC%89-%E3%80%90PowerIQ%E6%90%AD%E8%BC%89-iPhone%E3%80%81iPad%E3%80%81Android%E5%90%84%E7%A8%AE%E5%AF%BE%E5%BF%9C/dp/B01LATWL5G/ref=asc_df_B01LATWL5G/?tag=jpgo-22&linkCode=df0&hvadid=218104193722&hvpos=&hvnetw=g&hvrand=5448566743754137039&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1009333&hvtargid=pla-438962133496&psc=1',
+      image: File.open("./public/img-item-05.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -129,7 +133,8 @@ Item.create!(
       place: 'Apple Store',
       price: '60000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-06.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -140,7 +145,8 @@ Item.create!(
       place: 'AppleStore',
       price: '200000',
       score: '5.0',
-      external_page: 'https://www.apple.com/jp/macbook-pro/'
+      external_page: 'https://www.apple.com/jp/macbook-pro/',
+      image: File.open("./public/img-item-07.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -151,7 +157,8 @@ Item.create!(
       place: 'ヨドバシカメラ',
       price: '150000',
       score: '4.0',
-      external_page: 'https://www.dji.com/jp/mavic'
+      external_page: 'https://www.dji.com/jp/mavic',
+      image: File.open("./public/img-item-08.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -162,7 +169,8 @@ Item.create!(
       place: 'ビックカメラ',
       price: '200000',
       score: '3.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-09.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -173,7 +181,8 @@ Item.create!(
       place: 'amazon',
       price: '5000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-10.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -195,7 +204,8 @@ Item.create!(
       place: 'amazon',
       price: '2000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-11.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -206,7 +216,8 @@ Item.create!(
       place: 'amazon',
       price: '1000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-12.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -217,7 +228,8 @@ Item.create!(
       place: 'amazon',
       price: '1000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-13.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -228,7 +240,8 @@ Item.create!(
       place: 'amazon',
       price: '15000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-14.jpg")
     },
     {
       user_id: random.rand(1..user_count),
@@ -239,7 +252,8 @@ Item.create!(
       place: 'apple',
       price: '3000',
       score: '4.0',
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-15.jpg")
     }
   ]
 )
@@ -247,6 +261,7 @@ Item.create!(
 # ダミーアイテム
 cat_count = cats.count
 20.times do |i|
+  image_number = random.rand(20..25)
   Item.create!(
     {
       user_id: random.rand(1..user_count),
@@ -257,7 +272,8 @@ cat_count = cats.count
       place: Faker::Coffee.country,
       price: random.rand(300..10000),
       score: random.rand(1..5),
-      external_page: ''
+      external_page: '',
+      image: File.open("./public/img-item-#{image_number}.jpg")
     }
   )
 end
