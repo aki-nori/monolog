@@ -45,7 +45,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
 end
 
 group :development do
@@ -80,6 +79,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem 'refile-mini_magick'
 
 gem 'ransack'
+gem 'faker'
 
 gem 'dotenv-rails'
 # gem 'acts-as-taggable-on'
