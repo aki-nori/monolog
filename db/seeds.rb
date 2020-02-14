@@ -9,7 +9,13 @@
 Faker::Config.locale = :ja
 random = Random.new
 
-# カテゴリの作成
+# ダミーデータ数設定
+create_user = 50
+create_item = 100
+create_log = 300
+create_comment = 500
+
+# カテゴリデータ
 cats = ['スマートフォン', 'PC', 'タブレット', 'チャージャー', 'カメラ', 'イヤホン', 'スピーカー', 'ドローン', '日用品', '車', 'トラベル', 'スマートウォッチ', 'ストレージ']
 cats.each do |category|
     Category.create!(name: category)
@@ -17,7 +23,7 @@ end
 
 puts "Created Categories data. #{Category.count}"
 
-# Adminの作成
+# Adminデータ
 Admin.create!(
   [
     {
@@ -30,7 +36,7 @@ Admin.create!(
 
 puts "Created Admins data. #{Admin.count}"
 
-# ユーザデータの作成
+# ユーザデータ
 addreses = ['東京都新宿区', '神奈川県藤沢市', '神奈川県横浜市', '大阪府大阪市', '東京都世田谷区', '台湾台北市', '東京都渋谷区']
 addreses.each_with_index do |add, i|
   i += 1
@@ -47,7 +53,7 @@ addreses.each_with_index do |add, i|
   )
 end
 
-2.times do |i|
+create_user.times do |i|
   img_num = random.rand(20..30)
   User.create!(
     email: Faker::Internet.email,
@@ -251,9 +257,9 @@ Item.create!(
   ]
 )
 
-# ダミーアイテム
+# アイテムデータ
 cat_count = cats.count
-20.times do |i|
+create_item.times do |i|
   img_num = random.rand(20..25)
   Item.create!(
     {
@@ -285,8 +291,9 @@ items.each do |item|
   )
 end
 
+# ログデータ
 item_count = Item.count
-40.times do |i|
+create_log.times do |i|
   img_num = random.rand(1..20)
   case random.rand(1..5)
   when 1 then
@@ -313,8 +320,10 @@ end
 
 puts "Created Logs data. #{Log.count}"
 
+
+# コメントデータ
 log_count = Log.count
-20.times do |i|
+create_comment.times do |i|
 
   log_id = random.rand(1..log_count)
   user_id = random.rand(1..user_count)
@@ -346,7 +355,7 @@ end
 
 puts "Created Comments data. #{Comment.count}"
 
-# いいねデータ作成
+# いいねデータ
 item_count = Item.count
 User.all.each do |user|
   like_target = []
@@ -364,7 +373,7 @@ end
 
 puts "Created Likes data. #{Like.count}"
 
-# フォローデータ作成
+# フォローデータ
 User.all.each do |user|
   follow_target = []
     user_count.times do |i|
