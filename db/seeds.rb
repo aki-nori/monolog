@@ -53,7 +53,7 @@ addreses.each_with_index do |add, i|
   )
 end
 
-create_user.times do |i|
+create_user.times do
   img_num = random.rand(20..30)
   User.create!(
     email: Faker::Internet.email,
@@ -259,7 +259,7 @@ Item.create!(
 
 # アイテムデータ
 cat_count = cats.count
-create_item.times do |i|
+create_item.times do
   img_num = random.rand(20..25)
   Item.create!(
     {
@@ -293,7 +293,7 @@ end
 
 # ログデータ
 item_count = Item.count
-create_log.times do |i|
+create_log.times do
   img_num = random.rand(1..20)
   case random.rand(1..5)
   when 1 then
@@ -323,7 +323,7 @@ puts "Created Logs data. #{Log.count}"
 
 # コメントデータ
 log_count = Log.count
-create_comment.times do |i|
+create_comment.times do
 
   log_id = random.rand(1..log_count)
   user_id = random.rand(1..user_count)
@@ -359,10 +359,10 @@ puts "Created Comments data. #{Comment.count}"
 item_count = Item.count
 User.all.each do |user|
   like_target = []
-  item_count.times do |i|
+  item_count.times do
     like_target << random.rand(1..item_count)
   end
-  like_target.uniq
+  like_target = like_target.uniq
   like_target.each do |target|
     Like.create!(
       user_id: user.id,
@@ -376,10 +376,10 @@ puts "Created Likes data. #{Like.count}"
 # フォローデータ
 User.all.each do |user|
   follow_target = []
-    user_count.times do |i|
+    user_count.times do
       follow_target << random.rand(1..user_count - 1)
     end
-  follow_target.uniq
+  follow_target = follow_target.uniq
   follow_target.delete(user.id)
 
   follow_target.each do |target|
