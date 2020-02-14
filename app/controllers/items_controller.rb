@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
 	def destroy
 		@item = Item.find(params[:id])
 		user = @item.user
-		if item.destroy
+		if @item.destroy
 			redirect_to user_path(user)
 		else
 			render action: :edit
