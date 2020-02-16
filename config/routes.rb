@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :search
+      post :confirm
     end
   end
   resources :logs,          only: [:create, :destroy, :update, :edit]

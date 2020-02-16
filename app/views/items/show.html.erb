@@ -43,7 +43,9 @@
               </li>
               <li class="list-group-item">
                 <p><strong>メーカー</strong><%= "　#{@item.maker}" %></p>
-                <p><strong>購入価格</strong><%= "　¥#{@item.price.to_s(:delimited)}" %></p>
+                <% if @item.price %>
+                  <p><strong>購入価格</strong><%= "　¥#{@item.price.to_s(:delimited)}" %></p>
+                <% end %>
                 <p><strong>購入場所</strong><%= "　#{@item.place}" %></p>
                 <% unless @item.external_page.blank? %>
                   <p><%= link_to "製品ページリンク",  @item.external_page, class: "btn btn-primary btn-sm text-white float-right", target: :_blank %></p>

@@ -1,0 +1,88 @@
+<div class="list-group my-3">
+  <div class="list-group-item list-group-item-action active font-bold">
+    ガジェット新規登録
+  </div>
+  <div href="#" class="list-group-item">
+    <%= form_for @item, :url => items_path do |f| %>
+      <%= render 'homes/error_messages', model: @item %>
+        <fieldset>
+          <table class="table">
+            <caption>内容をよく確認した上で登録してください</caption>
+            <thead>
+              <tr>
+                <th>登録項目</th>
+                <th>登録内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>製品名</td>
+                <td><%= @item.name %></td>
+              </tr>
+              <tr>
+                <td>カテゴリー</td>
+                <td><%= Category.find(@item.category_id).name %></td>
+              </tr>
+              <tr>
+                <td>メーカー</td>
+                <td><%= @item.maker %></td>
+              </tr>
+              <tr>
+                <td>説明</td>
+                <td><%= @item.infomation %></td>
+              </tr>
+              <tr>
+                <td>サイト</td>
+                <td><%= link_to @item.external_page.to_s, @item.external_page %></td>
+              </tr>
+              <tr>
+                <td>購入価格</td>
+                <td><%= @item.price %></td>
+              </tr>
+              <tr>
+                <td>購入場所</td>
+                <td><%= @item.place %></td>
+              </tr>
+              <tr>
+                <td>評価</td>
+                <td>
+                  <!--星評価-->
+                  <div id="star-rate-<%= @item.id %>"></div>
+                  <!--/星評価-->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :category_id %>
+          <%= f.hidden_field :image %>
+          <%= f.hidden_field :maker %>
+          <%= f.hidden_field :infomation %>
+          <%= f.hidden_field :external_page %>
+          <%= f.hidden_field :price %>
+          <%= f.hidden_field :place %>
+          <%= f.hidden_field :score %>
+          <%= f.hidden_field :user_id %>
+        </div>
+        <div class="row my-3">
+          <div class="col-md-12 text-right">
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.submit "戻る", name: "back", :class => "btn btn-primary" %>
+            <%= f.submit "登録", :class => "btn btn-primary" %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $('#star-rate-<%= @item.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @item.score %>,
+  });
+</script>
