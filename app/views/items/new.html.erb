@@ -52,8 +52,7 @@
             </div>
             <div class="form-group">
               <label for=""><i class="far fa-star"></i> 評価</label>
-                <div id="star-rate-<%= @item.id %>">直前の評価　</div>
-                <div id='star-score'>評価を変更　</div>
+              <div id='star-score'></div>
               <small class="form-text text-muted">入力必須</small>
               <%= f.hidden_field :score, id: :item_rating %>
             </div>
@@ -77,14 +76,5 @@
     click: function(score, e) {
       $("#item_rating").val(score)
     }
-  });
-
-  $('#star-rate-<%= @item.id %>').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    half: true,
-    readOnly: true,
-    score: <%= @item.score %>,
   });
 </script>

@@ -1,6 +1,6 @@
 <div class="list-group my-3">
   <div class="list-group-item list-group-item-action active font-bold">
-    ガジェット新規登録
+    ガジェット新規登録 確認画面
   </div>
   <div href="#" class="list-group-item">
     <%= form_for @item, :url => items_path do |f| %>
@@ -53,19 +53,19 @@
               </tr>
             </tbody>
           </table>
-          <%= f.hidden_field :name %>
-          <%= f.hidden_field :category_id %>
-          <%= f.hidden_field :image %>
-          <%= f.hidden_field :maker %>
-          <%= f.hidden_field :infomation %>
-          <%= f.hidden_field :external_page %>
-          <%= f.hidden_field :price %>
-          <%= f.hidden_field :place %>
-          <%= f.hidden_field :score %>
-          <%= f.hidden_field :user_id %>
         </div>
         <div class="row my-3">
           <div class="col-md-12 text-right">
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :category_id %>
+            <%= f.hidden_field :image %>
+            <%= f.hidden_field :maker %>
+            <%= f.hidden_field :infomation %>
+            <%= f.hidden_field :external_page %>
+            <%= f.hidden_field :price %>
+            <%= f.hidden_field :place %>
+            <%= f.hidden_field :score %>
+            <%= f.hidden_field :user_id %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.submit "戻る", name: "back", :class => "btn btn-primary" %>
             <%= f.submit "登録", :class => "btn btn-primary" %>
