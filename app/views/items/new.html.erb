@@ -3,7 +3,7 @@
     ガジェット新規登録
   </div>
   <div href="#" class="list-group-item">
-    <%= form_with(model: @item, local: true) do |f| %>
+    <%= form_with(model: @item, local: true, url: confirm_items_path) do |f| %>
       <%= render 'homes/error_messages', model: @item %>
         <fieldset>
           <div class="row">
@@ -61,7 +61,7 @@
         <div class="row">
           <div class="col-md-12 text-right">
             <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.submit "登録", :class => "btn btn-primary" %>
+            <%= f.submit "確認", :class => "btn btn-primary" %>
           </div>
         </div>
       </fieldset>

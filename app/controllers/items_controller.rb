@@ -20,13 +20,24 @@ class ItemsController < ApplicationController
 		@item = Item.new
 	end
 
+	def confirm
+		@item = Item.new(item_params)
+		if @item.invalid?
+			render :new
+		end
+	end
+
 	def create
 		@item = Item.new(item_params)
-		if @item.save
-			log = Log.create(item_id: @item.id, title: "#{@item.name} を登録しました", body: "これからこのガジェットのログを残していきましょう。", from: :system)
-			redirect_to item_path(@item)
-		else
+		if params[:back]
 			render action: :new
+		else
+			if @item.save
+				log = Log.create(item_id: @item.id, title: "#{@item.name} を登録しました", body: "これからこのガジェットのログを残していきましょう。", from: :system)
+				redirect_to item_path(@item)
+			else
+				# render action: :new
+			end
 		end
 	end
 
@@ -35,9 +46,9 @@ class ItemsController < ApplicationController
 	end
 
 	def update
-		item = Item.find(params[:id])
-		item.update(item_params)
-		redirect_to item_path(item)
+			item = Item.find(params[:id])
+			item.update(item_params)
+			redirect_to item_path(item)
 	end
 
 	def destroy
