@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :item_user, only: [:show, :edit, :update, :destroy]
 
 	def search
 		@user = current_user
@@ -7,9 +8,7 @@ class ItemsController < ApplicationController
     @items = @q.result(distinct: true).page(params[:page]).per(12)
   end
 
-
 	def show
-		@item = Item.find(params[:id])
 		@user = @item.user
 		@log = Log.new
 		@logs = Log.where(item_id: @item.id)
@@ -30,34 +29,31 @@ class ItemsController < ApplicationController
 	def create
 		@item = Item.new(item_params)
 		if params[:back]
-			render action: :new
+			render :new
 		else
 			if @item.save
 				log = Log.create(item_id: @item.id, title: "#{@item.name} を登録しました", body: "これからこのガジェットのログを残していきましょう。", from: :system)
-				redirect_to item_path(@item)
+				redirect_to @item
 			else
-				render action: :new
+				render :new
 			end
 		end
 	end
 
 	def edit
-		@item = Item.find(params[:id])
 	end
 
 	def update
-		item = Item.find(params[:id])
-		item.update(item_params)
-		redirect_to item_path(item)
+		@item.update(item_params)
+		redirect_to @item
 	end
 
 	def destroy
-		@item = Item.find(params[:id])
 		user = @item.user
 		if @item.destroy
-			redirect_to user_path(user)
+			redirect_to user
 		else
-			render action: :edit
+			render :edit
 		end
 	end
 
@@ -70,5 +66,9 @@ class ItemsController < ApplicationController
 
 	def item_params
 	  params.require(:item).permit(:name, :user_id, :image, :category_id, :maker, :infomation, :price, :place, :score, :open_range, :external_page)
+	end
+
+	def item_user
+		@item = Item.find(params[:id])
 	end
 end

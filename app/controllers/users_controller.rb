@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      render action: :edit
+      render :edit
     end
   end
 
@@ -43,6 +43,9 @@ class UsersController < ApplicationController
   end
 
   def baria_user
-      redirect_to user_path(current_user) if params[:id].to_i != current_user.id
+    if params[:id].to_i != current_user.id
+      redirect_to user_path(current_user)
+    end
   end
+
 end

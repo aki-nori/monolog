@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
 		if @category.destroy
 			redirect_to edit_category_path(@category)
 		else
-			render action: :edit
+			render :edit
 		end
 	end
 
