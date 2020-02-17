@@ -5,31 +5,22 @@ class LogsController < ApplicationController
 	def create
 		@log = Log.new(log_params)
 		@log.from = :user
-		if @log.save
-			redirect_back(fallback_location: top_path)
-		else
-			render item_path(@log.item)
-		end
+		@log.save
+		redirect_back(fallback_location: top_path)
 	end
 
 	def edit
 	end
 
 	def update
-		if @log.update(log_params)
-			redirect_to item_path(@log.item)
-		else
-			render item_path(@log.item)
-		end
+		@log.update(log_params)
+		redirect_to item_path(@log.item)
 	end
 
 	def destroy
 		@item = @log.item
-		if @log.destroy
-			redirect_to item_path(@item)
-		else
-			render item_path(@item)
-		end
+		@log.destroy
+		redirect_to item_path(@item)
 	end
 
 	private
