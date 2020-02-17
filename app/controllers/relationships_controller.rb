@@ -1,30 +1,23 @@
 class RelationshipsController < ApplicationController
 	before_action :authenticate_user!
+  before_action :find_info_user
 
   def create
   	@relationship = Relationship.new(following_id: params[:following_id], follower_id: current_user.id)
  		@relationship.save
+  	@user = User.find(params[:following_id])
 
- 		@info_user = User.find(params[:info_user])
-  	if params[:following_id] != nil
-  		@user = User.find(params[:following_id])
-  	else
-  		@user = User.find(params[:id])
-  	end
-  end
 
   def destroy
   	@relationship = Relationship.find_by(following_id: params[:id], follower_id: current_user.id)
   	@relationship.delete
-
-  	@info_user = User.find(params[:info_user])
-  	if params[:following_id] != nil
-  		@user = User.find(params[:following_id])
-  	else
-  		@user = User.find(params[:id])
-  	end
+    @user = User.find(params[:id])
   end
 
   private
+
+  def find_info_user
+    @info_user = User.find(params[:info_user])
+  end
 
 end

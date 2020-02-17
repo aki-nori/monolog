@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_user, only: [:show, :edit, :update, :followings, :followers]
   before_action :baria_user, only: [:update, :edit]
 
   def search
@@ -9,16 +10,13 @@ class UsersController < ApplicationController
   end
 
   def show
-   @user = User.find(params[:id])
-   @items = @user.items.page(params[:page]).per(12)
+    @items = @user.items.page(params[:page]).per(12)
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -27,12 +25,10 @@ class UsersController < ApplicationController
   end
 
   def followings
-    @user = User.find(params[:id])
     @users = User.find(params[:id]).followings.page(params[:page]).per(12)
   end
 
   def followers
-    @user = User.find(params[:id])
     @users = User.find(params[:id]).followers.page(params[:page]).per(12)
   end
 
@@ -42,9 +38,11 @@ class UsersController < ApplicationController
    params.require(:user).permit(:name, :introduction, :profile_image, :address, :twitter_account, :instagram_account, :facebook_account)
   end
 
+  def find_user
+    @user = User.find(params[:id])
+  end
+
   def baria_user
-    unless params[:id].to_i == current_user.id
-      redirect_to user_path(current_user)
-    end
+      redirect_to user_path(current_user) if params[:id].to_i != current_user.id
   end
 end
