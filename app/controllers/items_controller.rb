@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 				log = Log.create(item_id: @item.id, title: "#{@item.name} を登録しました", body: "これからこのガジェットのログを残していきましょう。", from: :system)
 				redirect_to item_path(@item)
 			else
-				# render action: :new
+				render action: :new
 			end
 		end
 	end
@@ -46,9 +46,9 @@ class ItemsController < ApplicationController
 	end
 
 	def update
-			item = Item.find(params[:id])
-			item.update(item_params)
-			redirect_to item_path(item)
+		item = Item.find(params[:id])
+		item.update(item_params)
+		redirect_to item_path(item)
 	end
 
 	def destroy
