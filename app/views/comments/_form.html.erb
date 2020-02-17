@@ -7,7 +7,7 @@
     <% end %>
     <%= comment.body %>
     <br>
-    <%= attachment_image_tag comment.user, :profile_image, fallback: "noimage.jpg", class: "rounded-circle comment-form-user-image" %>
+    <%= attachment_image_tag comment.user, :profile_image, fallback: "noimage.jpg", :class => "rounded-circle comment-form-user-image" %>
     <strong>
     <%= link_to comment.user.name, user_path(comment.user) %></strong>
     <% if log.item.user.id == comment.user_id %>
@@ -27,7 +27,7 @@
 	  <%= f.hidden_field :log_id, :value => log.id %>
 	  <div class="form-group">
 	    <label>コメント投稿</label>
-	    <%= f.text_area :body, class: "form-control" %>
+	    <%= f.text_area :body, :class => "form-control" %>
 	  </div>
     <div class="text-right">
 	   <%= f.submit "投稿", :class => "btn btn-primary" %>

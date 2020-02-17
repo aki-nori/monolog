@@ -6,7 +6,7 @@ class RelationshipsController < ApplicationController
   	@relationship = Relationship.new(following_id: params[:following_id], follower_id: current_user.id)
  		@relationship.save
   	@user = User.find(params[:following_id])
-
+  end
 
   def destroy
   	@relationship = Relationship.find_by(following_id: params[:id], follower_id: current_user.id)

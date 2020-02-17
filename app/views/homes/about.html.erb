@@ -5,14 +5,14 @@
     	<h2 class="children-f-text m-0 p-0 font-bold">ガジェットを<br>ログしよう。</h2>
     	<div class="children-f-button">
         <% unless user_signed_in? %>
-  	    	<%= link_to new_user_registration_path, class: "btn btn-success rounded-pill mr-1" do %>
+  	    	<%= link_to new_user_registration_path, :class => "btn btn-success rounded-pill mr-1" do %>
      					<h5 class="m-1 px-2"><strong>新規登録</strong></h5>
      		  <% end %>
-     		  <%= link_to new_user_session_path, class: "btn btn-info rounded-pill" do %>
+     		  <%= link_to new_user_session_path, :class => "btn btn-info rounded-pill" do %>
      					<h5 class="m-1 px-2"><strong>ログイン</strong></h5>
      		  <% end %>
         <% else %>
-          <%= link_to top_path, class: "btn btn-success rounded-pill" do %>
+          <%= link_to top_path, :class => "btn btn-success rounded-pill" do %>
               <h5 class="m-1 px-2"><strong>ログイン中</strong></h5>
           <% end %>
         <% end %>
@@ -77,7 +77,7 @@
 	 		<h1><strong>を</strong></h1>
 	 	</div><br>
 	 	<div class="children-t-button mt-3">
-	 		<%= link_to new_user_registration_path, class: "btn 	btn-success rounded-pill" do %>
+	 		<%= link_to new_user_registration_path, :class => "btn 	btn-success rounded-pill" do %>
 	 			<h2 class="m-2 px-3"><strong>はじめる</strong></h2>
 	 		<% end %>
 	 	</div>
