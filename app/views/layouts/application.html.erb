@@ -15,7 +15,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
-        <%= link_to top_path, class: "navbar-brand" do %>
+        <%= link_to top_path, :class => "navbar-brand" do %>
           <img src="<%= asset_path "monolog-logo.png" %>" class="w-35" >
         <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,59 +26,59 @@
             <% if user_signed_in? %>
               <!-- Userサインイン時のヘッダ表示項目 -->
               <li class="nav-item">
-                <%= link_to new_item_path, class: "nav-link" do %>
+                <%= link_to new_item_path, :class => "nav-link" do %>
                 <i class="fas fa-plus-circle"> ガジェット登録</i>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to search_items_path, class: "nav-link" do %>
+                <%= link_to search_items_path, :class => "nav-link" do %>
                   <i class="fas fa-search">ガジェット検索</i>
                 <% end %>
               </li>
               <li class="nav-item mr-2">
-                <%= link_to search_users_path, class: "nav-link" do %>
+                <%= link_to search_users_path, :class => "nav-link" do %>
                   <i class="fas fa-search">ユーザー検索</i>
                 <% end %>
               </li>
               <% if false %>
                 <li class="nav-item">
-                  <%= link_to user_path(current_user),class: "nav-link" do %>
+                  <%= link_to user_path(current_user),:class => "nav-link" do %>
                   <i class="fas fa-user"> <%= "#{current_user.name}さん" %></i>
                   <% end %>
                 </li>
               <% end %>
               <li class="nav-item">
-                <%= link_to user_path(current_user),class: "nav-link p-0" do %>
-                  <%= attachment_image_tag current_user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle mr-2 nav-user-icon" %>
+                <%= link_to user_path(current_user),:class => "nav-link p-0" do %>
+                  <%= attachment_image_tag current_user, :profile_image, fallback: "noimage.jpg", size:'150x150', :class => "rounded-circle mr-2 nav-user-icon" %>
                   <spna class="d-lg-none font-bold"> <%= "#{current_user.name}さん" %></span>
                 <% end %>
               </li>
             <% elsif admin_signed_in? %>
               <!-- Adminログイン時のヘッダ表示項目 -->
               <li class="nav-item">
-                <%= link_to manage_path, class: "nav-link" do %>
+                <%= link_to manage_path, :class => "nav-link" do %>
                   <i class="fas fa-tachometer-alt">管理</i>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
+                <%= link_to destroy_admin_session_path, method: :delete, :class => "nav-link" do %>
                   <i class="fas fa-sign-out-alt"> ログアウト</i>
                 <% end %>
               </li>
             <% else %>
               <!-- UserもAdmin もログインしていない時のヘッダ表示項目 -->
               <li class="nav-item">
-                <%= link_to root_path, class: "nav-link" do %>
+                <%= link_to root_path, :class => "nav-link" do %>
                   <i class="fas fa-info-circle">アバウト</i>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to new_user_session_path, class: "nav-link" do %>
+                <%= link_to new_user_session_path, :class => "nav-link" do %>
                   <i class="fas fa-sign-in-alt">ログイン</i>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to new_user_registration_path, class: "nav-link" do %>
+                <%= link_to new_user_registration_path, :class => "nav-link" do %>
                   <i class="fas fa-user-plus">新規登録</i>
                 <% end %>
               </li>

@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_item
+	before_action :find_item
 
  	def create
 		@like = Like.new(user_id: params[:user_id], item_id: params[:item_id])
@@ -14,7 +14,8 @@ class LikesController < ApplicationController
 
 	private
 
-	def set_item
+	def find_item
 		@item = Item.find(params[:item_id])
 	end
+
 end

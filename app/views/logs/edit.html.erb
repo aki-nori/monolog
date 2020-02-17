@@ -11,17 +11,17 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">タイトル</label>
-                <%= f.text_field :title, class: "form-control" %>
+                <%= f.text_field :title, :class => "form-control" %>
               </div>
               <div class="form-group">
                 <label for="">画像</label>
-                <%= f.attachment_field :image, class: "form-control-file" %>
+                <%= f.attachment_field :image, :class => "form-control-file" %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">本文</label>
-                <%= f.text_area :body, rows: 10, class: "form-control" %>
+                <%= f.text_area :body, rows: 10, :class => "form-control" %>
               </div>
             </div>
           </div>

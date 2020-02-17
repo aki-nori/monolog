@@ -16,7 +16,7 @@
           <div class="col-md-6">
             <div class="card-body">
               <div class="text-center w-100">
-                <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", class: "item-show-item-image" %>
+                <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", :class => "item-show-item-image" %>
               </div>
               <div class="text-center mt-2">
                 <!--星評価-->
@@ -48,11 +48,11 @@
                 <% end %>
                 <p><strong>購入場所</strong><%= "　#{@item.place}" %></p>
                 <% unless @item.external_page.blank? %>
-                  <p><%= link_to "製品ページリンク",  @item.external_page, class: "btn btn-primary btn-sm text-white float-right", target: :_blank %></p>
+                  <p><%= link_to "製品ページリンク",  @item.external_page, :class => "btn btn-primary btn-sm text-white float-right", target: :_blank %></p>
                 <% end %>
               </li>
               <li class="list-group-item">
-                <%= attachment_image_tag @item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', class: "rounded-circle item-card-user-image mr-3", style: "display: inline-block;" %>
+                <%= attachment_image_tag @item.user, :profile_image, fallback: "noimage.jpg", size:'150x150', :class => "rounded-circle item-card-user-image mr-3", style: "display: inline-block;" %>
                 <h5 class="font-bold" style="display: inline-block;">
                   <%= link_to @item.user.name, user_path(@item.user) %>
                 </h5>
@@ -76,7 +76,7 @@
           <div class="col-md-12 text-right">
             <% if @item.user == current_user %>
               <div class="card-body">
-                <%= link_to "編集", edit_item_path(@item), class: "btn btn-primary text-white" %>
+                <%= link_to "編集", edit_item_path(@item), :class => "btn btn-primary text-white" %>
               </div>
             <% end %>
           </div>
@@ -96,7 +96,7 @@
             </p>
             <% if log.image %>
               <div class="text-center" style="height: 300px;">
-                <%= attachment_image_tag log, :image, class: "log-image" %>
+                <%= attachment_image_tag log, :image, :class => "log-image" %>
               </div>
             <% end %>
             <div class="card-subtitle text-muted text-right mt-3">
@@ -141,15 +141,15 @@
                 <fieldset>
                   <div class="form-group">
                     <label for="">タイトル</label>
-                    <%= f.text_field :title, class: "form-control" %>
+                    <%= f.text_field :title, :class => "form-control" %>
                   </div>
                   <div class="form-group">
                     <label for="">本文</label>
-                    <%= f.text_area :body, rows: 7, class: "form-control" %>
+                    <%= f.text_area :body, rows: 7, :class => "form-control" %>
                   </div>
                   <div class="form-group">
                     <label for="">画像</label>
-                    <%= f.attachment_field :image, class: "form-control-file" %>
+                    <%= f.attachment_field :image, :class => "form-control-file" %>
                   </div>
                   <div class="form-group text-right">
                     <%= f.hidden_field :item_id, :value => @item.id %>
