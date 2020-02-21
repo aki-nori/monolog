@@ -5,7 +5,7 @@
 		  <span class="badge badge-pill badge-info follow-text">フォロー</span>
 		</h5>
 		<% end %>
-	<% elsq e %>
+	<% else %>
 		<%= link_to relationship_path(user, params:{info_user: info_user}), method: :delete, remote: true do %>
 		<h5>
 		  <span id="following-btn-<%= user.id %>" class="badge badge-pill badge-danger follow-text">フォロー中</span>
