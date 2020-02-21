@@ -12,15 +12,12 @@
  *
  */
 
-
-// ここからbootswatchのテーマ
 @import "flatly/variables";
 @import "bootstrap";
 @import "flatly/bootswatch";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import "*"; // これが無いとstylesheets内に個別のscssを読み込めない
-
+@import "*";
 
 .w-35 {
   width: 35%;

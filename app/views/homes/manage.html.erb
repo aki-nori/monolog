@@ -5,7 +5,7 @@
       <div class="card-header bg-primary text-white">ユーザー管理</div>
       <div class="card-body">
         <h4 class="card-title">ユーザ数：
-          <%= @users.count %>
+          <%= @users_count %>
         </h4>
       </div>
       <ul class="list-group list-group-flush">
@@ -15,10 +15,10 @@
       </ul>
       <div class="card-footer text-muted">
         <p>最新登録日：
-          <%= @users.order(created_at: "DESC").first.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+          <%= @recent_user_create %>
         </p>
         <p>最終更新日：
-          <%= @users.order(updated_at: "DESC").first.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+          <%= @recent_user_create %>
         </p>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <div class="card-header bg-primary text-white">カテゴリー管理</div>
       <div class="card-body">
         <h4 class="card-title">カテゴリー数：
-          <%= @categories.count %>
+          <%= @categories_count %>
         </h4>
       </div>
       <ul class="list-group list-group-flush">
@@ -38,10 +38,10 @@
         </li>
         <div class="card-footer text-muted">
           <p>最新登録日：
-            <%= @categories.order(created_at: "DESC").first.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+            <%= @recent_category_create %>
           </p>
           <p>最終更新日：
-            <%= @categories.order(updated_at: "DESC").first.created_at.strftime("%Y年%m月%d日 %H時%M分")%>
+            <%= @recent_category_create %>
           </p>
         </div>
       </ul>
@@ -53,7 +53,7 @@
       <div class="card-header bg-primary text-white">ユーザー管理</div>
       <div class="card-body">
         <h4 class="card-title">ガジェット数：
-          <%= @items.count %>
+          <%= @items_count %>
         </h4>
       </div>
       <ul class="list-group list-group-flush">
@@ -63,10 +63,10 @@
       </ul>
       <div class="card-footer text-muted">
         <p>最新登録日：
-          <%= @items.order(created_at: "DESC").first.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+          <%= @recent_item_create %>
         </p>
         <p>最終更新日：
-          <%= @items.order(updated_at: "DESC").first.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+          <%= @recent_item_update %>
         </p>
       </div>
     </div>
