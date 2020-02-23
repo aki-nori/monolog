@@ -105,7 +105,6 @@
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
-  　　 // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
       var marker = new google.maps.Marker({
         map: map,
         position: results[0].geometry.location
