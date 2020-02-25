@@ -83,37 +83,30 @@
   <% end %>
 </div>
 
-
 <script>
   function initMap(){
-    let map
-    let geocoder
-
-    geocoder = new google.maps.Geocoder()
-
-    map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    mapTypeId: 'terrain',
-    mapTypeControl: false,
-    zoomControl: false,
-    fullscreenControl: false,
-    streetViewControl: false
-  });
-
-  let inputAddress = '<%= user.address %>';
-
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location
-      });
-    } else {
+    var geocoder = new google.maps.Geocoder()
+    var inputAddress = '<%= user.address %>';
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        var map = new google.maps.Map(document.getElementById('map'),{
+          zoom: 6,
+          mapTypeId: 'terrain',
+          mapTypeControl: false,
+          zoomControl: false,
+          fullscreenControl: false,
+          streetViewControl: false,
+          center: results[0].geometry.location
+        });
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+      } else {
         document.getElementById("map").style.display ="none";
       }
     });
   }
-  </script>
+</script>
 
-   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
