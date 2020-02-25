@@ -85,8 +85,9 @@
 
 <script>
   function initMap(){
-    var geocoder = new google.maps.Geocoder()
+    var geocoder = new google.maps.Geocoder();
     var inputAddress = '<%= user.address %>';
+
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
         var map = new google.maps.Map(document.getElementById('map'),{
