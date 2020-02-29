@@ -83,6 +83,8 @@ gem 'refile-mini_magick'
 gem 'ransack'
 gem 'faker'
 
+gem 'haml-rails'
+
 gem 'dotenv-rails'
 # gem 'acts-as-taggable-on'
 
