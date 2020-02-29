@@ -3,9 +3,9 @@
     <div class="card">
       <div class="card-body">
         <span class="font-bold mr-2">並び替え:</span>
-        <%= link_to "いいね数順", top_path(params: {search_type: :like}), :class => "btn btn-primary btn-sm mr-1" %>
-        <%= link_to "最近のガジェット順", top_path(params: {search_type: :recent}), :class => "btn btn-primary btn-sm mr-1" %>
-        <%= link_to "ログ数順", top_path(params: {search_type: :log}), :class => "btn btn-primary btn-sm mr-1" %>
+        <% @search.each do |key, value| %>
+          <%= link_to value, top_path(params: {search_type: key}), :class => "btn btn-primary btn-sm mr-1" %>
+        <% end %>
       </div>
     </div>
   </div>
