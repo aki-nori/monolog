@@ -2,6 +2,9 @@ class HomesController < ApplicationController
 
   def top
     authenticate_user!
+
+    @search = {:like => "いいね数順", :recent => "最近のガジェット順", :log => "ログ数順"}
+
     if params[:search_type] == "like"
       @items = Item.select('items.*', 'count(likes.id) AS liks').left_joins(:likes).group('items.id').order('liks desc').page(params[:page]).per(12)
     elsif params[:search_type] == "recent"
