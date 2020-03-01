@@ -1,0 +1,92 @@
+.row.text-white
+  .col-lg-6.pl-0
+    .parent-f
+      = image_tag "monolog-logo-l.png", class: "children-f m-0 p-0 mw-100"
+      %h2.children-f-text.m-0.p-0.font-bold
+        ガジェットを
+        %br
+        ログしよう。
+      .children-f-button
+        - unless user_signed_in?
+          = link_to new_user_registration_path, :class => "btn btn-success rounded-pill mr-1" do
+            %h5.m-1.px-2
+              %strong
+                新規登録
+          = link_to new_user_session_path, :class => "btn btn-info rounded-pill" do
+            %h5.m-1.px-2
+              %strong
+                ログイン
+        - else
+          = link_to top_path, :class => "btn btn-success rounded-pill" do
+            %h5.m-1.px-2
+              %strong
+                ログイン中
+
+  .col-lg-6{style: "backgournd-color: #559FC5"}
+    .parent-s
+      = image_tag "town-image.png", :class => "children-s m-0 p-0 w-100"
+
+  .col-lg12.p-0{style: "background-color: #3D5477; height: 600px;"}
+    .ml-4.my-4
+      %h4
+        %strong
+          About
+    %table.mt-5.text-center.w-100
+      %tr
+        %td
+          %h3
+            Buy
+        %td
+        %td
+          %h3
+            Log
+        %td
+        %td
+          %h3
+            Find
+      %tr
+        %td
+          = image_tag "gadget-buy.png", class: "w-100", style: "max-width: 130px;"
+        %td
+          %h1
+            %i.fas.fa-angle-right
+        %td
+          = image_tag "gadget-log.png", class: "w-100", style: "max-width: 130px;"
+        %td
+          %h1
+            %i.fas.fa-angel-right
+        %td
+          = image_tag "gadget-find.png", class: "w-100", style: "max-width: 130px;"
+    %br
+    .mt-4.mx-5
+      %p.font-bold
+        新しいガジェットを買ったらmonologへ登録。使っていて気づいたことはログに書き残しておきましょう。 いつどんなガジェットを使っていたのかのログを残すことで、 これからのあなたの買い物と誰かの買い物の手助けになります。 更に、使い勝手のレビューや工夫のある使い方を書き残すことで、購入を検討している人の役に立ちます。 困りごとを書けは誰かが解決策を教えてくれるかもしれませんね。  
+      %br
+      %br
+      %h5
+        %strong
+          － さぁ、モノ・コミュニティをはじめましょう。
+
+  .col-lg-6.p-0.parent-t{style: "background-color: #559FC5; height: 650px; paddimng: 30px;"}
+    .ml-4.my-4.float-left.mx-auto
+      %h4
+        %strong
+          System
+      = image_tag "system-img.png", class: "m-5", style: "width: auto; height: auto; max-height: 70%; max-width: 70%;"
+  .col-lg-6.p-0.prarent-t.mx-auto{style: "background-color: #3D5477; height: 650px;"}
+    =image_tag "monolog-logo-l.png", class: "m-0 p-0 w-100"
+    .mx-auto.my-3.font-bold.text-center
+      %h1
+        %strong
+          を
+    %br
+    .children-t-button.mt-3.text-center
+      = link_to new_user_registration_path, :class => "btn btn-success rounded-pill" do
+        %h2.m-2.px-3
+          %strong
+            はじめる!
+    .children-t
+      = image_tag "about-deco.png", class: "mw-100"
+
+
+
