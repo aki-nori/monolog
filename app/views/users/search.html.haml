@@ -1,0 +1,24 @@
+.row.my-3
+  .col-md-12.col-lg-3
+    / md以上
+    .d-md-block.sticky
+      = render 'users/info', user: @user, info_user: @user
+    / sm以下
+    .d-none
+      = render 'users/info', user: @user, info_user: @user
+  .col-md-12.col-lg-9
+    .card.text-white.bg-primary.mb-3.sticky.z-index-200
+      .card-header.p-1
+        %p.m-2.float-left
+          検索結果：#{@users.total_count}件
+        .float-right.d-inline
+          = search_form_for @q, url: search_users_path, :class => "form-inline my-2 my-lg-0" do |f|
+            = f.search_field :name_cont, :class => "form-control mr-sm-2 mr-2 search-form", placeholder: "ユーザー検索"
+            .actions
+              = button_tag :type => "submit", :class => "btn btn-secondary my-2 my-sm-0" do
+                %i.fa.fa-search
+    .row.z-index-100
+      - @users.each do |user|
+        .col-lg-4.col-md-6
+          = render 'users/user_card', user: user, info_user: @user
+    = paginate @users

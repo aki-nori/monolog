@@ -1,0 +1,19 @@
+.row.my-3
+  .col-md-12.col-lg-3
+    / md以上
+    .d-md-block.sticky
+      = render 'users/info', user: @user, info_user: @user
+    / sm以下
+    .d-none
+      = render 'users/info', user: @user, info_user: @user
+  .col-md-12.col-lg-9
+    .card.text-white.bg-primary.mb-3.sticky.z-index-200
+      .card-header
+        %span.font-bold
+          = @user.name
+        さんのガジェット一覧
+    .row
+      - @items.each do |item|
+        .col-lg-4.col-md-6
+          = render 'items/item_card', item: item
+    = paginate @items
