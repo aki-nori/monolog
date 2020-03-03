@@ -1,0 +1,20 @@
+%table.w-100
+  %tr.user-card-count-record.link-font-light
+    %td
+      = link_to followings_user_path(user) do
+        %p.user-card-record-count.mb-1
+          = user.followings.count
+        %p.user-card-record-title
+          フォロワー
+    %td
+      = link_to followers_user_path(user) do
+        %p.user-card-record-count.mb-1
+          = user.followers.count
+        %p.user-card-record-title
+          フォロー中
+    %td
+      = link_to user_path(user) do
+        %p.user-card-record-count.mb-1
+          = user.items.count
+        %p.user-card-record-title
+          アイテム
