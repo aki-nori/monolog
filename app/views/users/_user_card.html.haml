@@ -1,0 +1,21 @@
+.card.text-white.bg-primary.mb-3
+  .card-body
+    %table.text-center
+      %tr
+        %td
+          = attachment_image_tag user, :profile_image, fallback: "noimage.jpg", :class => "rounded-circle user-card-user-image"
+        %td
+          %h6.card-title.link-font-light.pl-2
+            = link_to user.name, user_path(user)
+    .text-container.user-card-user-intro
+      %p.user-card-intro-text
+        = user.introduction
+    .card-body.py-0.px-auto.text-center
+      %div{id: "counter-#{user.id}"}
+        = render 'users/counter', user: user
+      .text-muted.text-center.small
+        %i.fas.fa-map-marker-alt
+        = user.address
+        %br
+    %div.text-center{id: "follow-#{user.id}"}
+      =render 'relationships/follow', user: user, info_user: info_user
