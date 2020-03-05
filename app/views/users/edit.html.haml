@@ -1,0 +1,54 @@
+.list-group.my-3
+  .list-group-item.list-group-item-action.active.font-bold
+    プロフィール編集
+  .list-group-item
+    = form_with(model: @user, local: true) do |f|
+      = render 'homes/error_messages', model: @user
+      %form
+        %fieldset
+          .row
+            .col-md-6
+              .form-group
+                %label
+                  %i.fas.fa-signature
+                    アカウント名
+                = f.text_field :name, :class => "form-control"
+                %small.form-text.text-muted
+                  15文字以内
+              .form-group
+                %label
+                  %i.fas.fa-user
+                    アイコン画像
+                = f.attachment_field :profile_image, :class => "form-control-file"
+              .form-group
+                %label
+                  %i.fas.fa-paragraph
+                    自己紹介
+                = f.text_area :introduction, rows: 10, :class => "form-control"
+                %small.form-text.text-muted
+                  150字以内
+            .col-md-6
+              .form-group
+                %label
+                  %i.fas.fa-map-marker-alt
+                    居住地
+                =f.text_field :address, :class => "form-control"
+              .form-group
+                %label
+                  %i.fab.fa-twitter.mr-1
+                    Twitter
+                = f.text_field :twitter_account, :class => "form-control", :placeholder => "https://twitter.com/アカウント名"
+              .form-group
+                %label
+                  %i.fab.fa-instagram.mr-1
+                    Instagram
+                = f.text_field :instagram_account, :class => "form-control", :placeholder => "https://instagram.com/アカウント名"
+              .form-group
+                %label
+                  %i.fab.fa-facebook-square
+                    Facebook
+                = f.text_field :facebook_account, :class => "form-control", :placeholder => "https://facebook.com/アカウント名"
+          .row
+            .col-md-12.text-right
+              = f.submit "更新", :class => "btn btn-primary"
+              = link_to "退会", user_registration_path, method: :delete, data: {confirm: "本当に退会してもよろしいですか？"}, :class => "btn btn-danger"
