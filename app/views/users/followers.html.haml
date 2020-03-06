@@ -1,0 +1,19 @@
+.row.my-3
+  .col-md-12.col-lg-3
+    / md以上
+    .d-md-block.sticky
+      = render 'users/info', user: @user, info_user: @user
+    / sm以下
+    .d-none
+      = render 'users/info', user: @user, info_user: @user
+  .col-md-12.col-lg-9
+    .card.text-white.bg-primary.mb-3.sticky.z-index-200
+      .card-header
+        %span.font-bold
+          = @user.name
+          さんがフォロー中
+    .row.z-index-100
+      - @users.each do |user|
+        .col-lg-4.col-md-6
+          = render 'users/user_card', user: user, info_user: @user
+    = paginate @users
