@@ -1,0 +1,24 @@
+#log-new.col-md-12.mx-auto
+  .list-group
+    .list-group-item.list-group-item-action.active
+      ログ新規投稿
+    .list-group-item
+      = form_with(model: log, local: true) do |f|
+        %form
+          %fieldset
+            .form-group
+              %label
+                タイトル
+              = f.text_field :title, :class => "form-control"
+            .form-group
+              %label
+                本文
+              = f.text_area :body, rows: 7, :class => "form-control"
+            .form-group
+              %label
+                画像
+              =f.attachment_field :image, :class => "form-control-file"
+            .form-group.text-right
+              = f.hidden_field :item_id, :value => item.id
+              = f.submit "投稿", :class => "btn btn-primary"
+            
